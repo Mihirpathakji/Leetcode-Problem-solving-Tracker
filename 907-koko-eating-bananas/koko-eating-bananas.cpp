@@ -4,13 +4,14 @@ public:
     bool eatbananas(vector<int>&piles,int h,int mid){
 
         int n = piles.size();
-        long long int pilessum = 0;//  2  1 
+        long long int totalhours = 0; 
 
         for(int i =0; i<n;i++){
             piles[i]/mid <= h;
-             pilessum += ceil((double)piles[i]/(double)mid); // Nearest longest integer to the given double    
-            }
-        return pilessum <=h;
+             totalhours += ceil((double)piles[i]/(double)mid); // Nearest longest integer to   the given double    
+        }
+            return totalhours <=h;//it will return true or false and accordingly ans will store the mid, at the end after the function call we have return ans so ans or the k will be returned
+
      }
 
     int minEatingSpeed(vector<int>& piles, int h) {
@@ -32,6 +33,10 @@ public:
                 start = mid + 1;
             } 
        }      
-       return ans; 
+       return ans;
+
+       
+    // Time complexity :- log(max of all the piles element) *n
+
     }
 };
