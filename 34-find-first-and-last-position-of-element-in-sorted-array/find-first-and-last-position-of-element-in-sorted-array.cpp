@@ -10,4 +10,10 @@ public:
         }
             return {-1,-1};
     }
+
+    
+    // Tc:O(3logn)
+    // Sc:O(1)
+
+
 };
