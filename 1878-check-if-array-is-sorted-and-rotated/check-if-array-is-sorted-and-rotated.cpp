@@ -9,7 +9,7 @@ public:
             original_nums[i]=nums[i];
         }// O(n)
 
-        sort(original_nums.begin(),original_nums.end());// O(nlogn)
+        sort(original_nums.begin(),original_nums.end());// O(nlogn) original nums contains sorted elements 
 
         // Now your nums is rotated by some number of positions .OKay i will again rotate it 
         // by number of rotations time i.e <= nums.length()  times .And at any instant of 
@@ -28,6 +28,8 @@ public:
         {
             rotated_nums[i]=nums[i];
         }
+        // rotated nums contains given elements 
+        //  O(n)
 
 
         for(int r=0;r<=n;r++)
@@ -37,16 +39,16 @@ public:
             
             for(int i=0;i<n;i++)
             {
-                rotated_nums[i]=nums[(i+r)%n];
-                if(rotated_nums==original_nums)
+                rotated_nums[(i+r)%n]=nums[i];
+            } 
+            if(rotated_nums==original_nums)
                 {
                     return true;
                 }
-            } 
         }
-
             return false;
-
+            // TC : O(n^2)
+            // Sc : O(n)
 
 
     }
