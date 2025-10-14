@@ -1,26 +1,29 @@
 class Solution {
 public:
     bool check(vector<int>& nums) {
+        
+        // Most optimal one solution for this problem : Tc : O(n)
 
-        //Always remmber the index which is GOING Out of the bounds say Here the index (i+1)  was going out of the bounds there by we do there (index)%n
+        // We will iterate through it till the Last element and check if the dip/Peak  occurs for only one time then it is correct Then it can be 
 
-        // Most optimal solution : 
-
-        int n=nums.size();
-
-        int peak=0;
-
-        for(int i=0;i<n;i++)
+        int n=nums.size(); 
+        int dip=0;
+        for(int i=0;i<n-1;i++)
         {
-            if(nums[i]>nums[(i+1)%n])
+            if(nums[i]>nums[(i+1)])
             {
-                peak++;
+                // there is one downfall founded.
+                dip++; 
             }
+        
+        }
+        if(nums[n-1]>nums[0])
+        {
+            dip++;
         }
 
-        return peak<=1;
 
-       //Tc  : O(n)  && Sc :O(1) 
+        return dip<=1; 
 
 
     }
