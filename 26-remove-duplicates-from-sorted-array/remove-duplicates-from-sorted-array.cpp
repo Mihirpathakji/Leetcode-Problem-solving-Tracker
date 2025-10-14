@@ -2,24 +2,27 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
 
-        int n=nums.size();
+        int n=nums.size();// O(1)
         set<int>st;
 
         for(int i=0;i<n;i++)
         {
-            st.insert(nums[i]);
-        }// 
+            st.insert(nums[i]);// O(logn)
+        }
+        
+        // O(nlogn)
 
-        //O(n)  <- will contains all unique + sorted
-
-        // Making the original nums exact same as st:
-
-        nums.assign(st.begin(),st.end());// Sc : O(n)
+        nums.assign(st.begin(),st.end());// -> Tc of O(n)  Sc : O(n)
+       
+        //  O(n)  
 
         return st.size();
 
-        //Tc : O(n)
-        //Sc : O(n)
+
+    //TC : O(nlogn)+O(n)==O(nlogn) 
+
+    //Sc : O(n)
+
 
     }
 };
