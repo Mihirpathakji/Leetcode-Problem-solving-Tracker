@@ -1,21 +1,25 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
-        
-        // 1. vector integer directly into a set s   : 1.vector<int>nums(s.begin(),s.end())    2. vector<int>nums  -> nums.assign(s.begin(),s.end()) 
-        // 2. set directly int to a vector integer : s.insert(nums.begin(),nums.end())  2.set<int>s(nums.begin(),nums.end(  ))
 
-        set<int>s;
-        s.insert(nums.begin(),nums.end());// nlogn n
+        int n=nums.size();
+        set<int>st;
 
-        nums.assign(s.begin(),s.end());// n  
+        for(int i=0;i<n;i++)
+        {
+            st.insert(nums[i]);
+        }// 
 
+        //O(n)  <- will contains all unique + sorted
 
-        // vector-> idexing is possible but in the set indexing is not possible we need to iterate through it's elements 
+        // Making the original nums exact same as st:
 
-        //Tc : O(nlogn + n) == O(n)
-        //Sc : O(s.size())
- 
-        return s.size();
+        nums.assign(st.begin(),st.end());// Sc : O(n)
+
+        return st.size();
+
+        //Tc : O(n)
+        //Sc : O(n)
+
     }
 };
