@@ -1,6 +1,8 @@
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
+       
+        //Most optimal approach :
 
         int n=nums.size(); //O(1)
         int j=1;
