@@ -1,35 +1,31 @@
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target)
-    {
-    vector<int>ans(2);// constant size vector so the space complexity is also constant.
-    int n=numbers.size();
-    int i=0;
-    int j=n-1;
-
-    while(i<=j)
-    {
-        if(numbers[i]+numbers[j]==target)
+    vector<int> twoSum(vector<int>& numbers, int target) {
+        int n=numbers.size();
+        vector<int>ans(2);
+        int start=0;
+        int end=n-1;
+        while(start<end)
         {
-            ans[0]=i+1;
-            ans[1]=j+1;
-            break;
-        }
-        else if(numbers[i]+numbers[j]>target)
-        {
-            j--;
-        }
-        
-        else
-        {
-            i++;//23
-        }
-    }
-    
-    return ans;
+            //case1 :
+            if(numbers[start]+numbers[end]==target)
+            {
+                ans[0]=(start+1);// since to get the same index when the numbers would be 1 based .
+                ans[1]=(end+1);
+                return ans;
+            }
 
-    //TC : O(n)
-    //SC : O(1)//constant space of 2 elements only 
-
+            else if(numbers[start]+numbers[end]>target)
+            {
+                //decrease our sum Value;
+                end--;
+            }
+            else
+            {
+                //Our sum is lesser than the Target.Increase it inorder to reach the Target value.
+                start++;
+            }
+        }
+        return ans;// just returning an empty vector to match the function call type.
     }
 };
