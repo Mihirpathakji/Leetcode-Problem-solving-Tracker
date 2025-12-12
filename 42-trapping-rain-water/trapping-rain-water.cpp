@@ -2,37 +2,40 @@ class Solution {
 public:
     int trap(vector<int>& heights) {
 
+        //Most Optimal Solution :-  SC:O(1) and TC:O(n) using TWO-POINTERS.
+
         int n=heights.size();
-        vector<int>prefix_max(n);
-        vector<int>suffix_max(n);
-    
-        //computing prefix_max[] and suffic_max[]:
+        int l=0;
+        int r=n-1;
+        int ans=0;
+        int left_max=0;
+        int right_max=0;
+        while(l<r)
+        {   
+            //calculate the left_max and the right_max everytime;
+            left_max=max(left_max,heights[l]);
+            right_max=max(right_max,heights[r]);
 
-        //prefix_max[]:
-        prefix_max[0]=heights[0];
-        for(int i=1;i<n;i++)
-        {
-            prefix_max[i]=max(prefix_max[i-1],heights[i]);
-        }//O(n)
+            //Minimum out of the left_max and the right_max is the Deciding factor for the Amount of the Water that is Trapped.
 
-        //suffix_max[]:
-        suffix_max[n-1]=heights[n-1];
-        for(int i=n-2;i>0;i--)
-        {
-            suffix_max[i]=max(suffix_max[i+1],heights[i]);
-        }//O(n)
-        int total_units=0;
-        for(int i=1;i<n-1;i++)
-        {
-            if(heights[i]<prefix_max[i] && heights[i]<suffix_max[i])
+            //case1:
+            if(left_max<right_max)
             {
-                //then only water can be logged.
-                total_units+=min(prefix_max[i],suffix_max[i])-heights[i];
+                ans+=(left_max-heights[l]);
+                //done with that i pointer now left_max is needed in reference to the next i 
+                l++;
             }
-        }//O(n)
-        return total_units;
-    
-        //TC:O(3*n)=O(n)
-        //SC:O(2*n)=O(n)
+
+            //case2:
+            else
+            {
+                ans+=(right_max-heights[r]);
+                r--;
+            }
+        }
+        return ans;
+    //TC:O(n)
+    //SC:O()
+
     }
 };
