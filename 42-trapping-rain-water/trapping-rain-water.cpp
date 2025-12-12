@@ -35,7 +35,7 @@ public:
         }
         return ans;
     //TC:O(n)
-    //SC:O()
+    //SC:O(1)
 
     }
 };
