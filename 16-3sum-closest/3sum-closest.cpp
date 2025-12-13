@@ -6,7 +6,7 @@ public:
         int i=0;    
         int sum;
         vector<int>ans;
-        map<int,int>mp;
+        unordered_map<int,int>mp;
         for(int i=0;i<n-2;i++)
         {    sum=0;
              int j=i+1;//2
@@ -39,5 +39,5 @@ public:
     }
     
     //TC:O(n^2+nlogn)
-    //SC:O(1)
+    //SC:O(n.of.triplets.formed)
 };
