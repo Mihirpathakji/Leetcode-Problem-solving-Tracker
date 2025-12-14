@@ -2,18 +2,19 @@ class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
         int n=nums.size();
-        vector<int>nums1;
+        int indx=0;//another helpful index variable.
         for(int i=0;i<n;i++)
-        {
+        {//i==0;1;2;nums[2]!=3;3
             if(nums[i]!=val)
             {
-                nums1.push_back(nums[i]);
+                nums[indx]=nums[i];//nums[0]=nums[1]==2;nums[1]=nums[2]==2
+                //[2 2]
+                indx++;//1  2
             }
         }
-        nums=nums1;
-        return nums1.size();
+        return indx;//2->2 elements unique from the val
 
         //TC:O(n)
-        //SC:O(n)
+        //SC:O(1)
     }
 };
