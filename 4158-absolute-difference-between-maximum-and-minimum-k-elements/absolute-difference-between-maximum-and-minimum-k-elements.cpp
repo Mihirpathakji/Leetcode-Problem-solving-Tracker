@@ -8,11 +8,13 @@ public:
         }
         sort(nums.begin(),nums.end());//[2 2 4 5]
         int i=0;
+        int count1=0;
         int smallest_sum=0;
-        while(i<k)
+        while(count1<k)
         {
             smallest_sum+=nums[i];//100
             i++;
+            count1++;
         }
 
         int j=n-1;//0
