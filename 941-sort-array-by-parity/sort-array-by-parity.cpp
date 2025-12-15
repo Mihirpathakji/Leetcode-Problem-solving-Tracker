@@ -2,33 +2,32 @@ class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {
         int n=nums.size();
-        int index=0;
-        int even_count=0;
-        int odd_count=0;
-        vector<int>ans(n);
-        for(int i=0;i<n;i++)
+        sort(nums.begin(),nums.end());//nlogn[1 2 3 4]
+        int i=0;
+        int j=n-1;//[4 2 3 1]
+        while(i<j)
         {
             if(nums[i]%2==0)
             {
-                ans[index]=nums[i];//ans[0]=nums[2]=2;ans[1]=nums[3]=4
-                index++;//1  2 
+                i++; //2 4 
             }
-            //i==2;3
-        }
-        for(int i=0;i<n;i++)
-        {//i==0
-            if(nums[i]%2!=0)
+            else
             {
-                ans[index]=nums[i];//ans[2]=nums[0]=3
-                //ans=[2 4 3 1]
-                index++;//3  4
+                if(nums[j]%2==0)
+                {
+                    swap(nums[i],nums[j]);
+                    i++;//3
+                    j--;//4
+                }
+                else
+                {
+                    j--;//5
+                }
             }
-            //i==1  ;2  ;3;4
         }
-        return ans;
+        return nums;
 
-        //TC:O(n)
-        //SC:O(n)
-
+        //TC:O(nlogn)
+        //SC:O(1)
     }
 };
