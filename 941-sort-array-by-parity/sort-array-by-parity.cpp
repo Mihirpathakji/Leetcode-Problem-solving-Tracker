@@ -1,33 +1,35 @@
 class Solution {
 public:
     vector<int> sortArrayByParity(vector<int>& nums) {
+        //since the q itslef states that the final array can be return in "ANY ORDER" .Hence the sorting was not even Required.
         int n=nums.size();
-        sort(nums.begin(),nums.end());//nlogn[1 2 3 4]
-        int i=0;
-        int j=n-1;//[4 2 3 1]
+        int i=0;//0
+        int j=n-1;//3
         while(i<j)
         {
             if(nums[i]%2==0)
-            {
-                i++; //2 4 
+            {   
+                i++;//1
             }
             else
             {
+                //nums[i] not even then make it even 
                 if(nums[j]%2==0)
                 {
-                    swap(nums[i],nums[j]);
-                    i++;//3
-                    j--;//4
+                    swap(nums[i],nums[j]);//[4 1 2 3]//[4 2 1 3]
+                    i++;//1  2
+                    j--;//2   1
                 }
                 else
                 {
-                    j--;//5
+                    j--;
                 }
             }
         }
         return nums;
 
-        //TC:O(nlogn)
-        //SC:O(1)
+    //TC:O(n)
+    //SC:O(1)
+
     }
 };
