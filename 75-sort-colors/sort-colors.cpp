@@ -22,10 +22,11 @@ public:
             }
         }
         int index=0;
-        while(index<count0)
+        while(count0!=0)
         {
             nums[index]=0;//nums[0]=0  nums[1]=0
-            index++;//1    2   
+            index++;//1    2
+            count0--;   
         }
         while(count1!=0)
         {
