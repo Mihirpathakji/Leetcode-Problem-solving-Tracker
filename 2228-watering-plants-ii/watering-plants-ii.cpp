@@ -1,77 +1,41 @@
 class Solution {
 public:
     int minimumRefill(vector<int>& plants, int capacityA, int capacityB) {
-       int tempA=capacityA;
-       int tempB=capacityB; 
-       int n=plants.size();
-       int refill_count=0;
-       int alice=0;
-       int bob=n-1;
-       while(alice<=bob)
-       {    
-            if(alice==bob)
-            {
-                if(capacityA>capacityB && capacityA>=plants[alice])
-                {
-                    capacityA-=plants[alice];
-                    alice++;
-                }
-                else if(capacityB>capacityA && capacityB>=plants[alice])
-                {
-                    capacityB-=plants[alice];
-                    alice++;
-                }
-                else if(capacityA==capacityB && capacityA>=plants[alice])
-                {
-                    capacityA-=plants[alice];
-                    alice++;
-                }
-                else
-                {   refill_count++;
-                    capacityA=tempA;
-                    capacityA-=plants[alice];
-                    alice++;
-                }
-            }
-            else if(capacityB>=plants[bob] && capacityA<plants[alice])
-            {   
+       
+        int n = plants.size();
+        int ca = capacityA;
+        int cb = capacityB;
+
+        int alice = 0;
+        int bob = n-1;
+        int refill_count = 0;
+
+        while(alice < bob) {
+
+            if(ca < plants[alice]) {
+                ca = capacityA;
                 refill_count++;
-                capacityA=tempA;
-                capacityA-=plants[alice];
-                alice++;
-                capacityB-=plants[bob]; 
-                bob--;
             }
-            else if(capacityA>=plants[alice] && capacityB<plants[bob])
-            {
+
+            if(cb < plants[bob]) {
+                cb = capacityB;
                 refill_count++;
-                capacityB=tempB;
-                capacityB-=plants[bob];
-                bob--;
-                capacityA-=plants[alice];
-                alice++;
             }
-            else if(capacityA>=plants[alice] && capacityB>=plants[bob])
-            {   
-                capacityA-=plants[alice];
-                capacityB-=plants[bob];
-                alice++;//1
-                bob--;//3
+
+            ca -= plants[alice];
+            cb -= plants[bob];
+
+            alice++;
+            bob--;
+        }
+
+        if(alice == bob) {
+            if(ca < plants[alice] && cb < plants[bob]) {
+                refill_count++;
             }
-            else if(capacityA<plants[alice] && capacityB<plants[bob])
-            {
-                refill_count+=2;
-                capacityA=tempA;
-                capacityB=tempB;
-                capacityA-=plants[alice];
-                capacityB-=plants[bob];
-                alice++;
-                bob--;
-            }
-       }
-       return refill_count; 
-        //TC:O(n)
-        //SC:O(1)
-    
+        }
+
+        return refill_count;
+        
     }
 };
