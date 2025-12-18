@@ -1,1 +1,1 @@
-<h2>transpose-matrix Notes</h2><hr>[ Time taken: 7 m 46 s ]
+Just Swap all the elements from all the points after the Diagonal  OR from all the points before the Diagonal 
