@@ -20,18 +20,20 @@ public:
             if(!isalphanumeric(s[start]))
             {
                 start++;//space. 
+                continue;
             }
             if(!isalphanumeric(s[end]))
             {
                 end--;
+                continue;
             }
-            if((isalphanumeric(s[start])  && isalphanumeric(s[end]) ) && ( tolower(s[start])!=tolower(s[end]) ) )
+            if(tolower(s[start])!=tolower(s[end]) ) 
             {
                 return false;
             }
-            else if((isalphanumeric(s[start])  && isalphanumeric(s[end]) ) && ( tolower(s[start])==tolower(s[end]) ))
+            else
             {
-                start++;
+                start++;//1
                 end--;
             }
         } 
