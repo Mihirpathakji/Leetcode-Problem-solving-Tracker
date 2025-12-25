@@ -5,6 +5,9 @@ public:
         int low=0;
         int high=n-1;
         int mid;
+        //Approach :- Here the vector is rotated sorted .So you need to identify which Portion of the vector is sorted??? Thereby apply binary search only on that much sorted portion.i.e Eliminate the remaining search space.  
+
+
         while(low<=high)
         {
             mid=low+(high-low)/2;
