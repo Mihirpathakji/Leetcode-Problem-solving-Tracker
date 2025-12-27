@@ -22,7 +22,6 @@ public:
 
         //Appraoch:nums[mid] can have only 4 possibilities with respect to peak element.Our target is to get that peak element. 
 
-
         while(low<=high)
         {//0<=4 //0<=1
             int mid=low+(high-low)/2;//2//0 
@@ -33,23 +32,23 @@ public:
             {//2<4
                 return mid;
             }
-            //Whether nums[mid] is on an increasing curve ??
+            //Whether nums[mid] is on an increasing curve ??(Peak on right)
             else if(nums[mid]<nums[mid+1]  && nums[mid]>nums[mid-1])
             {
                 //nums[mid] is on the Left Half of the peak:
                 low=mid+1;
             }
-            //Whether the nums[mid] is on Decreasing curve??
+            //Whether the nums[mid] is on Decreasing curve??(Peak on left)
             else if(nums[mid]<nums[mid-1] && nums[mid]>nums[mid+1])
             {
                 high=mid-1;//high=1
             }
-            //only one case remains that nums[mid] is point at the bottom which at peak at it's both sides.
-            else if(nums[mid]<nums[mid+1]  && nums[mid]<nums[mid-1])
-            {
-                //is either of the side you can find an peak element.Go to any of the side 
+            //only one case remains that nums[mid] is point at the bottom which having peak at it's both sides.Went to either of sides both side you have peak value
+           else
+           {//nums[mid]<nums[mid+1]  && nums[mid]<nums[mid-1]
                 low=mid+1;
-            }
+           }
+
             //TC:O(log2(n))
             //SC:O(1)
         }
