@@ -30,7 +30,7 @@ public:
             }
         }
         return ans;//only executed when x dosent have perfect sqrt   
-        //TC:O(lo2(x))
+        //TC:O(log2(x))
         //SC:O(1)
  }
 };
