@@ -8,7 +8,7 @@ public:
         int ans=1;
         //There is no array , no vector.Your search space for the Binary search will be [Minimum_possible_ans,Maximum_possible_ans]
         int low=1;
-        int high=sqrt(x);//sqrt(INT_MAX)
+        int high=x;//Not maximum possible ans but we cant took high=sqrt(x) since it is not allowed to use sqrt(x) function
 
         while(low<=high)
         {
