@@ -14,38 +14,33 @@ public:
         {
             return n-1;
         }
-        int low=0;//0
-        int high=n-1;//4
+        //I had already checked for i==0 and i==n-1 .Now If the answer were at those indices then it could have been returned.Now ,If it not at those indices than why to include those indices in my search space when i already know muy answer is not the index=0 or index =n-1;Then i would not include them in my search space.  
+        int low=1;//0
+        int high=n-2;//4
+
         while(low<=high)
         {//0<=4 //0<=1
             int mid=low+(high-low)/2;//2//0 
-            if(mid==0)
-            {
-                return 1;
-            }
-            if(mid==n-1)
-            {
-                return n-2;
-            }
+
 
             //check if nums[mid] is itself the peak element?
-            if(mid>0 && mid<n-1 && nums[mid]>nums[mid+1] && nums[mid]>nums[mid-1])
+            if(nums[mid]>nums[mid+1] && nums[mid]>nums[mid-1])
             {//2<4
                 return mid;
             }
             //Whether nums[mid] is on an increasing curve ??
-            else if(mid >0 && mid <n-1 && nums[mid]<nums[mid+1]  && nums[mid]>nums[mid-1])
+            else if(nums[mid]<nums[mid+1]  && nums[mid]>nums[mid-1])
             {
                 //nums[mid] is on the Left Half of the peak:
                 low=mid+1;
             }
             //Whether the nums[mid] is on Decreasing curve??
-            else if(mid >0 && mid<n-1 &&  nums[mid]<nums[mid-1] && nums[mid]>nums[mid+1])
+            else if(nums[mid]<nums[mid-1] && nums[mid]>nums[mid+1])
             {
                 high=mid-1;//high=1
             }
             //only one case remains that nums[mid] is point at the bottom which at peak at it's both sides.
-            else if( mid>0 && mid<n-1 && nums[mid]<nums[mid+1]  && nums[mid]<nums[mid-1])
+            else if(nums[mid]<nums[mid+1]  && nums[mid]<nums[mid-1])
             {
                 //is either of the side you can find an peak element.Go to any of the side 
                 low=mid+1;
