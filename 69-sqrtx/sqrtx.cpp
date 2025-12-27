@@ -1,22 +1,36 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        //Brute Force :looping from 1 till root x
-        //x=256;
         if(x==0)
         {
             return 0;
         }
-        int ans=1;//1;
-        for(long long int i=1;i*i<=x;i++)
-        {//i*i=1<=256  ;i*i=4<=256;i=3;i=4;i=5;i=6;i=7;i=8;i=9;i=10;i=11;i=12;i=13;i=14;i=15';i=16;i=17
-            if(i*i<=x)
-            {//1<=1
-                ans=i;//1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+        int ans=1;
+        //There is no array , no vector.Your search space for the Binary search will be [Minimum_possible_ans,Maximum_possible_ans]
+        int low=1;
+        int high=sqrt(x);//sqrt(INT_MAX)
+
+        while(low<=high)
+        {
+            long long int mid=low+(high-low)/2;//1
+            //Only 3 cases are possible for no. mid with respect to what aksed :-
+
+            if(mid*mid==x)
+            {
+                return mid;
+            }
+            else if(mid*mid<x)
+            {
+                ans=mid;
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
             }
         }
-        return ans;
-        //TC:O(Sqrt(n))
+        return ans;//only executed when x dosent have perfect sqrt   
+        //TC:O(lo2(x))
         //SC:O(1)
-    }
+ }
 };
