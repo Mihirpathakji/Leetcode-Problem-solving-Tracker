@@ -19,7 +19,7 @@ public:
                 if(days>0)
                 {
                     
-                    total_shipped_packages += current_sum;
+                    total_shipped_packages += current_sum;//15+
                     current_sum = 0;
 
                     days--; 
@@ -31,7 +31,7 @@ public:
                 break;
             }
 
-            if(i == n - 1)
+            if(i == n - 1 && current_sum<=weighting_capacity)
             {
                 total_shipped_packages += current_sum;
             }
