@@ -15,16 +15,12 @@ public:
             current_sum += weights[i];
 
             else
-            { 
-                if(days>0)
-                {
-                    
+            {
                     total_shipped_packages += current_sum;//15+
                     current_sum = 0;
 
                     days--; 
                     i -= 1;
-                }
             }
             if(days == 0)
             {
