@@ -3,6 +3,7 @@ public:
     int findKthPositive(vector<int>& arr, int k) {
         int i = 0;
         int num = 1;//1
+        int temp = k;
         while(k)
         {
             if(i<arr.size() && arr[i] == num)
@@ -15,7 +16,17 @@ public:
             }
             num++;//2 3 4 5 6 7 
         }
+
+        if(k == temp)
+        {
+            //no missing number is found yet:
+            while(k--)
+            {
+                num++;
+            }
+        }
         return num-1;
+
 
         //TC:O(arr.size()+k)
         //SC:O(1)
