@@ -2,51 +2,42 @@ class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         
-        vector<int>nums3(m+n);
-        int i = 0;
-        int j = 0;
-        int index = 0;
+        //Start filling the maximum elements in the nums1 from the back:- This will prevent the Overwriting of the elements.
 
-        while( i < m && j < n)
+        int i = m - 1;//2
+        int j = n -1;//2
+        int index = m + n - 1;//5
+
+        while(j >= 0 && i >= 0)
         {
-            if(nums1[i] <= nums2[j])
+            if(nums1[i] >= nums2[j])
             {
-                nums3[index] = nums1[i];
-                i++;//2
-                index++;//2
+                nums1[index] = nums1[i];
+                i--;
+                index--;
             }
             else
             {
-                nums3[index] = nums2[j];
-                j++;
-                index++;
+                nums1[index] = nums2[j];
+                j--;
+                index--;
             }
         }
 
-        if(i == m)
+        if( i < 0)
         {
-            //no elements remained from nums1[]  there may be elements from nums2[] yet to be filled.
-            while(j<n)
+            //i<0 i.e elements in the nums1 were Grater in the value than the elements in the nums2.
+            //place all the elements of the nums2 in the nums1 in backward fashion.
+            while(j>=0)
             {
-                nums3[index] = nums2[j];
-                j++;
-                index++;
-            }
-        }
-        
-        else
-        {
-            while(i < m)
-            {
-                nums3[index] = nums1[i];
-                i++;
-                index++;
+                nums1[index] = nums2[j];
+                j--;//-1
+                index--;
             }
         }
 
-        nums1=nums3;
-        
         //TC:O(n+m)
-        //SC:O(n+m)
+        //SC:O(1)
+
     }
 };
