@@ -12,7 +12,7 @@ public:
             i++;//
         }
         sort(nums1.begin(),nums1.end());
-        //TC:O(log(m+n))
+        //TC:O((m+n)log(m+n)).
         //SC:O(1)
     }
 };
