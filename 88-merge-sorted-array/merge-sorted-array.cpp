@@ -45,6 +45,8 @@ public:
         }
 
         nums1=nums3;
-
+        
+        //TC:O(n+m)
+        //SC:O(n+m)
     }
 };
