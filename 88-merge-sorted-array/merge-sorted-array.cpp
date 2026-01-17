@@ -2,7 +2,7 @@ class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         
-        //Start filling the maximum elements in the nums1 from the back:- This will prevent the Overwriting of the elements.
+        //INTUITION : Start filling the maximum elements in the nums1 from the back of the both nums[]:- This will prevent the Overwriting of the elements and get the job done with constant space. If you start filling with the minimum elements at the first then you will end up overwriting certain elements of nums1 and eventually lossing them.Hence start filling from the back the maximum elements of the both the arrays.
 
         int i = m - 1;//2
         int j = n -1;//2
