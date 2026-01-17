@@ -29,9 +29,9 @@ public:
                 
                 int j1=i;//3
                 int right_len=0;
-                while(j1!=n)
+                while(j1 < n-1)
                 {//
-                    if(j1 < n-1  && arr[j1] > arr[j1+1])
+                    if(arr[j1] > arr[j1+1])
                     {
                         right_len++;//1 2 
                     }
