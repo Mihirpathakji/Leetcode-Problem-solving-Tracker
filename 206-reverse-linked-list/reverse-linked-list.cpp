@@ -1,6 +1,6 @@
 /**
  * Definition for singly-linked list.
- * class ListNode {
+ * struct ListNode {
  *     int val;
  *     ListNode *next;
  *     ListNode() : val(0), next(nullptr) {}
@@ -12,29 +12,23 @@ class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
         
-        vector<int>ans;
-        ListNode* temp = head;
+        ListNode* curr = head;
+        ListNode* prev = NULL;
+        ListNode* Future;
 
-        while(temp != NULL)
+        while(curr != NULL)
         {
-            ans.push_back(temp->val);
-            temp = temp->next;
+            Future = curr->next;//1.Future is first updated.
+            curr->next = prev;
+            prev = curr;      
+            curr = Future;      
         }
-
-        int index = ans.size() - 1;
-        temp = head;
-
-        while(temp != NULL)
-        {
-            temp->val = ans[index];//5 4 3 2 1
-            index--;//3  2  1  0 -1 
-            temp = temp->next;//100 200 300 400 NULL
-        } 
-
+        
+        //prev contains head of resultant Linkedlist.Futur,curr = NULL
+        head = prev;
         return head;
-
-        //TC:O(n)
-        //SC:O(n)
+        //TC: O(n)
+        //SC:O(1)
 
     }
 };
