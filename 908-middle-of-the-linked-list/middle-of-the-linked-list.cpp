@@ -12,26 +12,18 @@ class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
 
-        ListNode* temp = head;
-        long long n = 0;
-       
-        while(temp != NULL)
+        //Optimized Approach using Slow and Fast Pointers :
+        ListNode* slow  = head;
+        ListNode* fast  = head;
+
+        while( fast != NULL && fast->next != NULL)
         {
-            temp = temp->next;
-            n++;
+            slow  = slow->next;//Move ahead by 1 step.
+            fast  = fast->next->next;//Move the fast pointer by 2 steps. 
         }//O(n)
-        //n = total number of nodes in the Linkedlist.
-
-        long long mid = n/2;//2 or 3
-        temp = head;
-        
-        while(mid--)
-        {
-            temp = temp->next;
-        }//O(n/2)
-
-        head = temp;
-        return head;
+       
+        //In this way slow pointer will be pointing to the mid
+        return slow;
 
         //TC:O(n)
         //SC:O(1)
