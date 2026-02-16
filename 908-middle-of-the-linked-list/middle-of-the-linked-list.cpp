@@ -11,41 +11,25 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        
-        long long n = 0;
+
         ListNode* temp = head;
-        
+        long long n = 0;
         while(temp != NULL)
         {
+            temp = temp->next;
             n++;
-            temp = temp->next;
-        }//O(n)
-
-        long long mid = 0;
-        if(n % 2 == 0)
-        {
-            mid = (n/2)+1;  
-        }   
-        else
-        {
-            mid = ceil((float)n/2);
         }
+        //n = total number of nodes in the Linkedlist.
 
-        long long  cnt =1;
-        
+        long long mid = n/2;//2 or 3
         temp = head;
-        
-        while(cnt != mid)
+        while(mid--)
         {
             temp = temp->next;
-            cnt++;
-        }//O(n/2)
+        }
 
         head = temp;
         return head;
-
-    //TC:O(n)
-    //SC:O(1)
 
     }
 };
