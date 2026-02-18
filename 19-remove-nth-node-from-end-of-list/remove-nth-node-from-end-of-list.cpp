@@ -16,27 +16,27 @@ public:
         ListNode* temp = head;
 
         //Count Present Number of nodes in the Linkedlist.
+
         while(temp != NULL)
         {
-            no_nodes++;//1  2 
-            temp = temp->next;//2 null
+            no_nodes++;
+            temp = temp->next;
         }//O(n)
 
         //Find out the Node number from begining since in the linkedlist traversal from end in backward direction is not possible.
         
-        long long x = (no_nodes - n + 1);//(3-3+1)==1 
-        long long cnt = 1;//1
+        long long x = (no_nodes - n + 1);
+        long long cnt = 1;
 
-        temp = head->next;//2
-        ListNode* curr = head;//1
+        temp = head->next;
+        ListNode* curr = head;
 
         if(no_nodes == 1)
         {
             return nullptr;
         }
-        //Very big edge case:Since in our code cnt has starting value == 1.cnt == 1-1 == 0 will never happen for all x == 1.Hence Handle edge case x == 1.Since it is not covered below.
-
-        //cnt == 1-1 will be never true
+        
+        //Very big edge case:Since in our code cnt has starting value == 1.cnt == 1-1 == 0 will never happen for all x == 1.Hence Handle edge case Where x == 1
         
         if(x == 1)
         {  
@@ -45,11 +45,10 @@ public:
             head = temp;
             return head;
         }
-        
 
         while(temp != NULL)
         {
-            //first check condition:
+            //Condition check first:
             if(cnt == x - 1)
             {
                 curr->next = temp->next;
@@ -61,9 +60,9 @@ public:
                 break;
             }
 
-            curr = temp;//2
-            temp = temp->next; //null
-            cnt++;//2 
+            curr = temp;
+            temp = temp->next; 
+            cnt++; 
         }//O(n)
         
         return head;
