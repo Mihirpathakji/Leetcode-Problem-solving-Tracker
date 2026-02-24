@@ -8,15 +8,14 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 ListNode* Reverse_Linkedlist(ListNode* Head_Pointer)
 {
     ListNode* Prev = NULL;
     ListNode* curr = Head_Pointer;
-    ListNode* future = NULL;
+    ListNode* future = NULL; 
 
-    while(curr)
-    {
+    while(curr != NULL)
+    {   
         future = curr->next;
         curr->next = Prev;
 
@@ -25,8 +24,8 @@ ListNode* Reverse_Linkedlist(ListNode* Head_Pointer)
     }
 
     return Prev;
-}
 
+}
 
 class Solution {
 public:
@@ -43,30 +42,44 @@ public:
             temp = temp->next;
         }
         
-        int middle_node_cnt = no_nodes/2; //4/2 == 2
-        
+        int middle_node_cnt = no_nodes/2;
+
         temp = head;
+        ListNode* dummy = NULL;
 
         while(middle_node_cnt)
         {
-            temp = temp->next;
-            middle_node_cnt--;//1 0 
+            if(middle_node_cnt == 1)
+            {
+                dummy = temp;
+                temp = temp->next;
+                dummy->next = NULL;
+                break;
+            }
+            
+            else
+            {
+                temp = temp->next;
+                middle_node_cnt--;
+            }
         }
 
-        //temp is at the head of the Linkedlist to be Reversed.
-
-        ListNode* PREV = Reverse_Linkedlist(temp);//100
+        ListNode* PREV = Reverse_Linkedlist(temp);
         temp = head;
         
-        while(PREV != NULL )
+        while(PREV != NULL && temp!= NULL )
         {
             if(PREV->val != temp->val)
             return false;
 
             PREV = PREV->next;
-            temp = temp->next;
+            temp = temp->next;//temp -> pointing to linkedlist with only 2 i.e Lesser number of  Nodes then the prev pointing to linkedlist with 3 Nodes.
         }
+
         return true;
+
+        //TC:O(n)
+        //SC:O(1)
 
     }
 };
