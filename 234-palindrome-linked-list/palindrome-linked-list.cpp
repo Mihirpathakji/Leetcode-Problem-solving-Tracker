@@ -25,17 +25,27 @@ public:
             original.push_back(temp->val);//1 2
             temp = temp->next;//2
         }
-        //temp points to last element.
+    
+        //original[]=[1 2 2 1]
+        int l = 0;
+        int r = original.size() - 1;
+        
+        while(l < r)
+        {
+            if(original[l] != original[r])
+            {
+                return false;
+            }
+            l++;
+            r--;
+            
+        }
 
-        vector<int>final;
-        final = original;
-        reverse(final.begin(),final.end());//final contains reversed elements.
+        return true;
 
-        return final == original;
 
         //TC:O(n)
         //SC:O(n)
-
 
     }
 };
