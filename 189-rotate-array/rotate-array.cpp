@@ -1,24 +1,10 @@
-    class Solution {
-    public:
-        void rotate(vector<int>& nums, int k) {
-
-            int n=nums.size(); //O(1)
-            vector<int>rotated_nums(n);//O(n)
-
-        // After rotating by the k places to the right the index of the rotated_nums should be [(i+k)%nums.length()]
-
-        for(int i=0;i<n;i++)
-        {
-            rotated_nums[(i+k)%n]=nums[i];
-        }   
-
-
-    // Assigning the original_nums an value == to Rotated_nums so that the original nums got changed to the rotated_nums 
-
-     nums=rotated_nums; 
-
-     //Tc  : O(n)
-     ///Sc : O()
-
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        reverse(nums.begin(),nums.end());
+        reverse(nums.begin(),nums.begin()+(k%n));
+        reverse(nums.begin()+(k%n),nums.end());
+        
     }
 };
