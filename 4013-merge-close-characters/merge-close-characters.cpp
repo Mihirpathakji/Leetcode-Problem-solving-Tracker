@@ -1,42 +1,37 @@
 class Solution {
 public:
     string mergeCharacters(string s, int k) {
-        
-        int n = s.size(); 
-        int deletion_cnt = 0;
-        string ans  = "";
-        
-        unordered_map<char,int>mp;
 
-        for(int i = 0; i < n; i++)
+        int n = s.size();
+        string ans = "";
+        unordered_map<char,int>mp;//<char,least_index_of_that_char_from_left>.
+
+        int deletion_cnt = 0;
+
+        for(int i = 0 ; i < n; i++)
         {
-            if(mp.find(s[i]) != mp.end())
+            if( mp.find(s[i]) != mp.end() )
             {
-                if(i - deletion_cnt - mp[s[i]] <= k)
+                // (i - deletion_cnt ) = index of element in new string formed after some possible Merges. 
+                if((i - deletion_cnt) - mp[s[i]]  <= k)
                 {
-                    //Merge pair Present and Merge is possible 
                     deletion_cnt++;
                 }
                 else
                 {
-                    //Merge is not possible but Keep track of smallest Left index for that s[i].
-                    mp[s[i]] = i - deletion_cnt; // i - deletion_cnt is index of that another copy of s[i] in the string after deletion.
                     ans.push_back(s[i]);
+                    //present in map but merge is not possible .Now made it present at the Least new index.
+                    mp[s[i]] = i - deletion_cnt;
                 }
             }
             else
             {
-                // this element is not present in the map already.
-                mp[s[i]] = i - deletion_cnt;// i - deletion cnt will be index of the first Occurance of that string .
+                mp[s[i]] = i - deletion_cnt;
                 ans.push_back(s[i]);
             }
         }
 
         return ans;
         
-        //TC:O(n)
-        //SC:O(n)
-
-    
     }
 };
