@@ -8,7 +8,7 @@ public:
         //For string s:
         for(int i=0;i<s.size();i++)
         {
-            if(st1.empty() && s[i]!= '#')
+            if(s[i]!= '#')
             {
                 st1.push(s[i]);
             }
@@ -16,25 +16,17 @@ public:
             {
                 st1.pop();
             }
-            else if(s[i] != '#')
-            {
-                st1.push(s[i]);
-            }
         }
 
         for(int i=0;i<t.size();i++)
         {
-            if(st2.empty() && t[i] !='#')
+            if(t[i] !='#')
             {
                 st2.push(t[i]);
             }
             else if(!st2.empty() && t[i] =='#')
             {
                 st2.pop();
-            }
-            else if(t[i] !='#') 
-            {
-                st2.push(t[i]);
             }
         }
 
