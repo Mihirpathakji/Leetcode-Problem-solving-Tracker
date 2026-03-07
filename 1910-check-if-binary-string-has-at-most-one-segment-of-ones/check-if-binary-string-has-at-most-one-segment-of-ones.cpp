@@ -3,39 +3,23 @@ public:
     bool checkOnesSegment(string s) {
 
         int l = 0;
-        int r = 0;
 
-        int cnt = 0;
+        int no_consecutive_seg = 0;
 
-        while(r  < s.size())
+        while(l < s.size() && s[l] =='1')
         {
-            if(s[l] == '1')
-            {
-                while(r < s.size())
-                {
-                    if(s[r] == '1')
-                    {
-                        if(r == s.size()-1)
-                        {
-                            cnt++;
-                        }
-                        r++;
-                        l++;
-                    }
-                    else
-                    {
-                        if(s[r-1] == '1')
-                        {
-                            cnt++;
-                        }
-                        r++;
-                        l++;
-                    }
-                }
-            }
+            l++;
         }
+        //l -> '0'
 
-        return cnt <=1;
-        
+        while(l < s.size() && s[l] == '0')
+        {
+            l++;
+        }
+        return l == s.size();
+
+        //TC:O(n)
+        //SC:O(1)
+
     }
 };
