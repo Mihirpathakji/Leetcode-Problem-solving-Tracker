@@ -14,9 +14,6 @@ public:
         return false;
     }
 
-
-
-
     vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
 
         int answer1 = 0;
@@ -37,9 +34,12 @@ public:
                 answer2++;
             }   
         }   
-
-
+                 
         return {answer1,answer2};
+
+        //TC : O(n*m)
+
+        //SC : O(1)
         
     }
 };
