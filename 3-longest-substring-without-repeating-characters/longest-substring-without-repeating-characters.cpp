@@ -11,7 +11,6 @@ public:
         return 1;//"    "->4 
     }
 
-    unordered_map<char,int>mp;
 
     long long  maximum_len = 0;
     long long  current_count = 0;
@@ -22,6 +21,9 @@ public:
     
     for(int i = 0; i< (int)s.size();i++)
     {
+        unordered_map<char,int>mp;
+        current_count = 0;
+
         for(int j = i; j <(int) s.size() ; j++)
         {
             if(mp.find(s[j])!=mp.end())
@@ -30,21 +32,19 @@ public:
                 //update the current len.
                 maximum_len = max(maximum_len,current_count);
                 current_count = 0;
-                mp.erase(mp.begin(),mp.end());
                 break;
             }
             else
             {
-                mp[s[j]]++;//1 
-                current_count++;//1  9
+                mp[s[j]]++;//1  1
+                current_count++;//1  2
             }
         }
+        maximum_len  = max(maximum_len,current_count);
+
     }
 
-    if(!mp.size())
-    {
-        maximum_len = max(maximum_len,current_count);
-    }
+    maximum_len  = max(maximum_len,current_count);
 
     return maximum_len;
     
