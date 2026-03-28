@@ -36,10 +36,16 @@ public:
             else
             {
                 mp[s[j]]++;//1 
-                current_count++;//1 2 
+                current_count++;//1  9
             }
         }
     }
+
+    if(!mp.size())
+    {
+        maximum_len = max(maximum_len,current_count);
+    }
+
     return maximum_len;
     
     }
