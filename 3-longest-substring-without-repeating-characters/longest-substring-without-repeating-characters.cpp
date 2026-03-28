@@ -2,7 +2,7 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
     
-    set<char>st(s.begin(),s.end());//' '
+    unordered_set<char>st(s.begin(),s.end());//' '
 
     if(st.size() == 1)
     {
@@ -50,3 +50,6 @@ public:
     
     }
 };
+
+//SC : O(n)
+//TC : O(n^3) approx n^2;
