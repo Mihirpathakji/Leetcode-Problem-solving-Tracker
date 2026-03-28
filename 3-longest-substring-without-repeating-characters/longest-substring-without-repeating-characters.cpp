@@ -2,7 +2,6 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         
-        unordered_map<char,int>mp;
         long long max_len = 0;
         long long curr_len  = 0;
 
@@ -19,12 +18,14 @@ public:
                 else
                 {
                     curr_len++;
-                    mp[s[j]]++;
+                    mp[s[j]]++;  
                 }
             }
-            max_len = max(max_len,curr_len);
-        }
 
+            max_len = max(max_len,curr_len);
+        
+        }
+        
         return max_len;
 
     }
