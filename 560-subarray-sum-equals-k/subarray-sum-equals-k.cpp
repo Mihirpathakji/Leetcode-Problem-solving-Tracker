@@ -1,46 +1,40 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
+
+        int n = nums.size();
+        vector<long long>prefix_arr(n);
         
-           long long n = nums.size();
-           long long count=0;
-           vector<long long> Prefix_sum(n,0);
+        prefix_arr[0] =  nums[0];
 
-           Prefix_sum[0] = nums[0];
-           
-           for(int i=1;i<n;i++)
-           {
-                Prefix_sum[i] = Prefix_sum[i-1] + nums[i];
-           } 
+        for(int i = 1;i < n;i++)
+        {
+            prefix_arr[i] = nums[i] + prefix_arr[i-1];
+        }
 
-           //<Prefix_sum,Frequency_of_that_prefix_sum>
-           
-           unordered_map<long long ,long long> mp;
+        long long subarr = 0;
+        
+        unordered_map<int,int>mp;
 
-           for(long long j = 0; j < n ; j ++)
-           {    
-                //Case 1:
-                //Prefix arr's  sum is itself  == k.
-                if(Prefix_sum[j] == k)
-                {
-                    count++;
-                }
+        mp[0] = 1;
+        
+        for(int j = 0; j < n ; j++)
+        {
+            int value = prefix_arr[j] - k;
+            
+            if(mp.find(value)!=mp.end())
+            {
+                subarr += mp[value];
+            }
 
-                //Case 2 :
-                //Any segment sum where segment is "not a prefix arr" has sum == k.
-                //Finding number of such segments: 
-                long long value = Prefix_sum[j] - k;
-                if(mp.find(value) != mp.end())
-                {
-                    count += mp[value];
-                }
+            mp[prefix_arr[j]]++;
+        }
 
-                mp[Prefix_sum[j]]++;
+        return subarr;
 
-           }
-            return count;
-            //TC:O(n)//.find() and insertion occurs in O(1) in an unordered_map.
-            //SC:O(n)//mp,Prefix_sum arr
 
-    }
+        //TC:O(n)
+
+        //SC:O(n)
+    }   
 };
