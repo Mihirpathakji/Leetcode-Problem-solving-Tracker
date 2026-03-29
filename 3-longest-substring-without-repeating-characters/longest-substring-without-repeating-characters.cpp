@@ -1,33 +1,29 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        
+
+        vector<bool>count(256,0);
+
+        int first =  0;
+        int second = 0;
+
         long long max_len = 0;
-        long long curr_len  = 0;
 
-        for(int i = 0 ;i < s.size();i++)
-        {
-            unordered_map<char,int>mp;
-            curr_len = 0;
-            for(int j = i ; j < s.size() ; j++ )
+        while(second < s.size())
+        {//O(n)
+
+            while(count[s[second]])
             {
-                if(mp.find(s[j])!= mp.end())
-                {
-                    break;
-                }
-                else
-                {
-                    curr_len++;
-                    mp[s[j]]++;  
-                }
+                count[s[first]] = 0;//Removed the Repeating characters from the window.
+                first++;//Shrink window from the left side.
             }
-
-            max_len = max(max_len,curr_len);
-        
+            count[s[second]] = 1;//Add this new character to window.
+            max_len = max((int)max_len, second - first +1);
+            second++;//Expand the window.
         }
-        
+
         return max_len;
+        //abcdefghijklmnoo//O(N) + O(N) == O(2* N)
 
     }
-
 };
