@@ -3,28 +3,24 @@ public:
     int subarraysDivByK(vector<int>& arr, int k) {
         
         int n = arr.size();
-        vector<int>prefix_arr(n);
-        prefix_arr[0] = arr[0];
 
-        for(int i=1;i<n;i++)
-        {
-            prefix_arr[i] = prefix_arr[i-1] + arr[i];
-        }
+        int subarrays =0;
 
-       
-
-        unordered_map<int,int>mp;
+        unordered_map<int,int>mp;// stores remainder of the prefix_sums and there frequency. 
         mp[0] = 1;
-        
-        int subarrays = 0;
 
+        //Check if the remainder of prefixsum and the k is before hand in the map or not.
 
-        for(int j = 0 ;j < n ; j++)
+        int prefix_sum = 0;
+
+        for(int i=0;i<n;i++)
         {
-            int rem = prefix_arr[j] % k;
+            prefix_sum += arr[i];
+         
+            int rem  = prefix_sum %k;
 
             if(rem < 0)
-            {   
+            {
                 rem = rem + k;
             }
 
@@ -38,9 +34,8 @@ public:
         }
 
         return subarrays;
-
         //TC:O(N)
-        //SC:O(N)
+        //SC:O(1)
         
     }
 };
