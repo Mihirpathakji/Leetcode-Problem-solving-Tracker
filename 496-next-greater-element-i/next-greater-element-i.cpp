@@ -31,6 +31,7 @@ public:
     }       
 
     vector<int>ans2(nums1.size());
+    
     for(int i=0;i<nums1.size();i++)
     {
         if(mp.find(nums1[i])!=mp.end())
@@ -38,8 +39,9 @@ public:
             ans2[i] = ans[mp[nums1[i]]]; 
         }
     }
-
          return ans2;
-        
+
+         //TC:O(N)
+         //SC:O(N)
     }
 };
