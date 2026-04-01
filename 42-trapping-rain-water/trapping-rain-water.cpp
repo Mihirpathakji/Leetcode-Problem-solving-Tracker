@@ -1,41 +1,37 @@
 class Solution {
 public:
-    int trap(vector<int>& heights) {
+    int trap(vector<int>& height) {
 
-        //Most Optimal Solution :-  SC:O(1) and TC:O(n) using TWO-POINTERS.
+        int n = height.size();
+        int l  = 0;
+        int r = n - 1;
 
-        int n=heights.size();
-        int l=0;
-        int r=n-1;
-        int ans=0;
-        int left_max=0;
-        int right_max=0;
-        while(l<r)
-        {   
-            //calculate the left_max and the right_max everytime;
-            left_max=max(left_max,heights[l]);
-            right_max=max(right_max,heights[r]);
+        int leftmax = 0;
+        int rightmax = 0;
 
-            //Minimum out of the left_max and the right_max is the Deciding factor for the Amount of the Water that is Trapped.
+        int amount_of_water = 0;
 
-            //case1:
-            if(left_max<right_max)
+        while(l < r)
+        {
+            leftmax = max(leftmax,height[l]);
+            rightmax = max(rightmax,height[r]);
+
+            //Amount of water trap depends on the minimum of the leftmax and rightmax
+
+            if(leftmax < rightmax)
             {
-                ans+=(left_max-heights[l]);
-                //done with that i pointer now left_max is needed in reference to the next i 
+                amount_of_water += leftmax - height[l];
                 l++;
             }
-
-            //case2:
             else
             {
-                ans+=(right_max-heights[r]);
+                amount_of_water += rightmax - height[r];
                 r--;
             }
-        }
-        return ans;
-    //TC:O(n)
-    //SC:O(1)
+        } 
 
+        return amount_of_water;
+        //TC:O(N)
+        //SC:O(1)
     }
 };
