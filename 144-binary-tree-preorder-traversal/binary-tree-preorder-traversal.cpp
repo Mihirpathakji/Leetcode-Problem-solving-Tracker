@@ -23,14 +23,14 @@ public:
             return {};
         }
 
-        answer.push_back(root->val);
-        preorderTraversal(root->left);
-        preorderTraversal(root->right);
+        //Pre Order Traversal:
+        answer.push_back(root->val);//Pre -> Operator .(Root)
+        preorderTraversal(root->left);//A -> Left
+        preorderTraversal(root->right);//B -> right
 
         return answer;
 
         //TC:O(n)
-
         //SC:O(n)
             
     }
