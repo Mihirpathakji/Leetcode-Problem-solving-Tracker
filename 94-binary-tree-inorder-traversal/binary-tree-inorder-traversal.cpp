@@ -9,29 +9,32 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+vector<int>answer(TreeNode* root,vector<int>&ans)
+{   
+    if(root == NULL)
+    {
+        return {};
+    }
+
+    //A+B == Left -> root -> right
+    answer(root->left,ans);
+    ans.push_back(root->val);
+
+    answer(root->right,ans);
+
+    return ans;
+
+    //TC:O(N)
+    //SC:O(N)
+
+}
 class Solution {
 public:
 
-    vector<int>answer;
     vector<int> inorderTraversal(TreeNode* root) {
-
-        if(root == NULL)
-        {
-            return {};
-        }
-
-        //Inorder Traversal: [Operand ->Operator(Root)-> Operand] = Left Root Right.
-        inorderTraversal(root->left);
-
-        answer.push_back(root->val);
-
-        inorderTraversal(root->right);
-
-        return answer;
-
-        //TC:O(n)
-
-        //SC:O(n)
-
+        vector<int>ans;
+        return answer(root,ans);
+       
     }
 };
