@@ -14,25 +14,30 @@
 class Solution {
 public:
 
-    vector<int>answer;
-   
-    vector<int> preorderTraversal(TreeNode* root) {
-        
+    vector<int>answer(TreeNode* root,vector<int>&ans)
+    {
         if(root == NULL)
         {
             return {};
         }
 
         //Pre Order Traversal:
-        answer.push_back(root->val);//Pre -> Operator .(Root)
-        preorderTraversal(root->left);//A -> Left
-        preorderTraversal(root->right);//B -> right
+        ans.push_back(root->val);//Pre -> Operator .(Root) //1 2 3 
+        answer(root->left,ans);//A -> Left
+        answer(root->right,ans);//B -> right
 
-        return answer;
+        return ans;//1 2 3 
 
         //TC:O(n)
         //SC:O(n)
-            
+
+    }
+   
+    vector<int> preorderTraversal(TreeNode* root) {
+
+        vector<int>ans;
+        return answer(root,ans);
+
     }
 
 };
