@@ -10,21 +10,23 @@
  * };
  */
 
-bool isIdentical(TreeNode* p,TreeNode* q)
-{
 
-    if(p == NULL || q == NULL)
-    {
-        return p == q;
-    }
-
-    return (p->val == q->val) && isIdentical(p->left,q->left) && isIdentical(p->right,q->right);
- 
-}
              
-
 class Solution {
 public:
+
+    bool isIdentical(TreeNode* p,TreeNode* q)
+    {
+
+        if(p == NULL || q == NULL)
+        {
+            return p == q;
+        }
+
+        return (p->val == q->val) && isIdentical(p->left,q->left) && isIdentical(p->right,q->right);
+    
+    }
+
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
 
         //Iterative -> NOT GOOD. Recursively.
