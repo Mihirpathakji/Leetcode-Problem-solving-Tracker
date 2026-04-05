@@ -43,7 +43,7 @@ public:
 
         //TC:O(N*M) N -> Number of nodes in Main Tree. M - Number of nodes in the subRoot.For each root in the Main Tree in worst case we will be checking that whole subRoot is identical with that node or not.
 
-        //SC: O(N) =M 
+        //SC: O(N) 
 
     }
 };
