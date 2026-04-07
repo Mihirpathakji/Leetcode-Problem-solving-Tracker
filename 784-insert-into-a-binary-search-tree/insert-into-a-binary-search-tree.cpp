@@ -10,7 +10,6 @@
  * };
  */   
 
-
 class Solution {
 public:
 
@@ -41,6 +40,9 @@ public:
 
        TreeNode* ans =  insert(root,val);// (400,5)
        return ans;
+
+       //TC: O(Logn)
+       //SC: O(logn)    
 
     }
 };
