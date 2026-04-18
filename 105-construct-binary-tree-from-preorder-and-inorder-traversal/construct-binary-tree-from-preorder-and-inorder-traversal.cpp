@@ -33,7 +33,7 @@ public:
 
         //Create the root Node:
 
-        TreeNode* root = new TreeNode(Preorder[Preindex]);
+        TreeNode* root = new TreeNode(Preorder[Preindex]);//Pass Preindex by the value -> Wrong ans. Since it is used in -> Pass it by reference.
 
         //Search this Preorder[Preindex]  in the Inorder Array in the range [left,right] : and find it's index
 
