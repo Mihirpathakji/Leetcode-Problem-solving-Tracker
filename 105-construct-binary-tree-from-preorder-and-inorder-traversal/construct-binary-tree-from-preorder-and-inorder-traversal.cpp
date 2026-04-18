@@ -43,9 +43,7 @@ public:
 
         //Build left subtree for that root:
 
-
         root->left =  Create_Tree(Preorder,Inorder,Preindex,left,index-1);
-
 
         //Build right subtree for that root:
 
@@ -60,6 +58,9 @@ public:
       
         int index1 = 0;
         return Create_Tree(preorder,inorder,index1,0,inorder.size()-1);
+
+        //TC : N + N + N + N .. N Times .. approx ==  O(N^2).
+        //SC : O(N).
         
     }
 };
