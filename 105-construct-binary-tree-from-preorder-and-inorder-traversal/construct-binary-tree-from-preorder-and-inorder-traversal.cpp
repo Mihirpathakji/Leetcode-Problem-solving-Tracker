@@ -10,13 +10,13 @@
  * };
  */
 class Solution {
-public: 
+public:
 
-    int find(vector<int>&in,int target,int start,int end)
+    int search(vector<int>&Inorder,int target,int left,int right)
     {
-        for(int i=start;i<=end;i++)
+        for(int i = 0;i<Inorder.size();i++)
         {
-            if(in[i] == target)
+            if(Inorder[i] == target)
             {
                 return i;
             }
@@ -24,25 +24,42 @@ public:
         return -1;
     }
 
-    TreeNode* build_tree(vector<int>&pre,vector<int>&in,int instart,int inend,int index)
-    {
-        if(instart>inend)
+    TreeNode* Create_Tree(vector<int>&Preorder,vector<int>&Inorder,int& Preindex,int left,int right)
+    {   
+        if(left > right)
         {
             return nullptr;
         }
 
-        TreeNode* root = new TreeNode(pre[index]);
-        int pos =  find(in,pre[index],instart,inend);//Find the root node of the Preorder array in the inorder array. 
+        //Create the root Node:
 
-        root->left = build_tree(pre,in,instart,pos-1,index+1);
-        root->right = build_tree(pre,in,pos+1,inend,index+(pos-instart+1));
+        TreeNode* root = new TreeNode(Preorder[Preindex]);
+
+        //Search this Preorder[Preindex]  in the Inorder Array in the range [left,right] : and find it's index
+
+        int index = search(Inorder,Preorder[Preindex],left,right);
+
+        Preindex++;
+
+        //Build left subtree for that root:
+
+
+        root->left =  Create_Tree(Preorder,Inorder,Preindex,left,index-1);
+
+
+        //Build right subtree for that root:
+
+        root->right = Create_Tree(Preorder,Inorder,Preindex,index+1,right);
+
         return root;
-   
+
     }
+
 
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int index = 0;
-        return build_tree(preorder,inorder,0,inorder.size()-1,index);
+      
+        int index1 = 0;
+        return Create_Tree(preorder,inorder,index1,0,inorder.size()-1);
+        
     }
-
 };
