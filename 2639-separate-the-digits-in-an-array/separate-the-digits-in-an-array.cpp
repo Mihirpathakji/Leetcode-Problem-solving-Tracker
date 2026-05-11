@@ -13,14 +13,17 @@ public:
                 nums[i] = nums[i]/10;
             }
             reverse(temp.begin(),temp.end());
+            
             for(int j = 0 ;j< temp.size(); j ++)
             {
                 ans.push_back(temp[j]);
             }   
-
+        
         }
 
         return ans;
-        
+        //TC :O(10^8)
+        //SC :O(10^5) 
+
     }
 };
