@@ -19,13 +19,16 @@ public:
         {
             if(g[i] <= s[j])
             {
-                max_child++;//1
-                i++;//1
+                max_child++;
+                i++;
             }
-            j++;//1
+            j++;
         }   
 
         return max_child; 
+
+        //TC: O(max(nlogn,mlogm))
+        //SC: O(1)
 
     }
 };
