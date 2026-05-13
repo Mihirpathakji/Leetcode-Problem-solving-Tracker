@@ -13,6 +13,8 @@ public:
         }
 
         prefix1 = prefix;//[-2 -2 1 -4 -2 -3]//Made it Accessible to the downwards also.
+
+        //O(n) -> One time.
     }
     
     int sumRange(int left, int right) {
@@ -23,6 +25,9 @@ public:
         }
 
         return prefix1[right]-prefix1[left-1];
+
+        //TC : O(n)
+        //SC : O(n)
 
     }
 };
