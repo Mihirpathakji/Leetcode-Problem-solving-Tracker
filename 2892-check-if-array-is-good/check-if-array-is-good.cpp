@@ -2,6 +2,8 @@ class Solution {
 public:
     bool isGood(vector<int>& nums) {
 
+        //n -> Maximum element of array.
+
         long long nums_size = nums.size();
         long long maxi = *max_element(nums.begin(),nums.end());
 
@@ -17,7 +19,7 @@ public:
         {
             mp[nums[i]]++;
         }
-        
+
         //2.
         if(mp[maxi]!=2)
         {
