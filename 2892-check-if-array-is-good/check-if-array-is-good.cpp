@@ -17,14 +17,12 @@ public:
         {
             mp[nums[i]]++;
         }
-
-
+        
         //2.
         if(mp[maxi]!=2)
         {
             return false;
         }
-
 
         //3.
         for(int i = 1; i <= maxi-1; i++)
