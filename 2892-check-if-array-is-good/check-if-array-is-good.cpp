@@ -2,32 +2,40 @@ class Solution {
 public:
     bool isGood(vector<int>& nums) {
 
-        long long maxi  = *max_element(nums.begin(),nums.end());
-        unordered_map<long long,long long>mp;
-        for(long long i = 0 ;i < nums.size(); i++)
-        {
-            mp[nums[i]]++;
-        }   
+        long long nums_size = nums.size();
+        long long maxi = *max_element(nums.begin(),nums.end());
 
-        //1.Maaximum element must appeared twice exactly.
-
-        if(mp[maxi] < 2 || mp[maxi] > 2)
+        //1.
+        if(nums_size != maxi + 1)
         {
             return false;
         }
 
-        //2. All elements from 1 to maxi-1 elements should be appeared exactly once.    
+        unordered_map<int,int>mp;
 
-        for(long long i = 1; i <= maxi-1; i ++)
+        for(int i = 0 ;i < nums_size; i++)
         {
-            if(mp[i] < 1 || (mp[i]>1 && i!=maxi))
+            mp[nums[i]]++;
+        }
+
+
+        //2.
+        if(mp[maxi]!=2)
+        {
+            return false;
+        }
+
+
+        //3.
+        for(int i = 1; i <= maxi-1; i++)
+        {
+            if(mp[i]!=1)
             {
                 return false;
             }
-
         }
 
         return true;
-        
+
     }
 };
