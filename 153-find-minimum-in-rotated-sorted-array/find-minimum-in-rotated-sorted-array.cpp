@@ -30,14 +30,9 @@ public:
 
             //At any intermediate position.         
 
-            else if(nums[mid] < nums[mid+1] && nums[mid] < nums[mid-1])
+            else if(mid -1 >=0  && mid + 1  <= n-1 && nums[mid] < nums[mid+1] && nums[mid] < nums[mid-1])
             {
                 return nums[mid];
-            }
-
-            else if(nums[low] < nums[mid] && nums[mid] < nums[high])
-            {
-                return nums[low];
             }
 
             else if(nums[mid] < nums[high])
@@ -51,7 +46,9 @@ public:
             }
 
         }
+
         return -1;   
         
+        //TC:O(logn)
     }
 };
