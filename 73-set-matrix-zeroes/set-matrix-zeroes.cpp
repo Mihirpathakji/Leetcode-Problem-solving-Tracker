@@ -13,13 +13,13 @@ public:
             {
                 if(matrix[i][j] == 0)
                 {
-                    v.push_back({i,j});
+                    v.push_back({i,j});//m*n pairs 
                 }
             }
         }
         
         for(int k = 0 ; k < v.size(); k++)
-        {
+        {//m*n
             //v[k] = {i,j}; // [1,2] ,[3,4]
            
             for(int column = 0 ; column < cols ; column++)
@@ -33,8 +33,8 @@ public:
             }
         }
 
-        //TC :
-        //SC :
+        //TC : O(m*n(m+n))
+        //SC : O(m*n)
 
     }
 };
