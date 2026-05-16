@@ -5,36 +5,40 @@ public:
         int rows = matrix.size();
         int cols = matrix[0].size();
 
-        vector<pair<int,int>>v;
-        
+        vector<int>rows_containing_zeroes;//1
+        vector<int>cols_containing_zeroes;//1
+
         for(int i = 0 ;i < rows ; i++)
         {
-            for(int j = 0 ; j < cols; j ++)
+            for(int j = 0 ;  j < cols; j ++)
             {
                 if(matrix[i][j] == 0)
                 {
-                    v.push_back({i,j});//m*n pairs 
+                    rows_containing_zeroes.push_back(i);//1
+                    cols_containing_zeroes.push_back(j);//1
                 }
             }
         }
-        
-        for(int k = 0 ; k < v.size(); k++)
-        {//m*n
-            //v[k] = {i,j}; // [1,2] ,[3,4]
-           
-            for(int column = 0 ; column < cols ; column++)
-            {
-                matrix[v[k].first][column] = 0;
-            }
 
-            for(int row = 0; row < rows ; row++)
-            {
-                matrix[row][v[k].second] = 0;
+
+        for(int i  = 0; i < rows_containing_zeroes.size() ; i++)
+        {
+            for(int j = 0 ; j< cols;j ++)
+            {   
+                matrix[rows_containing_zeroes[i]][j] = 0;
             }
         }
 
-        //TC : O(m*n(m+n))
-        //SC : O(m*n)
+        for(int j =  0; j < cols_containing_zeroes.size(); j++)
+        {
+            for(int i = 0 ; i < rows;i ++)
+            {
+                matrix[i][cols_containing_zeroes[j]] = 0;
+            }
+        }   
+
+        //TC : O(m*n)
+        //SC : O(m+n)
 
     }
 };
