@@ -2,46 +2,39 @@ class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
 
-    int n = nums1.size(); 
-    vector<int>ans(nums2.size());
-    stack<int>st;
+        stack<int>st;
+        int n = nums2.size();
+        vector<int>ans(n,-1);
 
-    unordered_map<int,int>mp;
-    for(int i=0;i<nums2.size();i++)
-    {
-        mp[nums2[i]] = i;//index j of  the nums2.
-    }
+        for(int i = 0 ; i < n; i ++)
+        {
+            while(!st.empty() && nums2[i] > nums2[st.top()])
+            {
+                ans[st.top()] = nums2[i];
+                st.pop();
+            }
 
-    for(int j = nums2.size()-1 ; j >= 0 ; j--)
-    {
-        while(!st.empty() && st.top() <=nums2[j])
-        {
-            st.pop();
-        }
-        if(st.empty())
-        {
-            ans[j] = -1;
-            st.push(nums2[j]);
-        }
-        else
-        {
-            ans[j] = st.top();
-            st.push(nums2[j]);
-        }
-    }       
+            st.push(i);
+        }//O(n)
+        
+        //       0 1 2  3
+        //ans = [3 4 -1 -1]
 
-    vector<int>ans2(nums1.size());
-    
-    for(int i=0;i<nums1.size();i++)
-    {
-        if(mp.find(nums1[i])!=mp.end())
-        {
-            ans2[i] = ans[mp[nums1[i]]]; 
-        }
-    }
-         return ans2;
+        vector<int>final_ans(nums1.size());
 
-         //TC:O(N)
-         //SC:O(N)
+        for(int i = 0 ; i< nums1.size(); i++)
+        {
+            for(int j = 0; j< nums2.size(); j++)
+            {
+                if(nums1[i] == nums2[j])
+                {
+                    final_ans[i] = ans[j];
+                    break;
+                }
+            }
+        }
+
+        return final_ans;
+
     }
 };
