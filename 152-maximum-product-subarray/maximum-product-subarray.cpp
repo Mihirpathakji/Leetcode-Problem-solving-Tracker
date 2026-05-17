@@ -22,7 +22,7 @@ public:
 
             else if(suffix_product == 0)
             {
-                suffix_product =1;//i.e New subarray from suffix side will start.
+                suffix_product = 1;//i.e New subarray from suffix side will start.
             }
 
         }
