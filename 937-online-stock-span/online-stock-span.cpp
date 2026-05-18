@@ -1,26 +1,36 @@
 class StockSpanner {
 public:
 
-    vector<int> arr;
+    vector<int>arr;
+
     StockSpanner() {
         
     }
     
     int next(int price) {
+        
+        arr.push_back(price);//[100 80]
 
-        arr.push_back(price);
+        int n = arr.size();
+        int count = 0;
 
-        int c = 0;
-        for(int i=arr.size()-1; i>=0; i--) {
+        //[100 80 85 70 65 82]
+
+        for(int i = n - 1; i >= 0 ;i--)
+        {
             if(arr[i] <= price)
-            c++;
+            {
+                count++;//1 2 3         
+            }
             else
-            break;
+            {
+                //Now there is no (arr[i] <= price) CONSECUTIVELY.  
+                break;
+            }
         }
+        return count;
 
-        return c;
     }
-
 };
 
 /**
