@@ -1,40 +1,39 @@
 class StockSpanner {
 public:
 
-    vector<int>arr;
+    vector<int> arr;
+    stack<int> st;
 
     StockSpanner() {
-        
+
     }
-    
+
     int next(int price) {
-        
-        arr.push_back(price);//[100 80]
 
-        int n = arr.size();
-        int count = 0;
+        arr.push_back(price);
 
-        //[100 80 85 70 65 82]
+        int i = arr.size() - 1;
 
-        for(int i = n - 1; i >= 0 ;i--)
+        // Remove all smaller/equal elements
+        while(!st.empty() && arr[st.top()] <= arr[i])
         {
-            if(arr[i] <= price)
-            {
-                count++;//1 2 3         
-            }
-            else
-            {
-                //Now there is no (arr[i] <= price) CONSECUTIVELY.  
-                break;
-            }
+            st.pop();
         }
-        return count;
 
+        int nextGreaterOnLeft;
+
+        // No greater element on left
+        if(st.empty())
+        {
+            nextGreaterOnLeft = -1;
+        }
+        else
+        {
+            nextGreaterOnLeft = st.top();
+        }
+
+        st.push(i);
+
+        return i - nextGreaterOnLeft;
     }
 };
-
-/**
- * Your StockSpanner object will be instantiated and called as such:
- * StockSpanner* obj = new StockSpanner();
- * int param_1 = obj->next(price);
- */
