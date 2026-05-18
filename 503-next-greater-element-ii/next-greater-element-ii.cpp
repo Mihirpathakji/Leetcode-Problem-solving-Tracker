@@ -1,43 +1,34 @@
 class Solution {
 public:
-        //BRUTE FORCE:
-
     vector<int> nextGreaterElements(vector<int>& nums) {
-       
-        vector<int>ans(nums.size());
 
-        for(int i = 0 ; i < nums.size(); i++)
+        int n = nums.size();
+        stack<int>st;
+
+        vector<int>ans(n,-1);
+        for(int i = 0; i< n;i ++)
         {
-            bool flag = false;
-            for(int j = i + 1 ;j < nums.size(); j++)
+            while(!st.empty() && nums[i] > nums[st.top()])
             {
-                if(nums[j] > nums[i])
-                {
-                    ans[i] = nums[j];//ans[0] = 2
-                    flag = true;
-                    break;
-                }
-            }
-            
-            if(!flag)
-            {
-                for(int j = 0 ; j < i ; j++)
-                {
-                    if(nums[j] > nums[i])
-                    {
-                        ans[i] = nums[j];//ans[2]=5
-                        flag = true;
-                        break;//takes the first Maxmimum
-                    }
-                }
-            }
+                ans[st.top()] = nums[i];
+                st.pop();
+            }          
+            st.push(i);
+        }
 
-            if(!flag)
+        for(int i = 0 ;i < st.top(); i++)
+        {   
+            while(!st.empty() && nums[i] > nums[st.top()])
             {
-                ans[i] = -1;//ans[1] = -1
+                ans[st.top()] = nums[i];
+                st.pop();
             }
         }
 
         return ans;
+
+        //TC : O(n)
+        //SC : O(n)
+            
     }
 };
