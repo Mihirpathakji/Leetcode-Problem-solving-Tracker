@@ -20,7 +20,7 @@ public:
             {
                 if(nums1[l] < nums2[r])
                 {
-                    l++;//1
+                    l++;
                 }
                 else
                 {
@@ -35,6 +35,9 @@ public:
         }
 
         return min_integer;
+
+        //TC : O(min(nums1,nums2)).
+        //sc : o(1).
 
     }
 };
