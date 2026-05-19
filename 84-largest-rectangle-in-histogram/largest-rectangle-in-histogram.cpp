@@ -15,15 +15,23 @@ public:
         }
 
         vector<int>next_smaller_left(heights.size(),-1);
-        stack<int>st2;
+
+        if(!st1.empty())
+        {
+            while(!st1.empty())
+            {
+                st1.pop();
+            }
+        }
+
         for(int i = heights.size()-1; i>= 0; i--)
         {
-            while(!st2.empty() && heights[i] < heights[st2.top()])
+            while(!st1.empty() && heights[i] < heights[st1.top()])
             {
-                next_smaller_left[st2.top()] = i;
-                st2.pop();
+                next_smaller_left[st1.top()] = i;
+                st1.pop();
             }
-            st2.push(i);
+            st1.push(i);
         }
 
         vector<int>final_ans(heights.size());
