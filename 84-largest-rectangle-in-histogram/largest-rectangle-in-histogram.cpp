@@ -2,6 +2,7 @@ class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
 
+        //Compute the index of the next smaller element on right for each :
         vector<int>next_smaller_right(heights.size(),heights.size());
         stack<int>st1;
         for(int i = 0; i< heights.size(); i++)
@@ -14,8 +15,6 @@ public:
             st1.push(i);
         }
 
-        vector<int>next_smaller_left(heights.size(),-1);
-
         if(!st1.empty())
         {
             while(!st1.empty())
@@ -23,6 +22,9 @@ public:
                 st1.pop();
             }
         }
+
+        //Compute Index of next smaller on left for each element.
+        vector<int>next_smaller_left(heights.size(),-1);
 
         for(int i = heights.size()-1; i>= 0; i--)
         {
@@ -34,14 +36,19 @@ public:
             st1.push(i);
         }
 
-        vector<int>final_ans(heights.size());
-        for(int i = 0 ; i< final_ans.size(); i++)
+        //Area = Height*width.
+        int maximum_area = INT_MIN;
+
+        for(int i = 0 ;i < heights.size(); i ++)
         {
-            final_ans[i] = (next_smaller_right[i] - next_smaller_left[i] -1)*heights[i];
+            int area_of_each = (heights[i])*(next_smaller_right[i] - next_smaller_left[i] - 1);
+
+            maximum_area = max(maximum_area,area_of_each);
         }
 
-        int maxi = *max_element(final_ans.begin(),final_ans.end());
+        return maximum_area;
 
-        return maxi;
+        //TC : O(n)
+        //SC : O(n)
     }
 };
