@@ -44,7 +44,7 @@ public:
         }
         return ans;
 
-        //TC :O (n)
-        //SC : 
+        //TC :O(n)
+        //SC :O(n) 
     }
 };
