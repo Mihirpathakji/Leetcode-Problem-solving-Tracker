@@ -2,24 +2,28 @@ class Solution {
 public:
     long long zeroFilledSubarray(vector<int>& nums) {
 
-        int n = nums.size();
-
+        long long n = nums.size();
+        
         long long result = 0;
-        int consecutive_zero_just_back = 0;
+        long long consecutive_zeroes_back = 0;
 
-        for(int i = 0 ; i < n;i++)
+        for(int i =0 ; i <n; i++)
         {
             if(nums[i] == 0)
-            { 
-                result += (consecutive_zero_just_back + 1);
-                consecutive_zero_just_back++;
+            {
+                result += (consecutive_zeroes_back + 1);
+                consecutive_zeroes_back++;
             }
             else
             {
-                consecutive_zero_just_back = 0;//0
+                consecutive_zeroes_back = 0;
             }
         }
+
         return result;
+        //TC : O(n)
+        //SC : O(1)
+
 
     }
 };
