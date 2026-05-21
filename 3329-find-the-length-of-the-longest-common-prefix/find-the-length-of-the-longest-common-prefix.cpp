@@ -12,16 +12,16 @@ public:
         // 20
         // 200
 
-        for(int i=0; i<arr2.size(); i++) {
-            string temp = to_string(arr2[i]);
+        for(int i=0; i<arr1.size(); i++) {
+            string temp = to_string(arr1[i]);
             for(int j=0; j<=temp.size(); j++) {
                 mp[temp.substr(0,j)] = 1;
             }
         }
 
         int maxi = 0;
-        for(int i=0; i<arr1.size(); i++) {
-            string temp = to_string(arr1[i]);
+        for(int i=0; i<arr2.size(); i++) {
+            string temp = to_string(arr2[i]);
             for(int j=0; j<=temp.size(); j++) {
                 if(mp.find(temp.substr(0,j)) != mp.end()) {
                     maxi = max(maxi,j);
