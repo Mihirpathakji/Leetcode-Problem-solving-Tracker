@@ -11,29 +11,34 @@ public:
     bool hasCycle(ListNode *head) {
 
         ListNode* temp = head;
-        int index = 0;
         if(!temp)
         {
             return false;
         }
         
-        unordered_map<ListNode*,int>mp;
-        mp[head]++;//mp[1]=1
-        int x  =100001;
+        unordered_map<ListNode*,bool>mp;
+
+        int x = 10000;
+
         while(x--)
         {
             if(temp)
-            temp = temp->next;
+            {
+                mp[temp] = true;//mp[head]=T
+                temp = temp->next;
+            }
 
             if(temp!=NULL && mp.find(temp)!=mp.end())
             {
                 return true;
             }
-            
-            mp[temp]++;
+
         }
 
         return false;
+
+        //TC : O(10^4)
+        //SC : O(10^4)
         
     }
 };
