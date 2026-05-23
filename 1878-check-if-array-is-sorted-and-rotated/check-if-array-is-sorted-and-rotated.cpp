@@ -2,33 +2,27 @@ class Solution {
 public:
     bool check(vector<int>& nums) {
 
-        vector<int>original = nums;
-        sort(original.begin(),original.end());//nlogn
-        vector<int>nums2 = nums;
+        int n = nums.size();
 
-        int k = nums.size();//n
 
-        while(k)
+        int count = 0;
+
+        for(int i = 0 ; i < 2*n-1 ; i++)
         {
-            
-            for(int i =0; i < nums.size(); i++)
+            if(nums[i%n] <= nums[(i+1)%n])
             {
-                nums2[(i+1)%nums2.size()] = nums[i];//2nd time rortation che i.e nums should be now the nums rotated once .so that the nums2 will be nums after twice rotations.
+                count++;//
+            }   
+            else
+            {
+                count =1;
+                continue;
             }
-            
-            if(nums2 == original)
+            if(count == n)
             {
                 return true;
             }
-
-            k--;
-
-            nums = nums2;
-
         }
-        
-        //TC : O(nlogn) + O(n*(n+2*n)) == O(nlogn) + O(n*(3*n)) == O(nlogn) + O(n^2)
-
         return false;
 
     }
