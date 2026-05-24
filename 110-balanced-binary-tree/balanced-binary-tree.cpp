@@ -9,43 +9,53 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
 public:
 
     int Height(TreeNode* root)
-    {
+    {   
         if(root == NULL)
         {
             return 0;
         }
-        return max(Height(root->left),Height(root->right)) + 1;
-    }
 
-    bool Preorder(TreeNode* root)
-    {
+        int leftHeight = Height(root->left);
+        int rightHeight = Height(root->right);
+
+        return max(leftHeight,rightHeight) + 1;
+
+    }
+    
+    bool isBalanced(TreeNode* root) {
+
+        //Check for the root:
+
+        //|hl-hr| <= 1.
         if(root == NULL)
         {
+            //empty tree is Always Balanced.
             return true;
         }
 
-        if(abs(Height(root->left)- Height(root->right)) > 1)
-        {   
+        int leftHeight = Height(root->left);
+        int rightHeight = Height(root->right);
+
+        if(abs(leftHeight - rightHeight) > 1)
+        {
+            //you need to check for the all the nodes on the left of root and on the right of the root.That whether they are balanced or not.You cannot return true.
+
+            //But if root is not balanced you can directly return false;
+
             return false;
         }
 
-        return (Preorder(root->left) && Preorder(root->right));
 
-    }
+        //root is balanced .Check Recursively whether all the nodes of the Left subtree and all nodes of the right substree are also balanced or not.
 
-    bool isBalanced(TreeNode* root) {
+        return isBalanced(root->left) && isBalanced(root->right);
 
-        //PreOrder Traversal : root->left->right
-
-        if(root == NULL)
-        {
-            return true;
-        }
-
-        return Preorder(root);
+        //TC : O(n^2)
+        //SC : O(n)
     }
 };
