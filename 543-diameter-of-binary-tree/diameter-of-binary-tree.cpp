@@ -20,11 +20,11 @@ public:
 
         if(root == NULL)
         {
-            return 0;
+            return 0;//no left_edges / right_edges
         }
 
-        int left_edges = solve(root->left,max_len);
-        int right_edges = solve(root->right,max_len);
+        int left_edges = solve(root->left,max_len);//
+        int right_edges = solve(root->right,max_len);//
 
         max_len = max(max_len,left_edges + right_edges);
 
@@ -40,5 +40,7 @@ public:
 
         return max_len;
 
+        //TC : O(n)
+        //SC : O(n)
     }
 };
