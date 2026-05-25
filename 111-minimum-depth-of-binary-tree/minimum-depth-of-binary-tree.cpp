@@ -9,44 +9,51 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
- 
 class Solution {
 public:
 
-    int solve(TreeNode* root,int& min_Depth)
-    {
+    int minDepth(TreeNode* root) {
+
         if(root == NULL)
         {
             return 0;
         }
 
-        int left = solve(root->left,min_Depth);//1  0
-        
-  
-        int right = solve(root->right,min_Depth);//2 
+        //BFS -> First node which is Leaf node , The level of that leaf node is the Minimum height.
 
-        if(root->right == NULL)
+        queue<TreeNode*>q;
+
+        q.push(root);
+
+        int min_Depth = 1;  
+
+        while(!q.empty())
         {
-            return 1 + left;
+            int n = q.size();
+            while(n--)
+            {
+                TreeNode* temp = q.front();
+                q.pop();
+                if(temp->left == NULL && temp->right == NULL)
+                {
+                    return min_Depth;
+                }
+                if(temp->left)
+                {
+                    q.push(temp->left);
+                }
+                if(temp->right)
+                {
+                    q.push(temp->right);
+                }
+            }
+            min_Depth++;
         }
-        
-        if(root->left == NULL)
-        {
-            return 1 + right;
-        }
 
-        min_Depth = min(left,right) + 1;
+        return -1;
 
-        return min_Depth;//2
+        //TC : O(n).
+        //SC : O(n).
+
     }
-
-    int minDepth(TreeNode* root) {
-        
-        int min_Depth = INT_MAX;
-        int ans = solve(root,min_Depth);
-        return ans;
-        
-    }
-
-
 };
