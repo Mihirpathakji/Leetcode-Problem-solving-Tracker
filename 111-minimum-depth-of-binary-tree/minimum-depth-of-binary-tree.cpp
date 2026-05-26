@@ -12,6 +12,24 @@
 class Solution {
 public:
 
+    void rec(TreeNode* root,int& level,int cl)
+    {
+        if(!root)
+        {
+            return;
+        }
+
+        if(!(root->left) && (!root->right))
+        {
+            //leaf node founded.
+            level = min (level,cl);
+        }
+
+        rec(root->left,level,cl+1);
+        rec(root->right,level,cl+1);       
+
+    }
+
     int minDepth(TreeNode* root) {
 
         if(root == NULL)
@@ -19,41 +37,10 @@ public:
             return 0;
         }
 
-        //BFS -> First node which is Leaf node , The level of that leaf node is the Minimum height.
-
-        queue<TreeNode*>q;
-
-        q.push(root);
-
-        int min_Depth = 1;  
-
-        while(!q.empty())
-        {
-            int n = q.size();
-            while(n--)
-            {
-                TreeNode* temp = q.front();
-                q.pop();
-                if(temp->left == NULL && temp->right == NULL)
-                {
-                    return min_Depth;
-                }
-                if(temp->left)
-                {
-                    q.push(temp->left);
-                }
-                if(temp->right)
-                {
-                    q.push(temp->right);
-                }
-            }
-            min_Depth++;
-        }
-
-        return -1;
-
-        //TC : O(n).
-        //SC : O(n).
-
+        int level = INT_MAX;
+        int cl = 1;//Current_level.
+        rec(root,level,cl);
+        return level;
+        
     }
 };
