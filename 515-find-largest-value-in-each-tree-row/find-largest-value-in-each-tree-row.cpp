@@ -46,7 +46,8 @@ public:
                     q.push(temp->right);
                 }
             }
-            ans.push_back(maxi);
+            
+            ans.push_back(maxi);//3  9
         }
         
         return ans;
