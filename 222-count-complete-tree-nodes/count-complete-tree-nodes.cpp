@@ -11,41 +11,28 @@
  */
 class Solution {
 public:
+
+    int get_my_ans(TreeNode* root)
+    {
+
+        if(root == NULL)
+        {
+            return 0;//empty subtree has 0 nodes in it.
+        }
+
+        int nodes_on_left = get_my_ans(root->left);//Obtain total nodes from the left subtree.
+        int nodes_on_right = get_my_ans(root->right);//Obtain total nodes form the right subtree.
+
+        return nodes_on_left + nodes_on_right + 1;
+
+    }
+
     int countNodes(TreeNode* root) {
 
-        //Recursive Approach:
-
-       // ->Count total nodes from Left subtree of 1 
-       // ->Count total nodes from right subtree of 1 
-       // -> ans = nodes of leftsubtree + nodes of rightsubtree + 1.
-
-       if(root == NULL)
-       {
-            return 0;
-       }
-
-        int nodes_from_left_subtree = countNodes(root->left);//1->l ==3    1 //A
+        int size = 0;
+        size = get_my_ans(root); 
         
-        //200  2->left     -> 1    
-        //400  4->left == 0
-        //600  
-
-        int nodes_from_right_subtree = countNodes(root->right);// 2 //B
-        //400 -> right  = NULL
-        //0 
-        //500 
-        //300
-
-        return nodes_from_left_subtree + nodes_from_right_subtree + 1;//3  1  2//+ ->root node
-        //3 + 2 + 1 == 6
-
-
-        //PostOrder Traversal.
+        return size;
         
-        //TC:O(N)
-
-        //SC:O(N)AUXILLIARY
-              
-
     }
 };
