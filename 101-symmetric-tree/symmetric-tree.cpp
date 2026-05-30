@@ -18,6 +18,7 @@ public:
         {
             return true;
         }
+
         else if(root1 && !root2)
         {   
             return false;
@@ -34,13 +35,11 @@ public:
                 bool right_check = is_Identical(root1->right,root2->left);
                 return left_check && right_check; 
             }
-            else
-            {
-                return false;
-            }
         }
+
         return false;
-    }
+        
+        }
 
     bool isSymmetric(TreeNode* root) {
 
