@@ -11,47 +11,36 @@
  */
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
 
-        vector<int>ans;
+    void rightview(TreeNode* root,int level,vector<int>&ans)
+    {
+
+        //Base case : 
+
         if(root == NULL)
         {
-            return ans;
+            return;
         }
 
-        queue<TreeNode*>q;
-        q.push(root);
-
-        while(!q.empty())
+        if(level == ans.size())
         {
-            //Level wise keep a track of last node of the every level.  
-            int n = q.size();
-            int original = n;//2 4 ->1 
-            //original = 4
-            //n        = 0 ->push
-
-            while(n--)
-            {
-                TreeNode* temp = q.front();
-                q.pop();
-
-                if(n == 0)
-                {
-                    ans.push_back(temp->val);
-                }    
-
-                if(temp->left)
-                {
-                    q.push(temp->left);
-                }
-
-                if(temp->right)
-                {
-                    q.push(temp->right);
-                }
-            }
+            ans.push_back(root->val);
         }
-        return ans;
 
+        //We wanted the rightsideview : 
+
+        rightview(root->right,level+1,ans);
+        rightview(root->left,level+1,ans);
+
+    }
+
+    vector<int> rightSideView(TreeNode* root) {
+
+        int level = 0;
+        vector<int>ans;
+
+        rightview(root,level,ans);
+        return ans;
+        
     }
 };
