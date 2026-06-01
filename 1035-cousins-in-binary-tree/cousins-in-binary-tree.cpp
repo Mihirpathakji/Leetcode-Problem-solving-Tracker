@@ -77,6 +77,11 @@ public:
                     }
                     q.push(temp->right);
                 }
+
+                if(l1!=-1 && l2!=-1)
+                {
+                    break;
+                }
             }
             level++;
         }
