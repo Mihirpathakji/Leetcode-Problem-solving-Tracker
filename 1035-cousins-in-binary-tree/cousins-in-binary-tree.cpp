@@ -41,7 +41,7 @@ public:
         int l1 = -1;
         int l2 = -1;
 
-        int level = 0;
+        int level = 1;
         queue<TreeNode*>q;
         q.push(root);
 
