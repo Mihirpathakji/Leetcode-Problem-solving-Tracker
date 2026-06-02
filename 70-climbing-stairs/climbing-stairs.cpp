@@ -3,7 +3,7 @@ public:
     
     int climbStairs(int n) {
 
-        //Bottom Up Approach : 
+        //3.Bottom Up Approach : 
 
         //1.Insert the base case into the dp.
 
