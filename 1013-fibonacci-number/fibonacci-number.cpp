@@ -1,28 +1,33 @@
 class Solution {
 public:
 
-    int fib(int n) {
-
-        //Bottom - Up approach 
-
-        vector<int>dp(n+1);
-
-        //Compute base case first.
-       
-        dp[0] = 0;
+    int myfib(int n ,vector<int>& dp)
+    {
         
-        if(n >=1) 
-        dp[1] = 1;
-
-        //Than go upwards.Replace func by dp[i]
-
-        for(int i = 2; i <= n ; i++)
+        if(n <= 1)
         {
-            dp[i] = dp[i-1] + dp[i-2];
-        } 
+            return n;
+        }
 
-        return dp[n];
+        //Already calculated use it:         
+        if(dp[n]!=-1)
+        {
+            return dp[n];
+        }
     
+        return dp[n] = fib(n-1) + fib(n-2);
     }
 
+    int fib(int n) {
+
+        //Top down approach :
+
+        vector<int>dp(n+1,-1);
+
+        return myfib(n,dp);//compute at n first.
+
+        //TC : O(n)
+        //SC : O(2*n)//vector + recursion call stack size == n + n == 2*n 
+
+    }
 };
