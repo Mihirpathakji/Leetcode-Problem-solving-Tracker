@@ -1,31 +1,26 @@
 class Solution {
 public:
-
     int fib(int n) {
 
-        //Bottom - Up approach 
+        //4.Space Optimization.
 
-        vector<int>dp(n+1);
-
-        //Compute base case first.
-       
-        dp[0] = 0;
-        
-        if(n >=1) 
-        dp[1] = 1;
-
-        //Than go upwards.Replace func by dp[i]
-
-        for(int i = 2; i <= n ; i++)
+        if(n <= 1)
         {
-            dp[i] = dp[i-1] + dp[i-2];
-        } 
+            return n;
+        }
 
-        return dp[n];
+        int first = 0;
+        int second = 1;
+        int third;
 
-        //TC : O(n)
-        //SC : O(n) -> only vector size of n 
-    
+        for(int i = 0 ; i <= n - 2 ; i++)
+        {
+            third = first+second;
+            first = second;
+            second = third;
+        }
+
+        return third;
+
     }
-
 };
