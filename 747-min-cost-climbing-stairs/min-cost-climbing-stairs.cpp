@@ -7,27 +7,24 @@ public:
 
         int n = cost.size();
 
-        vector<int>dp(n+1,-1);
-
-        dp[0] = 0;//0  coins are require to reach the 0th step.
-
-        dp[1] = 0;//0 coins are require at minimum to start from the 1th step.Since we can "start" from 1th step also.
-
-
         //3.for loop replace functions by dp : 
+
+        int first = 0;
+        int second = 0;
+        int third = -1;
 
         for(int i = 2; i <= n; i++)
         {
             //cost to went to ith step:
-            dp[i] = min(cost[i-1] + dp[i-1], cost[i-2] + dp[i-2]);
+            third = min(cost[i-1] + second, cost[i-2] + first);
+            first = second;
+            second = third;
         }
         
-        return dp[n];
-
-
+        return third;
+        
         //TC : O(n)
         //SC : O(n)
-
 
     }
 };
