@@ -6,7 +6,7 @@ public:
     {   
         if(n <= 1)
         {
-            return dp[n] = 0;//0 steps require to start from 0th or 1th step.
+            return dp[n] = 0;//0 coins require to start from 0th or 1th step.
         }
 
         if(dp[n]!=-1)
