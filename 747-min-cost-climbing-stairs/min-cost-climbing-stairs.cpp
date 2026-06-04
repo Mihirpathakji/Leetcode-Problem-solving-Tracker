@@ -20,7 +20,7 @@ public:
         return third;
 
         //TC : O(n)
-        //SC : O(n)
+        //SC : O(1)
 
     }
 };
