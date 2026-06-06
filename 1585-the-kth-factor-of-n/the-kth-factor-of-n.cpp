@@ -16,8 +16,11 @@ public:
             return -1;
         }
 
-
         return factors_of_n[k-1];
         
+        //TC : O(n)
+        //SC : O(n)
+ 
+ 
     }
 };
