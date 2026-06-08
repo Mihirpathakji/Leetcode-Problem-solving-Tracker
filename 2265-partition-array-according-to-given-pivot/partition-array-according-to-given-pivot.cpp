@@ -3,48 +3,42 @@ public:
     vector<int> pivotArray(vector<int>& nums, int pivot) {
 
         vector<int>ans;
-        vector<int>left_of_pivot;
-        vector<int>right_of_pivot;
-        vector<int>pivot1;
 
-        int n = nums.size();
+        //1. insert every element of nums which is less than the pivot into ans:
 
-        for(int i = 0 ; i < n; i++)
+        for(auto &it : nums)
         {
-            if(nums[i] < pivot)
+            if(it < pivot)
             {
-                left_of_pivot.push_back(nums[i]);//[9,5,3]
+                ans.push_back(it);
             }
-            else if(nums[i] == pivot)
-            {
-                pivot1.push_back(nums[i]);//[10,10]
-            }
-            else
-            {
-                right_of_pivot.push_back(nums[i]);//[12,14]
-            }
-        }    
-
-        int i = 0;
-        while(i< left_of_pivot.size())
-        {
-            ans.push_back(left_of_pivot[i]);//[9 5 3]
-            i++;//1 2
         }
 
-        i = 0;
-        while(i < pivot1.size())
+        //[9 5 3]
+
+        //2. insert elements equal to nums in ans
+
+        for(auto &it : nums)
         {
-            ans.push_back(pivot1[i]);//[9 5 3 10 10]
-            i++;//1 2 
+            if(it == pivot)
+            {
+                ans.push_back(it);
+            }
+        }
+        
+        //[9 5 3 10 10]
+
+        //3. insert the elements greater than pivot in ans.
+
+        for(auto &it : nums)
+        {
+            if(it > pivot)
+            {
+                ans.push_back(it);
+            }
         }
 
-        i = 0;
-        while(i < right_of_pivot.size())
-        {
-            ans.push_back(right_of_pivot[i]);//[9 5 3 10 10 12 14]
-            i++;//1 2
-        }
+        //[9 5 3 10 10 12 14]
 
         return ans;
 
