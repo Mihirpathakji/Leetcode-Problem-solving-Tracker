@@ -1,1 +1,1 @@
-<h2>partition-array-according-to-given-pivot Notes</h2><hr>[ Time taken: 18m 24s ]
+<h2>partition-array-according-to-given-pivot Notes</h2><hr>[ Time taken: 4m 51s ]
