@@ -7,10 +7,8 @@ public:
         long long int count1 = 0;
         while(n > 0)
         {
-            if(n&1)
-            {
-           
-                //n is odd i.e n%2==1. 
+            if(n &1)
+            {//n is odd 
                 count1++;
             }   
 
@@ -19,7 +17,7 @@ public:
 
         return count1;
 
-        //TC : O(logn)
+        //TC : O(logn) worst O(31)
         //SC : O(1)
 
     }
