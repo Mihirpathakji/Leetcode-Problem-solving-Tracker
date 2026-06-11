@@ -6,6 +6,8 @@ public:
 
         int n = nums.size();
         vector<vector<int>>ans;
+        //We can convert give numbers in vector as bit indexes.
+        //If there are 3 numbers in vector -> 3 bit indexes 0,1,2.
 
         //2^n times.
         for(int i = 0 ;i < (1 << n); i++)
