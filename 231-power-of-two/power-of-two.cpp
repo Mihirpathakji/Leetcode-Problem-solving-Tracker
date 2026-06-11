@@ -5,8 +5,9 @@ public:
         //Bit Manipulation :
         if(n == 0)
         {
-            return 0;
+            return false;
         }
+        
         return ( (n & (n-1LL) )== 0);
 
         //TC : O(1)
