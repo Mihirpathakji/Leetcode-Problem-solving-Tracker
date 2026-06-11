@@ -5,9 +5,9 @@ public:
         //Optimal :
 
         long long int count1 = 0;
-        while(n )
+        while(n)
         {
-            n = (n & (n-1));
+            n = (n & (n-1));//Keep on extracting and removing the right most 1.
             count1++; 
         }
 
