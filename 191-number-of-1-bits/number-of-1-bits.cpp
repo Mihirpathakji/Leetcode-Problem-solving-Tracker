@@ -2,22 +2,18 @@ class Solution {
 public:
     int hammingWeight(int n) {
 
-        //Better:
+        //Optimal :
 
         long long int count1 = 0;
-        while(n > 0)
+        while(n )
         {
-            if(n &1)
-            {//n is odd 
-                count1++;
-            }   
-
-            n = (n >> 1);
+            n = (n & (n-1));
+            count1++; 
         }
 
         return count1;
 
-        //TC : O(logn) worst O(31)
+        //TC : O(31)worst.
         //SC : O(1)
 
     }
