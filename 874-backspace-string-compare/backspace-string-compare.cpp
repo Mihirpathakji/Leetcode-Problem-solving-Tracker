@@ -2,39 +2,98 @@ class Solution {
 public:
     bool backspaceCompare(string s, string t) {
 
-        stack<char>ss;//for s
-        stack<char>st;//for t
+        //Most Optimal : Two - Pointer Approach :
 
-        for(int i = 0 ; i< s.size(); i++)
+        int i = s.size()-1;
+        int j = t.size()-1;
+        int skips_s = 0;
+        int skips_t = 0;
+
+        while(i >=-1 && j >=-1)
         {
-            if( s[i] != '#' )
-            {   
-                ss.push(s[i]);
+            while(i >=0 )
+            {
+                //case1 :
+                if(s[i] == '#')
+                {
+                    skips_s++;
+                    i--;
+                }
+                //case2 :Is any character. 
+                //Can we skip it?
+               
+                else if(skips_s > 0)
+                {
+                    skips_s--;
+                    i--;
+                }
+
+                else
+                {
+                    break;
+                }
+            }
+
+            while(j >=0)
+            {
+                //case1 : #
+                if(t[j] == '#')
+                {
+                    skips_t++;
+                    j--;
+                }
+
+                //character can we skip it?
+
+                else if(skips_t > 0)
+                {
+                    skips_t--;
+                    j--;
+                }
+
+                else
+                {
+                    break;
+                }
+
+            }
+
+            char first;
+            if(i!=-1)
+            {
+                first = s[i];//'c'
+            }   
+            else
+            {
+                first = '$';//an character which was not there in string. 
+            }
+
+            char second;
+            if(j!=-1)
+            {
+                second = t[j];//''b
             }
             else
             {
-                if(!ss.empty())
-                ss.pop();
+                second = '$';
             }
-        }
 
-        for(int i = 0;i < t.size(); i++)
-        {
-            if( t[i] != '#' )
+            if(first == second)
             {
-                st.push(t[i]);
+                //Check if every of their characters are equal or not.
+                i--;
+                j--;
             }
+            
             else
-            {   
-                if(!st.empty())
-                st.pop();
+            {
+                return false;
             }
         }
+        return true;
 
-        return ss == st;
-
-        //TC : O(s+t)
-        //SC : O(s+t)
+        //TC : O(s + t)
+        //SC : O(1)
         
     }
 };
