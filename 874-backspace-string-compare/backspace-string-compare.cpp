@@ -1,38 +1,48 @@
 class Solution {
 public:
+
     bool backspaceCompare(string s, string t) {
 
-        stack<int>st1;
-        stack<int>st2;
+        //Remove # and 
 
-        //For string s:
-        for(int i=0;i<s.size();i++)
+        for(int i = 0;i < s.size(); i++)
+        {//s.size()==5
+            if(s[i] == '#')
+            {
+                s.erase(s.begin()+i);//erasing a single element from the string.Than you need to give the iterator of that single element. 
+
+                if(i!=0)
+                {
+                    s.erase(s.begin()+i-1);
+                    i = i-2;//-1
+                }
+                else
+                {
+                    i--;//-1
+                }
+            }   
+            //0
+        }//xfix
+
+        for(int i = 0;i < t.size(); i++)
         {
-            if(s[i]!= '#')
+            if(t[i] == '#')
             {
-                st1.push(s[i]);
-            }
-            else if(!st1.empty() && s[i] =='#')
-            {
-                st1.pop();
-            }
-        }
+                t.erase(t.begin()+i);//erasing a single element from the string.Than you need to give the iterator of that single element. 
 
-        for(int i=0;i<t.size();i++)
-        {
-            if(t[i] !='#')
-            {
-                st2.push(t[i]);
-            }
-            else if(!st2.empty() && t[i] =='#')
-            {
-                st2.pop();
-            }
-        }
+                if(i!=0)
+                {
+                    t.erase(t.begin()+i-1);
+                    i = i-2;//-1
+                }
+                else
+                {
+                    i--;//-1 -1
+                }
+            }   //i=0 0
+        }//xfix
 
-        return st1 == st2;
+        return s == t;
 
-        //TC:O(n+m)
-        //SC:O(n+m)
     }
 };
