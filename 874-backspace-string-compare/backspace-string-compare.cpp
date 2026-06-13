@@ -3,8 +3,6 @@ public:
 
     bool backspaceCompare(string s, string t) {
 
-        //Remove # and 
-
         for(int i = 0;i < s.size(); i++)
         {//s.size()==5
             if(s[i] == '#')
@@ -13,7 +11,7 @@ public:
 
                 if(i!=0)
                 {
-                    s.erase(s.begin()+i-1);
+                    s.erase(s.begin()+i-1);//O(N)
                     i = i-2;//-1
                 }
                 else
@@ -22,7 +20,8 @@ public:
                 }
             }   
             //0
-        }//xfix
+        }
+        //O(N^2)
 
         for(int i = 0;i < t.size(); i++)
         {
@@ -32,7 +31,7 @@ public:
 
                 if(i!=0)
                 {
-                    t.erase(t.begin()+i-1);
+                    t.erase(t.begin()+i-1);//O(N)
                     i = i-2;//-1
                 }
                 else
@@ -40,9 +39,16 @@ public:
                     i--;//-1 -1
                 }
             }   //i=0 0
-        }//xfix
+        }
+        //O(N^2)
+
+        //Removing single character from string ->s.erase(iterator) == s.erase(s.begin()+i); 
 
         return s == t;
+
+        //TC : O(s^2 + t^2).Since .erase in a string takes O(n)tc.Since all the string elements "Shifts" to the left on one deletion.
+
+        //SC : O(1)
 
     }
 };
