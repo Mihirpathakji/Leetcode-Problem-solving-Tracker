@@ -9,7 +9,7 @@ public:
         int skips_s = 0;
         int skips_t = 0;
 
-        while(i >=-1 && j >=-1)
+        while(i >=0 || j >=0)
         {
             while(i >=0 )
             {
@@ -30,7 +30,7 @@ public:
 
                 else
                 {
-                    break;
+                    break;//compare both characters individually.
                 }
             }
 
@@ -43,7 +43,7 @@ public:
                     j--;
                 }
 
-                //character can we skip it?
+                //sase2 : character can we skip it?
 
                 else if(skips_t > 0)
                 {
@@ -53,7 +53,7 @@ public:
 
                 else
                 {
-                    break;
+                    break;//compare both characters.
                 }
 
             }
@@ -84,12 +84,13 @@ public:
                 i--;
                 j--;
             }
-            
+
             else
             {
                 return false;
             }
         }
+
         return true;
 
         //TC : O(s + t)
