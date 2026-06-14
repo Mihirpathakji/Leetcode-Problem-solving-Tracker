@@ -2,23 +2,50 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
 
-        for(int i = 0;i< nums.size(); i++)
-        {
-            if(nums[i] < 0)
-            {
-                nums[i] *= -1;
-            }
-        }
-        //[4,1,0,3,10]
-        sort(nums.begin(),nums.end());//[0,1,3,4,10]
+        //1.Sorted -> Two Pointer -> l = 0 and r = n-1;->Everything is random at two pointers.
 
-        for(int i = 0; i <nums.size(); i++)
+        //2.Sorted -> Sliding window not applicable mostly.
+
+        int n = nums.size();
+        int l = 0;
+        int r = n-1;
+
+        vector<int>ans;
+
+        while(l < r)
         {
-            nums[i] = (nums[i]*nums[i]);
-        }
-        return nums;
-        //TC : O(nlogn)
-        //SC : O(1)
-        
+            //Case1 :
+            if(abs(nums[l]) > abs(nums[r]))
+            {
+                ans.push_back(nums[l]*nums[l]);
+                l++;
+            }
+
+            //Case2 : 
+            else if(abs(nums[l]) == abs(nums[r]))
+            {
+                ans.push_back(nums[l]*nums[l]);
+                l++;
+            }
+
+            //Case3 : 
+            else
+            {
+                ans.push_back(nums[r]*nums[r]);
+                r--;
+            }
+        }   
+
+        //nums[l] == nums[r] -> Smallest absolute value.
+       
+        ans.push_back(nums[l]*nums[l]);
+
+        reverse(ans.begin(),ans.end());
+
+        return ans;
+
+        //TC : O(n)
+        //SC : O(n)
+
     }
 };
