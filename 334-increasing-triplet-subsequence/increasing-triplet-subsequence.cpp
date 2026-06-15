@@ -7,13 +7,13 @@ public:
 
         for(int i=0; i<nums.size(); i++) {
             if(nums[i] <= first) {
-                first = nums[i];
+                first = nums[i];//20 10 5 1 1
             }
-            else if(nums[i] <= second) {
-                second = nums[i];
+            else if(nums[i] <= second ) {
+                second = nums[i];//100 12
             }
             else {
-                return true;
+                return true;//13
             }
         }
 
