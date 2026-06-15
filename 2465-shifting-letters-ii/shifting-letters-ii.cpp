@@ -57,7 +57,7 @@ public:
 
             //Now since both values_in_range_of
             
-            s[i] = (value_in_range_26 + diff[i])%26 + 'a';
+            s[i] = (value_in_range_26 + diff[i]) % 26 + 'a';
            
             //+'a' to convert the final obtained integer to it's character value.
 
