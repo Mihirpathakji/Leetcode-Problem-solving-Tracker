@@ -44,19 +44,24 @@ public:
             //difference can be in [-10^5,10^5].
             //Brought it in the range of [-26,26] by % 26.%26 Broughts it in range of [-26,26] taking that diff[i] can be -be.
 
-            diff[i] = diff[i] % 26;
+
+            //1.STEP DO MODULO.
+
+            diff[i] = diff[i] % 26; 
 
             //STEP2:But still diff[i] can be a -ve number in range [-26,26]
             //But we cannot add -ve difference since 'a' + -ve will go to the characters behind 'a' which are not the small case latin letters.Hence if it is -ve than we need to make it +ve.->Add 26 for that.
 
-            diff[i] = diff[i] + 26;
+            //2.STEP May possible still in [-26,26]
 
-            int value_in_range_26 = s[i]-'a';
+            diff[i] = diff[i] + 26;//Make it +ve by adding 26.
 
             //Now added diff below in  >=0  and also in range [0,26].
 
             //Now since both values_in_range_of
-            
+
+            int value_in_range_26 = s[i]-'a';
+
             s[i] = (value_in_range_26 + diff[i]) % 26 + 'a';
            
             //+'a' to convert the final obtained integer to it's character value.
