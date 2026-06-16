@@ -73,5 +73,8 @@ public:
         reverse(ans.begin(),ans.end());
         return ans;
 
+        //TC : O(n*3*n)
+        //SC : O(n)
+
     }
 };
