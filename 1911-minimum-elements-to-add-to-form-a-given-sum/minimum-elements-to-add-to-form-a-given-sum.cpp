@@ -19,7 +19,7 @@ public:
 
         //Ceil division of diff_needed and limit : 
 
-        return ceil((double)diff_needed/limit);
+        return ceil((double)diff_needed/limit);//float cannot give a answer with precision upto the large bits.Use double and instead of both floats and doubles the best to use technique is the ceil division : ceil division of diff_needed and limits == (diff_needed + limits - 1)/limits
     
         //TC : O(n)
         //SC : O(1)
