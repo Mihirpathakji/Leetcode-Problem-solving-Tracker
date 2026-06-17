@@ -19,7 +19,7 @@ public:
 
         //Ceil division of diff_needed and limit : 
 
-        return (diff_needed + limit -1)/limit;
+        return ceil((double)diff_needed/limit);
     
         //TC : O(n)
         //SC : O(1)
