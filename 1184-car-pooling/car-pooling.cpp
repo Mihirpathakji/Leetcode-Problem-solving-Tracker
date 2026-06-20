@@ -1,43 +1,31 @@
 class Solution {
 public:
-  
     bool carPooling(vector<vector<int>>& trips, int capacity) {
 
-        //[X,L,R] -> Difference array technique.
-
         int n = trips.size();
+        vector<pair<int,int>>weights;
 
-        vector<int>diff(1000+1,0);//Since we have to bothered for every location hence making of 1000+1
-
-        for(int i = 0;i < n; i++)
+        for(int i = 0; i < n; i++)
         {
-            int X = trips[i][0];
-            int L = trips[i][1];
-            int R = trips[i][2];
-  
-            diff[L] += X;
-            diff[R] -= X;
+            weights.push_back({trips[i][1],trips[i][0]});
+            weights.push_back({trips[i][2],-trips[i][0]});
         }
 
-        //Taking the prefix_sum.
+        sort(weights.begin(),weights.end());
 
-        for(int i = 1; i <= 1000; i++)
-        {
-            diff[i] = diff[i-1] + diff[i];
-        }                
+        int passenger_count = 0;
 
-        for(int i = 0;i <= 1000;i++)
+        for(int i = 0;i < weights.size(); i++)
         {
-            if(diff[i] > capacity)
+            passenger_count += weights[i].second;//2+=3 == 5
+
+            if(passenger_count > capacity)
             {
                 return false;
             }
         }
-
+        
         return true;
-
-        //TC : O(10^3)
-        //SC : O(10^3)
-
+        
     }
 };
