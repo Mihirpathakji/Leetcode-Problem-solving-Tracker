@@ -1,11 +1,13 @@
 class Solution {
 public:
+  
     bool carPooling(vector<vector<int>>& trips, int capacity) {
 
         //[X,L,R] -> Difference array technique.
 
         int n = trips.size();
-        vector<int>diff(1000+1,0);
+
+        vector<int>diff(1000+1,0);//Since we have to bothered for every location hence making of 1000+1
 
         for(int i = 0;i < n; i++)
         {
@@ -33,6 +35,9 @@ public:
         }
 
         return true;
+
+        //TC : O(10^3)
+        //SC : O(10^3)
 
     }
 };
