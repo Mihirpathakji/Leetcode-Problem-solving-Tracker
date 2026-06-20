@@ -56,11 +56,12 @@ public:
                     low = mid + 1;
                 }
             } 
-
         }
 
         return max_freq;
 
-        
+
+        //tc : O(n*logn)
+        //sc : O(n)
     }
 };
