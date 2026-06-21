@@ -11,7 +11,7 @@ public:
 
         long long prefix_sum = 0;//It helps to compute the number of operations required to convert every element from i to jth into nums[j] in O(1) tC.
 
-        long long max_freq = 1;
+        long long max_freq = INT_MIN;
 
         while(j < n)
         {
@@ -28,9 +28,7 @@ public:
             while(operations_needed > k)
             {
                 prefix_sum -= nums[i];
-                i++;
-
-                //We shrinked the window.
+                i++;//We shrinked the window.
                 
                 //Now check that now if the operations needed become in range of [0,k].Calculating the new_operations needed.
 
