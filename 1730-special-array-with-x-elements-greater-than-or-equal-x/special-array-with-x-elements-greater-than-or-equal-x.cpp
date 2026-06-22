@@ -21,7 +21,7 @@ public:
         //[0,0,3,4,4].
 
         int low = 0;
-        int high = 1000;
+        int high = *max_element(nums.begin(),nums.end());
 
         while(low <= high)
         {
@@ -34,7 +34,7 @@ public:
             else if(values > mid)
             {
                 //No.of values >= mid in array are even greater than the mid.i.e your mid is too smaller increment the mid -> increment the low.
-                low = mid +1;
+                low = mid +1;//
             }
             else
             {
