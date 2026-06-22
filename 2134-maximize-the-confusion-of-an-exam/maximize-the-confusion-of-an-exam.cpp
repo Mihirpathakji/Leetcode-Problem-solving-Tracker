@@ -26,7 +26,7 @@ public:
                 false_count++;
             }
 
-            //It is not possible to convert even the minimum frequency element into the maximum frequency element with the given number of operations k.->Invalid window shrink.
+            //It is not possible to convert even the minimum frequency  into the maximum frequency count with the given number of operations k.->Invalid window shrink.
  
             while(min(true_count,false_count) > k)
             {
@@ -42,6 +42,7 @@ public:
                 i++;
             }
 
+
             max_len = max(max_len,j-i+1);   
             j++;
 
@@ -52,6 +53,5 @@ public:
         //TC : O(n)
         //SC : O(1) 
 
-        
     }
 };
