@@ -2,6 +2,8 @@ class Solution {
 public:
     int maxConsecutiveAnswers(string answerKey, int k) {
 
+        //Two Pass sliding window:
+
         int n = answerKey.length();
 
         //Case1 : Achiving the Maximum possible consecutives T by converting all possible F to T.
@@ -68,6 +70,10 @@ public:
         }
 
         return max(max_len1,max_len2);
+
+
+        //TC : O(n)
+        //SC : O(1)
         
     }
 };
