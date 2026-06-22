@@ -20,7 +20,7 @@ public:
         
            //Invalid window shrink.
 
-           while(mp.size() < j-i+1)
+           while(mp.size() != j-i+1)
             {
                 curr_sum -= nums[i];
                 mp[nums[i]]--;
