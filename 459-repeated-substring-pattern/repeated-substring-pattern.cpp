@@ -6,32 +6,29 @@ public:
         
         int n = s.length();
 
-        for(int j = 0;j < n-1;j++)
+        for(int j = n/2-1;j >= 0;j--)
         {
             if(n % (j+1) == 0)
             {
                 string temp = s.substr(0,j+1);
 
                 string making = temp;
-
-                while(making.length() <= 1e4)
+                int times = n/(j+1);
+                while(times--)
                 {
                     if(making == s)
                     {
                         return true;
                     }
-                    if(making.size() > n)
-                    {
-                        break;
-                    }
-
                     making += temp;
                 }
             }
         }   
 
         return false;
-        //TC : O(n^2)
+
+
+        //TC : O(n*(sqrt(n)))
         //SC : O(n)
     }
 };
