@@ -6,14 +6,14 @@ public:
         
         int n = s.length();
 
-        for(int j = n/2-1;j >= 0;j--)
+        for(int j = n/2;j >= 1;j--)
         {
-            if(n % (j+1) == 0)
+            if(n % j == 0)
             {
-                string temp = s.substr(0,j+1);
+                string temp = s.substr(0,j);
 
                 string making = temp;
-                int times = n/(j+1);
+                int times = n/j;
                 while(times--)
                 {
                     if(making == s)
