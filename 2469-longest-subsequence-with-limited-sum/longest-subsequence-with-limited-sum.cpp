@@ -6,32 +6,56 @@ public:
         int n1 = queries.size();
 
         sort(nums.begin(),nums.end());
+        vector<int>prefix_sum(n);
+        prefix_sum[0] = nums[0];
+
+        for(int i = 1; i < n; i++)
+        {
+            prefix_sum[i] = prefix_sum[i-1] + nums[i]; 
+        }
+
+
+        //For every Query i will binary search on the array nums.
 
         vector<int>ans;
 
-        for(int i = 0;i < n1; i++)
+        for(int i = 0; i  < n1; i++)
         {
-            long long int sum = 0;//0
-            vector<int>temp;//
+            int target = queries[i];//10
 
-            for(int j = 0; j < n ;j++)
+            int low = 0;
+            int high = n-1;
+           
+            bool flag = false;
+
+            int possible_ans = 0; 
+         
+            while(low <= high)
             {
-                sum += nums[j];//4 0  5 0 2 3 //4 9 11 10 // 469781
+                int mid = low + (high-low)/2;//1 2
 
-                if(sum <= queries[i])
-                {   
-                    temp.push_back(nums[j]);//[2 3] //[4 9 1] //469781
-                }   
-                else
+                if(prefix_sum[mid] == target)
                 {
+                    flag = true;
+                    ans.push_back(mid+1);//2
                     break;
                 }
+                else if(prefix_sum[mid] < target)
+                {
+                    low = mid +1;
+                    possible_ans = mid+1;
+                }
+                else
+                {
+                    high = mid -1;
+                }
+            }   
+            if(!flag)
+            {
+                ans.push_back(possible_ans);
             }
- 
-            ans.push_back(temp.size());//[2,3] //
         }
 
         return ans;
-        
     }
 };
