@@ -15,7 +15,8 @@ public:
 
         while(j < n)
         {
-            pairs_count += mp[nums[j]];
+
+            pairs_count += mp[nums[j]];//0 1 1 
 
             mp[nums[j]]++;
 
@@ -25,16 +26,19 @@ public:
             {
                 //Check how many valid subarrays can be made with that fixed j and i moving to all i < j.
 
-                total_subarray_counts += (n-j);
+                total_subarray_counts += (n-j);//2
                 //Shrink :
 
                 mp[nums[i]]--;
+               
                 pairs_count -= mp[nums[i]]; //No. of pairs also gets reduced by the updated frequnecy.
+                
                 i++;
 
             }
 
-            j++;
+            j++;//1 2 3 4 5
+
         }
 
         return total_subarray_counts;
