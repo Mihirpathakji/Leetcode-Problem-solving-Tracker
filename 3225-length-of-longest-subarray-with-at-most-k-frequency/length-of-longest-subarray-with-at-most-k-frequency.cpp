@@ -6,8 +6,6 @@ public:
         int i = 0;
         int j = 0;
 
-        int max_freq = INT_MIN;//What is the Maximum frequency of any element in my subarray.
-
         unordered_map<int,int>mp;
 
         int max_len = INT_MIN;
@@ -15,17 +13,11 @@ public:
         while(j  < n)
         {
         
-            mp[nums[j]]++;//1 3
+            mp[nums[j]]++;
 
             while(mp[nums[j]] > k)
             {
                 mp[nums[i]]--;
-
-                if(mp[nums[i]] == 0)
-                {
-                    mp.erase(nums[i]);
-                }
-
                 i++;
             }
 
