@@ -1,22 +1,24 @@
 class Solution {
 public:
+    
     long long countGood(vector<int>& nums, int k) {
         
         int n = nums.size();
-
+        
         //Sliding window : (Something atleast or atmost k)
 
         int i = 0;
         int j = 0;
 
         unordered_map<int,int>mp;//Stores the Past count of that number.
+
         int pairs_count = 0;
         long long total_subarray_counts = 0;
 
         while(j < n)
         {
 
-            pairs_count += mp[nums[j]];//0 1 1 
+            pairs_count += mp[nums[j]];
 
             mp[nums[j]]++;
 
@@ -26,18 +28,18 @@ public:
             {
                 //Check how many valid subarrays can be made with that fixed j and i moving to all i < j.
 
-                total_subarray_counts += (n-j);//2
+                total_subarray_counts += (n-j);
+            
                 //Shrink :
 
                 mp[nums[i]]--;
                
-                pairs_count -= mp[nums[i]]; //No. of pairs also gets reduced by the updated frequnecy.
-                
+                pairs_count -= mp[nums[i]];//No. of pairs also gets reduced by the updated frequnecy.Since , except itself all remaining elements could had formed the pair with that element which we had removed just.So, Number of Pairs gets reduced by the Number of elements of the same type nums[i] remained after removing that element nums[i].
+              
                 i++;
-
             }
-
-            j++;//1 2 3 4 5
+            
+            j++;
 
         }
 
@@ -47,4 +49,5 @@ public:
         //SC : O(n)
         
     }
+
 };
