@@ -16,10 +16,10 @@ public:
         while(j < n)
         {
             pairs_count += mp[nums[j]];
+
             mp[nums[j]]++;
 
             //If a window has good subarray.[i,j]Than upto how many valid i can i shrink the window such that the subarray remains good.
-
 
             while(pairs_count >= k)
             {
@@ -29,10 +29,8 @@ public:
                 //Shrink :
 
                 mp[nums[i]]--;
-                pairs_count -= mp[nums[i]];
+                pairs_count -= mp[nums[i]]; //No. of pairs also gets reduced by the updated frequnecy.
                 i++;
-
-                //No. of pairs also gets reduced by the updated frequnecy.
 
             }
 
