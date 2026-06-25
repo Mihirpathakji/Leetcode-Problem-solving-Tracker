@@ -11,7 +11,7 @@ public:
 
         unordered_map<int,int>mp;//Stores the Past count of that number.
         int pairs_count = 0;
-        long long counts = 0;
+        long long total_subarray_counts = 0;
 
         while(j < n)
         {
@@ -25,7 +25,7 @@ public:
             {
                 //Check how many valid subarrays can be made with that fixed j and i moving to all i < j.
 
-                counts += (n-j);
+                total_subarray_counts += (n-j);
                 //Shrink :
 
                 mp[nums[i]]--;
@@ -37,7 +37,7 @@ public:
             j++;
         }
 
-        return counts;
+        return total_subarray_counts;
 
         //TC : O(n)
         //SC : O(n)
