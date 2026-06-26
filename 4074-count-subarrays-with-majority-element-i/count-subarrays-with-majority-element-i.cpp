@@ -4,23 +4,26 @@ public:
 
         //Brute Force :
 
-        int n = nums.size();
+        int n = nums.size();  
         int subarray_counts = 0;
 
         for(int i = 0;i < n;i++)
         {
-            unordered_map<int,int>mp;
+            int counts_target = 0;
+
             for(int j = i;j < n;j++)
             {
-                
-                if(nums[j] == target)
-                {
-                    mp[target]++;
+                if(nums[j] == target) {
+                    counts_target += 1;
                 }
-                if(mp[target] > (j-i+1)/2)
-                {
+                else {
+                    counts_target -=1;
+                }
+
+                if(counts_target > 0) {
                     subarray_counts++;
                 }
+
             }
         }
         
