@@ -9,58 +9,53 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
 
-        vector<int>ans;
-            
+        vector<int>ans;//root->left->right
+
         while(root)
         {
-            if(root->left)
-            {
-                //Check that this left subtree is traversed or not.
-                //1.Loop is there means the left subtree is entirely traversed.Hence left->root->right.Now it's time for the root and it's right.
-                
-                TreeNode* temp = root->left;
-                
-                while(temp->right && temp->right != root)
-                {
-                    temp = temp->right;
-                }
-                
-                if(temp->right == NULL)
-                {
-                    //There is no linkage and that temp is also not printed.Lets first create a linkage for all such nodes.
-                    
-                    ans.push_back(root->val);
-                    temp ->right= root;
-                    
-                    //Form linkage for all such nodes on the left.Since in inorder traversal we do all possible lefts first.
-                    root = root->left;                
-                } 
-                else
-                {
-                    //loops is already there.i.e the left part is already printed and traversed.Now after the left it's time for the root and right.
-                    temp->right = NULL;
-                    root = root->right;
-                }
-            }
-            
-            else
-            {
-                //left is not there , Now remains the root and it's right. 
+            if(!root->left)
+            {       
                 ans.push_back(root->val);
                 root = root->right;
             }
-            
+            else
+            {
+                //if it is not seen first.i.e There is No loop than only push it.Since we need to push only it's first occurance as root out of it's multiple traversals.
+
+                TreeNode* temp = root->left;
+
+                while(temp->right && temp->right!=root)
+                {
+                    temp = temp->right;
+                }        
+
+                if(temp->right == NULL)
+                {
+                    //i.e there is no loop.//It is first Occurance of that root.
+                    ans.push_back(root->val);
+                    //Now made the loop since it dosent exists.So that it's future occurance will not be pushed.
+
+                    temp->right = root;
+                    //We will do this for every root which is not having looped.root->left->right.
+
+                    root = root->left;
+                }
+
+                else
+                {
+                    temp->right = NULL;
+                    root = root->right; 
+                }
+            }
         }
+            return ans;
         
-        //TC : O(n*2) = O(n)
-        //SC : O(1)
         
-        return ans;
-        
+            //TC : O(n)
+            //SC : O(1)
     }
 };
