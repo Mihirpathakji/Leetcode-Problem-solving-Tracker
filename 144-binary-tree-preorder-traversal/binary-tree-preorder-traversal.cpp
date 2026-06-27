@@ -10,34 +10,57 @@
  * };
  */
 
-
 class Solution {
 public:
-
-    vector<int>answer(TreeNode* root,vector<int>&ans)
-    {
-        if(root == NULL)
-        {
-            return {};
-        }
-
-        //Pre Order Traversal:
-        ans.push_back(root->val);//Pre -> Operator .(Root) //1 2 3 
-        answer(root->left,ans);//A -> Left
-        answer(root->right,ans);//B -> right
-
-        return ans;//1 2 3 
-
-        //TC:O(n)
-        //SC:O(n)
-
-    }
-   
     vector<int> preorderTraversal(TreeNode* root) {
 
         vector<int>ans;
-        return answer(root,ans);
-
+            
+        while(root)
+        {
+            if(root->left)
+            {
+                //Check that this left subtree is traversed or not.
+                //1.Loop is there means the left subtree is entirely traversed.Hence left->root->right.Now it's time for the root and it's right.
+                
+                TreeNode* temp = root->left;
+                
+                while(temp->right && temp->right != root)
+                {
+                    temp = temp->right;
+                }
+                
+                if(temp->right == NULL)
+                {
+                    //There is no linkage and that temp is also not printed.Lets first create a linkage for all such nodes.
+                    
+                    ans.push_back(root->val);
+                    temp ->right= root;
+                    
+                    //Form linkage for all such nodes on the left.Since in inorder traversal we do all possible lefts first.
+                    root = root->left;                
+                } 
+                else
+                {
+                    //loops is already there.i.e the left part is already printed and traversed.Now after the left it's time for the root and right.
+                    temp->right = NULL;
+                    root = root->right;
+                }
+            }
+            
+            else
+            {
+                //left is not there , Now remains the root and it's right. 
+                ans.push_back(root->val);
+                root = root->right;
+            }
+            
+        }
+        
+        //TC : O(n*2) = O(n)
+        //SC : O(1)
+        
+        return ans;
+        
     }
-
 };
