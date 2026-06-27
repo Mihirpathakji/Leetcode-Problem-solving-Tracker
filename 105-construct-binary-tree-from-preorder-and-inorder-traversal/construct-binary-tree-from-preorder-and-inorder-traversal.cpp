@@ -12,19 +12,7 @@
 class Solution {
 public:
 
-    int search(vector<int>&Inorder,int target,int left,int right)
-    {
-        for(int i = 0;i<Inorder.size();i++)
-        {
-            if(Inorder[i] == target)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    TreeNode* Create_Tree(vector<int>&Preorder,vector<int>&Inorder,int& Preindex,int left,int right)
+    TreeNode* Create_Tree(vector<int>&Preorder,vector<int>&Inorder,int Preindex,int left,int right,unordered_map<int,int> &mp)
     {   
         if(left > right)
         {
@@ -37,30 +25,31 @@ public:
 
         //Search this Preorder[Preindex]  in the Inorder Array in the range [left,right] : and find it's index
 
-        int index = search(Inorder,Preorder[Preindex],left,right);
-
-        Preindex++;
+        int pos = mp[Preorder[Preindex]];
 
         //Build left subtree for that root:
 
-        root->left =  Create_Tree(Preorder,Inorder,Preindex,left,index-1);
+        root->left =  Create_Tree(Preorder,Inorder,Preindex+1,left,pos - 1,mp);
 
         //Build right subtree for that root:
 
-        root->right = Create_Tree(Preorder,Inorder,Preindex,index+1,right);
+        root->right = Create_Tree(Preorder,Inorder,Preindex +(pos - left)+1,pos + 1,right,mp);
 
         return root;
 
     }
 
-
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
       
         int index1 = 0;
-        return Create_Tree(preorder,inorder,index1,0,inorder.size()-1);
+        
+        unordered_map<int,int>mp;
+        for(int i = 0;i < inorder.size();i++)
+        {
+            mp[inorder[i]] = i;
+        }
 
-        //TC : N + N + N + N .. N Times .. approx ==  O(N^2).
-        //SC : O(N).
+        return Create_Tree(preorder,inorder,index1,0,inorder.size()-1,mp);
         
     }
 };
