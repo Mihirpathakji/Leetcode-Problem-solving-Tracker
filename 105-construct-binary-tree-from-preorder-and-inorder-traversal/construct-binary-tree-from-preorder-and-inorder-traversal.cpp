@@ -49,7 +49,10 @@ public:
             mp[inorder[i]] = i;
         }
 
-        return Create_Tree(preorder,inorder,index1,0,inorder.size()-1,mp);
+        return Create_Tree(preorder,inorder,index1,0,inorder.size()-1,mp);  
+
+        //TC : O(n)
+        //SC : O(n)
         
     }
 };
