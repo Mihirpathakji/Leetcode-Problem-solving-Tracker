@@ -17,7 +17,7 @@ public:
 
         queue<TreeNode*>q;
 
-        q.push(root);//1
+        q.push(root);
 
         while(!q.empty())
         {
@@ -36,30 +36,30 @@ public:
                     q.push(temp->right);
                 }  
             }
-            levels++;//1 
+            levels++;
         } 
 
-        int last_level = levels-1;//0
+        int last_level = levels-1;
 
-        int curr_level = 0;//0
+        int curr_level = 0;
 
         vector<int>ans;
-        q.push(root);//[100]
+        q.push(root);
         while(!q.empty())
         {
-            int n = q.size();//1
+            int n = q.size();
             int counts = 0;
             while(n--)
             {
-                TreeNode* temp = q.front();//100
+                TreeNode* temp = q.front();
                 q.pop(); 
                 
                 if(curr_level == last_level && temp!=NULL) {
-                    ans.push_back(temp->val);//1
+                    ans.push_back(temp->val);
                 }
 
                 if(temp) {
-                    counts++;//1
+                    counts++;
                 } 
                
                 if(temp && temp->left) {
@@ -86,7 +86,7 @@ public:
                 return false;
             }
 
-            curr_level++;//1
+            curr_level++;
 
             if(curr_level-1 == last_level) {
 
@@ -112,6 +112,9 @@ public:
         }
 
         return true;
+
+        //TC : O(n)
+        //SC : O(n)
         
     }
 };
