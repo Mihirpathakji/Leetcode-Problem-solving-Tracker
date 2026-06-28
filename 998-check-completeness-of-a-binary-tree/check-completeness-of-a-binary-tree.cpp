@@ -16,6 +16,7 @@ public:
 
         queue<TreeNode*>q;
         q.push(root);
+       
         bool past_null = false;
 
         while(!q.empty()) {
