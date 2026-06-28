@@ -20,15 +20,15 @@ public:
        }    
 
        //Bottom - Up DFS.
-
        //First Go to the extreme left depth and extreme right depth. 
 
        root->left = deleteHelper(root->left,st,result);
        root->right = deleteHelper(root->right,st,result);
 
-        //is this root node to be deleted ?
+        //is this root node to be deleted ? 
 
         if(st.find(root->val)!=st.end()) {
+
             //We have to delete this root.
             //Store it's left and right child if exists.
 
@@ -62,7 +62,10 @@ public:
             st.insert(it);
         }
 
-        deleteHelper(root,st,result);   
+        deleteHelper(root,st,result);//result will contains everything except the root node.If root node of tree has to be deleted.Than it was got deleted and all remaining would have been inserted.   
+
+       
+        //If the root node was not to be deleted.Than we have to manually insert the portion containing root.
 
         if(st.find(root->val) == st.end()) {
             result.push_back(root);
