@@ -7,16 +7,12 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-
 class Solution {
 public:
-
-
+   
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
-        //Depth first search.
-        
-        if(root == NULL)  {
+        if(root == NULL) {
             return NULL;
         }
 
@@ -24,20 +20,28 @@ public:
             return root;
         }
 
-        //Check if p or q exists in the left subtree.
+        //DFS on left subtree and right subtree.
 
         TreeNode* left = lowestCommonAncestor(root->left,p,q);
         TreeNode* right = lowestCommonAncestor(root->right,p,q);
+        
+        //Obtained information from both left and right subtree of root, That whether any p or q exists there.
 
-        if(left != NULL && right != NULL) {
+        if((left == p && right == q) || (left == q && right == p))
+        {
+            //left and right subtree of this root are the childs p and q.So root is LCA.
             return root;
         }
 
-        if(left != NULL) {
-            return left;
+        //Got Null from any one side.
+
+        else if(!left)
+        {
+            //For this root.There is nothing on the left.But on it's right we get either or them.i.e the another one is below that founded.i.e founded is answer.
+            return right;
         }
 
-        return right;
+        return left;
 
         //TC : O(n)
         //SC : O(n)
