@@ -9,28 +9,23 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
- 
 class Solution {
 public:
 
-    TreeNode* deleteHelper(TreeNode* root,unordered_set<int>& st,vector<TreeNode*> &result) {
+    TreeNode* deleteHelper(TreeNode* root,unordered_set<int> &st,vector<TreeNode*> &result) {
 
-       if(root == NULL) {
+        if(root == NULL) {
             return NULL;
-       }    
+        }
 
-       //Bottom - Up DFS.
-       //First Go to the extreme left depth and extreme right depth. 
+        //Bottom - Up : Went to the Maximum depth as possible.Than backtrack.And pop elements while backtracking.
 
-       root->left = deleteHelper(root->left,st,result);//2
-       root->right = deleteHelper(root->right,st,result);//4
-
-        //is this root node to be deleted ? 
+        root->left = deleteHelper(root->left,st,result);
+        root->right = deleteHelper(root->right,st,result);
 
         if(st.find(root->val)!=st.end()) {
 
-            //We have to delete this root.
-            //Store it's left and right child if exists.
+            //Before deleting it, store it's left and right child if exists.
 
             if(root->left) {
                 result.push_back(root->left);
@@ -40,33 +35,29 @@ public:
                 result.push_back(root->right);
             }
 
-            //We had deleted this node.So,We return NULL To it's parent.
+            //Now we can delete it.
 
-            return NULL;
-        }
+            return NULL;//Deleting a node means returning NULL to it's parents.
 
-        return root;
+        }   
+      
+        //it was not the value to be deleted.
+
+        return root;//Just return it too it's parents.So,that it remains in the linkage with it's parents.
 
     }
 
-   
     vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
-
+        
         vector<TreeNode*>result;
-
-        //We have to see whether this root is present in to_delete or not.
-        //we can use a set .since in set .find() takes O(1).
 
         unordered_set<int>st;
         for(auto it : to_delete) {
             st.insert(it);
         }
 
-        TreeNode* temproot = deleteHelper(root,st,result);//result will contains everything except the root node.If root node of tree has to be deleted.Than it was got deleted and all remaining would have been inserted.   
-
-       
-        //If the root node was not to be deleted.Than we have to manually insert the portion containing root.
-
+        TreeNode* temproot = deleteHelper(root,st,result);
+        
         if(temproot) {
             result.push_back(temproot);
         }
