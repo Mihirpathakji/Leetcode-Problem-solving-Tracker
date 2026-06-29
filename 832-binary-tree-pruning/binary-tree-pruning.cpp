@@ -22,8 +22,6 @@ public:
             return true;
         }
 
-        //check if anywhere either from the left subtree of the child or from the right subtree of the child there is 1.
-
         return isOnePresent(root->left) || isOnePresent(root->right);
 
     }
@@ -50,6 +48,9 @@ public:
         }          
 
         return root;
+
+        //TC : O(n^2)
+        //SC : O(n)
         
     }
 };
