@@ -11,20 +11,6 @@
  */
 class Solution {
 public:
-
-    bool isOnePresent(TreeNode* root) {
-
-        if(root == NULL) {
-            return false;
-        }
-
-        if(root->val == 1) {
-            return true;
-        }
-
-        return isOnePresent(root->left) || isOnePresent(root->right);
-
-    }
    
     TreeNode* pruneTree(TreeNode* root) {
 
@@ -32,25 +18,21 @@ public:
             return NULL;
         }
 
-        if(!isOnePresent(root->left)) {
-            root->left = NULL;
-        }
+        //Going deepest as possible.DFS
 
-        if(!isOnePresent(root->right)) {
-            root->right = NULL;  
-        }
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
 
-        pruneTree(root->left);
-        pruneTree(root->right);
-
-        if(root->left == NULL && root->right == NULL && root->val ==0) {
+        if(root->left == NULL && root->right == NULL && root->val == 0) {
+            //delete this.
             return NULL;
-        }          
+        }
 
         return root;
 
-        //TC : O(n^2)
+        //TC : O(n)
         //SC : O(n)
-        
+
+
     }
 };
