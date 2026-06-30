@@ -22,6 +22,7 @@ public:
 
         if(root->left == NULL && root->right == NULL && sum == targetSum) {
             flag = true;
+            return;
         }
 
         mydfscheck(root->left,targetSum,sum,flag);
