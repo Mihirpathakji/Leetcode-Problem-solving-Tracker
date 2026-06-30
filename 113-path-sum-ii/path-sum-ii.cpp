@@ -14,7 +14,7 @@
 class Solution {
 public:
 
-    void mydfssum(TreeNode* root,int& targetSum,int sum,vector<int> temp,vector<vector<int>>& ans) {
+    void mydfssum(TreeNode* root,int& targetSum,int& sum,vector<int>& temp,vector<vector<int>>& ans) {
 
         //if i reached leaf node check if sum has become targetSum or not.
 
@@ -33,6 +33,9 @@ public:
 
         mydfssum(root->left,targetSum,sum,temp,ans);//N
         mydfssum(root->right,targetSum,sum,temp,ans);//N  
+
+        sum -= root->val;
+        temp.pop_back();
 
         return;
     }
