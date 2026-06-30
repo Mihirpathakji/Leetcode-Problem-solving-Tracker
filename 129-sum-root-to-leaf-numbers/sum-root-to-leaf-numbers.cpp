@@ -13,49 +13,34 @@
 class Solution {
 public:
 
-    void mydfssum(TreeNode* root,int &sum,vector<int>&temp,vector<vector<int>>&ans) {
+    void mydfssum(TreeNode* root,int& sum,int& final_sum) {
 
         if(root == NULL) {
             return;
         }
 
-        sum += root->val;
-        temp.push_back(root->val);
+        sum = (sum*10 + root->val);
 
         if(root->left == NULL && root->right == NULL) {
-            ans.push_back(temp);
+            final_sum += sum;
         }
 
-        mydfssum(root->left,sum,temp,ans);
-        mydfssum(root->right,sum,temp,ans);
+        mydfssum(root->left,sum,final_sum);
+        mydfssum(root->right,sum,final_sum);
 
-        sum -= root->val;
-        temp.pop_back();
-
-        return;
-
+        sum/=10;
     }
 
     int sumNumbers(TreeNode* root) {
 
-        vector<vector<int>>ans;
-
         int sum = 0;
-        vector<int>temp;
-        mydfssum(root,sum,temp,ans);
-        int final_Sum = 0;
+        int final_sum = 0;
+        mydfssum(root,sum,final_sum);
 
-        for(int i=0;i<ans.size();i++) {
+        return final_sum;
 
-            vector<int>temp1 = ans[i];
-            int sum1 = 0;
-            for(int j = 0; j<temp1.size();j++) {
-                sum1 += (temp1[j]*pow(10,temp1.size()-j-1));
-            }       
-            final_Sum += sum1;
-        }
-
-        return final_Sum;
+        //TC : O(n)
+        //SC : O(n)
 
     }
 };
