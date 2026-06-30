@@ -14,7 +14,7 @@ public:
         while(j < n) {
 
             if(s[j] == 'a') {
-                count_a++;//1
+                count_a++;
             }
 
             else if(s[j] == 'b') {
@@ -24,29 +24,32 @@ public:
                 count_c++;
             }
 
-            while(count_a && count_b && count_c) {
-                ans += (n-j);//1 2 
+            while(count_a>=1 && count_b>=1 && count_c>=1) {
+                ans += (n-j);
 
                 if(s[i] == 'a') {
-                    count_a--;//0
+                    count_a--;
                 }   
 
                 else if(s[i] == 'b') {
-                    count_b--;//0 
+                    count_b--;
                 }  
 
                 else {
                     count_c--;
                 }
 
-                i++;//1 2
+                i++;
             }
 
-            j++;//3 4
+            j++;
              
         }    
-        return ans;
 
+        return ans;
+        
+        //TC : O(n)
+        //SC : O(1)
 
     }
 };
