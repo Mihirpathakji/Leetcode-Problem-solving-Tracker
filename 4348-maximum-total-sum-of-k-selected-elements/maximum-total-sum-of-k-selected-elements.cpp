@@ -1,39 +1,36 @@
 class Solution {
 public:
-
     long long maxSum(vector<int>& nums, int k, int mul) {
 
-        sort(nums.rbegin(),nums.rend());//[4,4] 
+        long long sum = 0;
+        sort(nums.rbegin(),nums.rend());
+        int i = 0;
 
-        long long sum  = 0;
+        //[9 6 2 1]
 
-        int break_index = 0;
-        int index_cnt = 0;
-        for(int i = 0; i < k;i++) {
-            
+        while(k) {
+
+            sum += (long long)mul*nums[i];//18 24
+            i++;//1 2
+            mul--;//1 0.
+            k--;//1 
+             
             if(mul == 0) {
-                break_index = i;
                 break;
             }
-
-            sum += ((long long)mul*nums[i]);//4
-            mul--;//0
-            index_cnt = i;
         }
 
-        if(index_cnt == k-1) {
+        if(k == 0) {
             return sum;
         }
 
-        for(int j = break_index;j < nums.size();j++ ) 
-        {
-            if(j == k) {
-                break;
-            }
-            sum +=nums[j];
+        while(k) {
+            sum += (long long)nums[i];
+            i++;//3
+            k--;//0
         }
 
-        return sum;
+        return sum;  
 
     }
 };
