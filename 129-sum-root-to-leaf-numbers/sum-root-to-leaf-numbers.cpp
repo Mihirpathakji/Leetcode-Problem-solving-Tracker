@@ -42,5 +42,7 @@ public:
         //TC : O(n)
         //SC : O(n)
 
+        //sum at any node is : curr_sum*10 + itself value.
+
     }
 };
