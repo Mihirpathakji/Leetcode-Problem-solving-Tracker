@@ -7,13 +7,14 @@ public:
         int n = candies.size();
         
         for(int i = 0;i < n;i++) {
-            childs_satisfied += candies[i]/max_candies;//1 2 3 
+
+            //If each child takes max_candies than no. of child getting satisfied with candies[i] candies : 
+            childs_satisfied += (candies[i]/max_candies); 
         }
 
-        return childs_satisfied >= k;//T 
+        return childs_satisfied >= k;
 
     }
-
 
     int maximumCandies(vector<int>& candies, long long k) {
         
@@ -24,10 +25,10 @@ public:
 
         while(low <= high) {
 
-            long long mid = low + (high-low)/2;//4
+            long long mid = low + (high-low)/2;
 
             if(isAllocationPossible(mid,k,candies)) {
-                ans = mid;//4 
+                ans = mid;
                 low = mid+1;
             }
             else {
