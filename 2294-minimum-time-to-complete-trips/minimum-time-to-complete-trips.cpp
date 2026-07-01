@@ -18,7 +18,8 @@ public:
         int n = time.size();
 
         long long low = 1;
-        long long high = *max_element(time.begin(),time.end())*(long long)totalTrips;
+        long long high = 1e14;
+
         long long ans = 1;
 
         while(low <= high) {
@@ -38,7 +39,7 @@ public:
         return ans;
 
         //TC : O(n*log1e14) 
-        //SC : O(1)
+        //SC : O(1) 
 
     }
 };
