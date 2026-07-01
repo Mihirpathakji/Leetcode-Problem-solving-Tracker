@@ -3,7 +3,7 @@ public:
 
     bool possible_to_done(long long min_time,vector<int>& time,int totalTrips) {
 
-        long double trips_done = 0;    
+        long long trips_done = 0;    
 
         for(int i = 0;i < time.size();i++) {
             trips_done += (min_time/time[i]);
