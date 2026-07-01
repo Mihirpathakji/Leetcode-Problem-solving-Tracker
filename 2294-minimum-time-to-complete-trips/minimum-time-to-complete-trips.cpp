@@ -41,5 +41,8 @@ public:
         //TC : O(n*log1e14) 
         //SC : O(1) 
 
+        //Worst case : Only one bus available and takes 1e7 time to complete one trip.and targettrips = 1e7.
+        //total time taken for 1 trip is 1e7 so for 1e7 trips is 1e14.
+
     }
 };
