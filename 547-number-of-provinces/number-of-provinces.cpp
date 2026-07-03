@@ -3,14 +3,16 @@ public:
 
     void mydfs(int u,vector<bool>& visited,vector<vector<int>>& adjacency_list) {
 
+        visited[u] = true;
+
         for(int i = 0;i < adjacency_list[u].size();i++) {
             
             if(adjacency_list[u][i] == 1) {
                 if(!visited[i]) {
-                    visited[i] = true;
                     mydfs(i,visited,adjacency_list);
                 }
             }
+
         }
 
     }
@@ -26,9 +28,9 @@ public:
             
             if(visited[i] == false) {
                 provinces++;
-                visited[i] = true;
                 mydfs(i,visited,isConnected);
             }
+        
         }
 
         return provinces;
