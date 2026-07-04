@@ -1,52 +1,59 @@
 class Solution {
 public:
-    // Void DFS function using a visited tracking vector
-    void dfs(int node, vector<vector<int>>& adj, vector<int>& baseTime, vector<long long>& finish_time, vector<bool>& visited) {
 
-        // Mark the current node as visited right away
-        visited[node] = true;
+    void dfs(int& u,unordered_map<int,vector<int>>& adj_list,vector<bool>& visited,vector<int>& baseTime,vector<long long>& finish_time) {
 
-        // 1. Visit all unvisited children first
-        
-        for (int child : adj[node]) {
-            if (!visited[child]) {
-                dfs(child, adj, baseTime, finish_time, visited);
+        visited[u] = true;
+
+        for(auto &v : adj_list[u]) {
+            if(visited[v] == false) {
+                dfs(v,adj_list,visited,baseTime,finish_time);
             }
         }
 
-        // Base Case: If the node is a leaf node (has no children)
-        if (adj[node].empty()) {
-            finish_time[node] = baseTime[node];
-            return;
+
+        //Leaf node : No elements in the adjacency list.
+        if(adj_list[u].empty()) {
+            finish_time[u] = baseTime[u];
+        }
+        else {
+            long long maxi = LLONG_MIN;
+            long long mini = LLONG_MAX;
+
+            //finish time for this parent node having atleast one children is : max + max -min + basetime[i].Where max is maximum finish time among all it' childrens.
+
+            //Calculating max , min : maximum finishtime and minimum finishtime among it's children.
+
+            for(auto &child : adj_list[u]) {
+                maxi = max(maxi,finish_time[child]);
+                mini = min(mini,finish_time[child]);
+            }
+
+            finish_time[u] = 2*maxi - mini + baseTime[u];
         }
 
-        // 2. Compute parent values using the already calculated children times
-        long long maxi = LLONG_MIN;
-        long long mini = LLONG_MAX;
-
-        for (int child : adj[node]) {
-            maxi = max(maxi, finish_time[child]);
-            mini = min(mini, finish_time[child]);
-        }
-
-        // 3. Save the result for the current parent node
-        finish_time[node] = 2 * maxi - mini + baseTime[node];
     }
 
+
     long long finishTime(int n, vector<vector<int>>& edges, vector<int>& baseTime) {
-        vector<vector<int>> adj(n);
-        for (auto& edge : edges) {
-            adj[edge[0]].push_back(edge[1]); // parent -> child
+
+        int m = edges.size();
+        unordered_map<int,vector<int>>adj_list(n);
+        //Parent->{All childs}.
+
+        for(int i = 0;i < m;i++) {
+            adj_list[edges[i][0]].push_back(edges[i][1]);
         }
 
-        vector<long long> finish_time(n, -1);
+        vector<long long>finish_time(n);
+        vector<bool>visited(n,false);
+        int root = 0;
+        dfs(root,adj_list,visited,baseTime,finish_time);
+
+        return finish_time[root];
+
+        //TC : O(n + 2*e)
+        //SC : O(n)
         
-        // Initialize the visited vector with size 'n' set to false
-        vector<bool> visited(n, false);
-
-        // Run the DFS from the root (node 0)
-        dfs(0, adj, baseTime, finish_time, visited);
-
-        return finish_time[0];
     }
 };
