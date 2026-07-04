@@ -8,7 +8,7 @@ public:
 
         while(!q.empty()) {
 
-            int u = q.front();//1
+            int u = q.front();   
             q.pop();
 
             //Traverse in the Neighbours of the start.
@@ -20,7 +20,7 @@ public:
                     q.push(v.first);
                 }
 
-                min_dist = min(min_dist,v.second);  
+                min_dist = min(min_dist,v.second);
             }
 
         }
@@ -30,8 +30,8 @@ public:
 
     int minScore(int n, vector<vector<int>>& roads) {
         
-        int m = roads.size();
-        unordered_map<int,vector<pair<int,int>>>adj_list(m+1);//1-based.
+        int m = roads.size();//4
+        unordered_map<int,vector<pair<int,int>>>adj_list(n+1);
 
         for(int i = 0;i < m;i++) {
             
@@ -49,10 +49,14 @@ public:
 
         int start = 1;//bfs only for 1 as start.
 
-        int min_dist = INT_MAX;
+        int min_dist = INT_MAX; 
 
         bfs(start,min_dist,q,visited,adj_list);
 
         return min_dist;
+
+        //TC : O(m) + O(n + 2*e)
+        //SC : O(n)
+
     }
 };
