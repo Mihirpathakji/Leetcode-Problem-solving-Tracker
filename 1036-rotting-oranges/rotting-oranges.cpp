@@ -33,10 +33,10 @@ public:
 
         while(!q.empty()) {
 
-            int row = q.front().first.first;
-            int col = q.front().first.second;
-            int t = q.front().second;
-            mxtime = max(t,mxtime);  
+            int row = q.front().first.first;//1 
+            int col = q.front().first.second;//0 
+            int t = q.front().second;//0 0 1  //This {row,col} it tooked t time to get infected.
+            mxtime = max(t,mxtime);//1 1 1 2//Maxtime taken by any fresh element to get infected.
 
             q.pop();
 
@@ -45,10 +45,11 @@ public:
             for(int i = 0;i <4;i++) { 
                 if(row + delrow[i] >=0 && row + delrow[i] < m && col + delcol[i] >=0  && col + delcol[i] < n && grid[row+delrow[i]][col+delcol[i]] == 1 && visited[row+delrow[i]][col+delcol[i]] !=2) {
 
-                    visited[row+delrow[i]][col+delcol[i]] = 2;
+                    visited[row+delrow[i]][col+delcol[i]] = 2;//Made it rotten.
                     q.push({{row+delrow[i],col+delcol[i]},t+1});
                 }
             }
+
         }
 
         //If any fresh orange is remaining to be rottened.
