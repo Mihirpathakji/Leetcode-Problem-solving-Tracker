@@ -23,10 +23,8 @@ public:
             }
 
            if(nums[i] + nums[j] > nums[k]) {
-                if(nums[i]+nums[k] > nums[j]) {
-                    P_max = max(P_max,nums[i]+nums[j]+nums[k]);//8 9
-                    k++;
-                }
+                P_max = max(P_max,nums[i]+nums[j]+nums[k]);//8 9
+                k++;
            }
            else {
                 i++;
