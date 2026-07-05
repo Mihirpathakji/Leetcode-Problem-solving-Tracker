@@ -36,7 +36,7 @@ public:
 
             auto it =  glass.end();
             it--;
-            int last = *it;
+            int last = *it;//3
 
             for(int i = 0;i <= last;i++) {
                 
@@ -44,18 +44,18 @@ public:
                     
                     for(int j = 0;j <garbage[i].size() ;j++) {
                         if(garbage[i][j] == 'G') {
-                            min_time++;
+                            min_time++;//1 4 10 
                         }
                     } 
 
                     if(i!=0) {
-                        min_time += travel[i-1];
+                        min_time += travel[i-1];//8 13
                     }
                 }
                 else {
 
                     if(i!=0) {
-                        min_time += travel[i-1];
+                        min_time += travel[i-1];//+=2 // 3 
                     }
                 }
                 
@@ -67,19 +67,19 @@ public:
             
             auto it = paper.end();
             it--;
-            int last = *it;
+            int last = *it;//2
             
             for(int i = 0;i <= last;i++) {
                 
                 if(paper.find(i)!=paper.end()) {
                     for(int j = 0;j <garbage[i].size() ;j++) {
                         if(garbage[i][j] == 'P') {
-                            min_time++;
+                            min_time++;//14 17
                         }
                     } 
 
                     if(i!=0) {
-                        min_time += travel[i-1];
+                        min_time += travel[i-1];//16  21
                     }
                 }
                 else {
@@ -120,6 +120,8 @@ public:
 
         return min_time;
 
+        //TC : O(n*logn)
+        //SC : O(n)
 
     }
 };
