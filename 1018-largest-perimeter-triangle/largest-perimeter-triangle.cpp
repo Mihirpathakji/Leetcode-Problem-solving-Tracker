@@ -10,7 +10,7 @@ public:
         int k = 2;
         int P_max = INT_MIN;
 
-        while(j < n) {
+        while(j < n-1) {
             
            if(k == n) {
                 i++;
