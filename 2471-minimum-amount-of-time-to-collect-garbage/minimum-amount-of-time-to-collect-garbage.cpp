@@ -1,5 +1,6 @@
 class Solution {
 public:
+
     int garbageCollection(vector<string>& garbage, vector<int>& travel) {
 
         int last_metal = -1;
@@ -9,18 +10,26 @@ public:
         int n = garbage.size();
 
         for(int i = 0;i < n;i++) {
+            if(garbage[i].find('P')!=string :: npos) {
+                last_paper = i;
+            }
+            
+            if(garbage[i].find('G')!=string :: npos) {
+                last_glass = i;
+            }
+            
+            if(garbage[i].find('M')!=string :: npos) {
+                last_metal = i;
+            }
+        }
 
-            if(garbage[i].find('P')!=string::npos) {
-                last_paper = i;//1 2
-            }
-            
-            if(garbage[i].find('G')!=string::npos) {
-                last_glass = i;//0 2 3
-            }
-            
-            if(garbage[i].find('M')!=string::npos) {
-                last_metal = i;//-1
-            }
+
+        vector<int>prefix_travel(n,0);
+
+        //travel_prefix[i] stores the total time needed to travel from 0th index to ith index.
+
+        for(int i = 1;i < prefix_travel.size();i++) {
+            prefix_travel[i] = travel[i-1] + prefix_travel[i-1];
         }
 
         int min_time = 0;
@@ -32,15 +41,11 @@ public:
                     if(garbage[i][j] == 'P')
                     min_time++;
                 }
-
-                if(i!=0) {
-                    min_time += travel[i-1];
-                }
-
             }
-            else if(i!=0){
-                min_time += travel[i-1];
-            }
+        }
+
+        if(last_paper!=-1) {
+            min_time += prefix_travel[last_paper];
         }
 
         for(int i = 0;i <= last_glass;i++){
@@ -51,15 +56,10 @@ public:
                     if(garbage[i][j] == 'G')
                     min_time++;
                 }
-
-                if(i!=0) {
-                    min_time += travel[i-1];
-                }
-
             }
-            else if(i!=0){
-                min_time += travel[i-1];
-            }
+        }
+        if(last_glass!=-1) {
+            min_time += prefix_travel[last_glass];
         }
 
         for(int i = 0;i <= last_metal;i++){
@@ -70,16 +70,11 @@ public:
                     if(garbage[i][j] == 'M')
                     min_time++;
                 }
-
-                if(i!=0) {
-                    min_time += travel[i-1];
-                }
-
             }
-            else if(i!=0){
-                min_time += travel[i-1];
-            }
+        }
         
+        if(last_metal!=-1) {
+            min_time += prefix_travel[last_metal];
         }
 
         return min_time;
