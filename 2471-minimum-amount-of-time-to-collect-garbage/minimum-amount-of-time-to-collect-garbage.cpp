@@ -6,9 +6,7 @@ public:
         int paper_time = 0;
         int glass_time = 0;
 
-        vector<long long>travel1(travel.begin(),travel.end());
-
-        set<int>glass;//{0,2,3}
+        set<int>glass;
         set<int>paper;
         set<int>metal;
 
@@ -36,31 +34,28 @@ public:
 
         if(glass.size() >= 1) {
 
-            auto it =  glass.end();//{0,2,3}
+            auto it =  glass.end();
             it--;
-            int last = *it;//3
+            int last = *it;
 
             for(int i = 0;i <= last;i++) {
-
-                bool flag = false;
                 
                 if(glass.find(i)!=glass.end()) {
+                    
                     for(int j = 0;j <garbage[i].size() ;j++) {
                         if(garbage[i][j] == 'G') {
-                            min_time++;//
+                            min_time++;
                         }
                     } 
 
-                    if(i!=0 && !flag) {
-                        min_time += travel1[i-1];// 
-                        flag = true;
+                    if(i!=0) {
+                        min_time += travel[i-1];
                     }
                 }
                 else {
 
-                    if(i!=0 && !flag) {
-                        min_time += travel1[i-1];// 
-                        flag = true;
+                    if(i!=0) {
+                        min_time += travel[i-1];
                     }
                 }
                 
@@ -76,25 +71,21 @@ public:
             
             for(int i = 0;i <= last;i++) {
                 
-                bool flag = false;
-
                 if(paper.find(i)!=paper.end()) {
                     for(int j = 0;j <garbage[i].size() ;j++) {
                         if(garbage[i][j] == 'P') {
-                            min_time++;//2 10
+                            min_time++;
                         }
                     } 
 
-                    if(i!=0 && !flag) {
-                        min_time += travel1[i-1];
-                        flag = true;
+                    if(i!=0) {
+                        min_time += travel[i-1];
                     }
                 }
                 else {
 
-                    if(i!=0 && !flag) {
-                        min_time += travel1[i-1];// 
-                        flag = true;
+                    if(i!=0) {
+                        min_time += travel[i-1];
                     }
                 }
             }
@@ -110,7 +101,6 @@ public:
 
             for(int i = 0;i <= last ;i++) {
                 
-                bool flag = false;
                 if(metal.find(i)!=metal.end()) {
                     for(int j = 0;j <garbage[i].size() ;j++) {
                         if(garbage[i][j] == 'M') {
@@ -118,14 +108,12 @@ public:
                         }
                     } 
 
-                    if(i!=0 && !flag) {
-                        min_time += travel1[i-1];
-                        flag = true;
+                    if(i!=0) {
+                        min_time += travel[i-1];
                     }
                 }
                 else if(i!=0) {
-                    min_time += travel1[i-1];
-                    flag = true;
+                    min_time += travel[i-1];
                 }
             } 
         }
