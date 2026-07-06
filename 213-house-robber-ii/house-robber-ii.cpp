@@ -1,52 +1,62 @@
 class Solution {
 public:
 
+    int get_money1(vector<int>& dp,vector<int>&nums,int end_index) {
+
+        if(end_index == 0) {
+            return dp[end_index] = nums[end_index]; 
+        }
+
+        else if(end_index < 0) {
+            return 0;
+        }   
+
+        if(dp[end_index]!=-1) {
+            return dp[end_index];//Memoization.
+        }
+
+        return dp[end_index] = max(nums[end_index] + get_money1(dp,nums,end_index-2),get_money1(dp,nums,end_index-1));
+
+    }
+
+    
     int rob(vector<int>& nums) {
 
-        //Bottom - Up : 
+        //Top Down : 
 
         int n = nums.size();
-
         if(n == 1) {
             return nums[0];
         }
 
-        if(n == 2) {
-            return max(nums[0],nums[1]);
-        }
+        int end_index = n-2;
+
+        //1.nums from 0 to n-2th :
 
         vector<int>dp(n,-1);
 
-        dp[0] = nums[0];
-     
-        dp[1] = max(nums[0],nums[1]);
+        int maxi1 = get_money1(dp,nums,end_index);
 
-        for(int i = 2;i < n-1;i++) {
-            dp[i] = max(nums[i] + dp[i-2],dp[i-1]);
+        //2.nums from 1 to n-1 th.
+
+        vector<int>temp;
+        for(int i = 1;i < n;i++) {
+            temp.push_back(nums[i]);
         }
 
-        int maxi1 = dp[n-2];//2
-
-        //1 to n-1 th.
-
-        vector<int>temp(n,0);
-        for(int i = 0;i < n-1;i++) {
-            temp[i] = nums[i+1]; 
+        for(int i = 0; i < dp.size();i++) {
+            dp[i] = -1;
         }
 
-        dp[0] = temp[0];
-        dp[1] = max(temp[0],temp[1]);
+        end_index = temp.size()-1;
 
-        for(int i = 2;i < n-1;i++) {
-            dp[i] = max(temp[i] + dp[i-2],dp[i-1]);
-        }
+        int maxi2 = get_money1(dp,temp,end_index);
 
-        maxi1 = max(maxi1,dp[n-2]);
-
-        return maxi1;
+        return max(maxi1,maxi2);
 
         //TC : O(n)
         //SC : O(n)
 
+        
     }
 };
