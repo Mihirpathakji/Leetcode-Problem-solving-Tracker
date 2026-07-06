@@ -1,41 +1,35 @@
 class Solution {
 public:
 
-    int get_money(vector<int>& dp,vector<int>&nums,int end_index) {
+    void get_money(vector<int>& dp,vector<int>&nums) {
 
-        if(end_index == 0) {
-            return dp[end_index] = nums[end_index];
+        for(int i = 2;i < nums.size();i++) {
+            dp[i] = max(nums[i]+ dp[i-2],dp[i-1]);
         }
-
-        else if(end_index < 0) {
-            return 0;
-        }
-
-        if(dp[end_index]!=-1) {
-            return dp[end_index];
-        }//Memoization.Already known than use it.
-
-        return dp[end_index] = max(nums[end_index] + get_money(dp,nums,end_index-2), get_money(dp,nums,end_index-1));
 
     }
     
     int rob(vector<int>& nums) {
 
         int n = nums.size();
-        int end_index = n-1;
-
-        //Top - Down
+        //Bottom - Up : 
 
         vector<int>dp(n+1,-1);
+        dp[0] = nums[0];
 
-        get_money(dp,nums,end_index);
+        if(n == 1) {
+            return dp[0];
+        }
 
-        return dp[end_index];
+        dp[1] = max(dp[0],nums[1]);
+
+        get_money(dp,nums);
+
+        return dp[n-1];
 
         //TC : O(n)
         //SC : O(n)
 
-        //dp[i] = Max money that can be obtained by robbing from 0th index till ith index.
         
     }
 };
