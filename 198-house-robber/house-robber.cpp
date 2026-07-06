@@ -13,16 +13,15 @@ public:
 
         if(dp[end_index]!=-1) {
             return dp[end_index];
-        }
+        } 
 
-        return dp[end_index] =max(nums[end_index] + get_money(dp,nums,end_index-2), get_money(dp,nums,end_index-1));
+        return dp[end_index] = max(nums[end_index] + get_money(dp,nums,end_index-2), get_money(dp,nums,end_index-1));
 
     }
     
     int rob(vector<int>& nums) {
 
         int n = nums.size();
-
         int end_index = n-1;
 
         //Top Down Approach : 
@@ -32,6 +31,11 @@ public:
         get_money(dp,nums,end_index);
 
         return dp[end_index];
+
+        //TC : O(n)
+        //SC : O(n)
+
+        //dp[i] = Max money that can be obtained by robbing from 0th index till ith index.
         
     }
 };
