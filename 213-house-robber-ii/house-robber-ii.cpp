@@ -1,62 +1,58 @@
 class Solution {
 public:
 
-    int get_money1(vector<int>& dp,vector<int>&nums,int end_index) {
 
-        if(end_index == 0) {
-            return dp[end_index] = nums[end_index]; 
-        }
-
-        else if(end_index < 0) {
-            return 0;
-        }   
-
-        if(dp[end_index]!=-1) {
-            return dp[end_index];//Memoization.
-        }
-
-        return dp[end_index] = max(nums[end_index] + get_money1(dp,nums,end_index-2),get_money1(dp,nums,end_index-1));
-
-    }
-
-    
     int rob(vector<int>& nums) {
 
-        //Top Down : 
+        //SPACE OPTIMIZATION : 
 
         int n = nums.size();
+
+        //Base cases : 
+
         if(n == 1) {
             return nums[0];
         }
 
-        int end_index = n-2;
-
-        //1.nums from 0 to n-2th :
-
-        vector<int>dp(n,-1);
-
-        int maxi1 = get_money1(dp,nums,end_index);
-
-        //2.nums from 1 to n-1 th.
-
-        vector<int>temp;
-        for(int i = 1;i < n;i++) {
-            temp.push_back(nums[i]);
+        if(n == 2) {
+            return max(nums[0],nums[1]);
         }
 
-        for(int i = 0; i < dp.size();i++) {
-            dp[i] = -1;
+        int first = nums[0];//0
+        int second = max(nums[0],nums[1]);//1
+
+        int third = second;
+        int maxi1 = INT_MIN;
+
+        //1.For 0th to n-2 th index.
+
+        for(int i = 2;i < n-1;i++) {
+            third = max(nums[i] + first,second);
+            first = second;
+            second = third;
         }
 
-        end_index = temp.size()-1;
+        maxi1 = max(maxi1,third);
 
-        int maxi2 = get_money1(dp,temp,end_index);
+        first = nums[1];
+        second = max(nums[1],nums[2]);
 
-        return max(maxi1,maxi2);
+        third = second;
+
+        //For the 1 to n-1 th .
+
+        for(int i = 3;i <= n-1;i++) {
+            third = max(nums[i] + first,second);
+            first = second;
+            second = third;
+        }
+
+        maxi1 = max(maxi1,third);
+
+        return maxi1;
 
         //TC : O(n)
-        //SC : O(n)
-
+        //SC : O(1)
         
     }
 };
