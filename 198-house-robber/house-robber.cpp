@@ -1,35 +1,34 @@
 class Solution {
 public:
 
-    void get_money(vector<int>& dp,vector<int>&nums) {
 
-        for(int i = 2;i < nums.size();i++) {
-            dp[i] = max(nums[i]+ dp[i-2],dp[i-1]);
-        }
-
-    }
-    
     int rob(vector<int>& nums) {
 
-        int n = nums.size();
-        //Bottom - Up : 
+        //Bottom Up :
 
+        int n = nums.size();
         vector<int>dp(n+1,-1);
-        dp[0] = nums[0];
+        
+        //1.Initialize the dp with base cases : 
+
+        dp[0] = nums[0];//Max money that can be obtained by robbing houses from 0th till 0th house.
 
         if(n == 1) {
             return dp[0];
         }
 
-        dp[1] = max(dp[0],nums[1]);
+        dp[1] = max(nums[0],nums[1]);//Max money that can be obtained by robbing house from 0th till 1th.
 
-        get_money(dp,nums);
+        //dp[i] = Max money that can be obtained by robbing houses from 0th till ith house.
 
-        return dp[n-1];
+        for(int i = 2;i < n;i++) {
+            dp[i] = max(nums[i] + dp[i-2] , dp[i-1]); 
+        }
+
+        return dp[n-1];//Max money obtained by robbing from 0th till n-1 houses.
 
         //TC : O(n)
         //SC : O(n)
 
-        
     }
 };
