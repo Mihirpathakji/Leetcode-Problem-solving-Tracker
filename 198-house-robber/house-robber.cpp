@@ -13,7 +13,7 @@ public:
 
         if(dp[end_index]!=-1) {
             return dp[end_index];
-        } 
+        }//Memoization.Already known than use it.
 
         return dp[end_index] = max(nums[end_index] + get_money(dp,nums,end_index-2), get_money(dp,nums,end_index-1));
 
@@ -24,7 +24,7 @@ public:
         int n = nums.size();
         int end_index = n-1;
 
-        //Top Down Approach : 
+        //Top - Down
 
         vector<int>dp(n+1,-1);
 
