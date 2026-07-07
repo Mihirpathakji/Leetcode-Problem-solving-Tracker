@@ -1,24 +1,19 @@
 class Solution {
 public:
     int maxValidPairSum(vector<int>& nums, int k) {
-
-        unordered_map<int,int>mp;
+        
         int n = nums.size();
-        int maxi_track = INT_MIN;
+        int prev_max = 0,ans = 0;
 
-        for(int i = n-1;i >0 ;i--) {
-            maxi_track = max(maxi_track,nums[i]);
-            mp[i] = maxi_track;
-        }   
-
-        long long max_ans = 1;
-        for(int i = 0;i <= n-1-k;i++) {
-            max_ans = max(max_ans,(long long)mp[i+k]+nums[i]);
+        for(int i = k;i < n;i++) {
+            prev_max = max(prev_max,nums[i-k]);
+            ans = max(ans,nums[i] + prev_max);
         }
 
-        return max_ans;
-        
+        return ans;
+
         //TC : O(n)
-        //SC : O(n)
+        //SC : O(1)
+        
     }
 };
