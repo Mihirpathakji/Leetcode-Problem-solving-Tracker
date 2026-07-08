@@ -2,8 +2,8 @@ class Solution {
 public:
 
     long long MOD = 1e9 + 7;
-
-    //Whenever a product exceeds even long long use % MOD, MOD = 1e9+7.
+    typedef long long ll;
+    //IMPORTANT TIPS : Whenever using a power function.Firstly ,It returns you a double value .Secondly , if power of 10 is going very very larger than the power func will OVERFLOW EVEN THE long long values even after MOD 1e9+7 thrice or more. BEST PRACTICE  : Instead of power function. Use a own built vector where of type long long where power10[K] gives the kth power of 10. In the power10[] vector computation we will Repeatedly keep on MOD by 1e9+7.So, that the resulting value When repeatedly MOD through each iteration will never exceed long long. 
 
     vector<int> sumAndMultiply(string s, vector<vector<int>>& queries) {
         
@@ -11,7 +11,7 @@ public:
         
         vector<long long>power10(n,0);
 
-        power10[0] = 1;
+        power10[0] = 1;//pow(10,0) = 1.
         for(int i = 1;i <n;i++) {
             power10[i] = (power10[i-1]*10)%MOD;
         }
