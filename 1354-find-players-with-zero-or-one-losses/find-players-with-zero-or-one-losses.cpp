@@ -4,23 +4,34 @@ public:
 
         int n = matches.size();
 
-        vector<bool>played(1e5+1,false);
+        // To track whether a particular player has played atleast one match or not.
+
+        int mini = INT_MAX;
+        int maxi = INT_MIN;
 
         for(int i = 0;i < n;i++) {
-            int player1 = matches[i][0];
+    
+            maxi = max(maxi,matches[i][0]);
+            maxi = max(maxi,matches[i][1]);
+
+            mini = min(mini,matches[i][0]);
+            mini = min(mini,matches[i][1]);
+        
+        }
+
+        vector<int>lose(maxi+1,0);
+        vector<bool>played(maxi+1,false);
+        for(int i = 0;i < n;i++) {
+            
+            int losser = matches[i][1];
+            lose[losser]++;
+
+             int player1 = matches[i][0];
             played[player1] = true;
 
             int player2 = matches[i][1];
             played[player2] = true;
-        }
-
-        vector<int>lose(1e5+1,0);
-
-        for(int i = 0;i < n;i++) {
-
-            int losser = matches[i][1];
-
-            lose[losser]++;
+    
         }
 
         vector<vector<int>>ans(2);
@@ -39,6 +50,9 @@ public:
         }
 
         return ans; 
+
+        //TC : O(n^2logn)
+        //SC : O(1e5)
 
     }
 };
