@@ -11,7 +11,7 @@ public:
         int i = 0;
         int j = n-1;
 
-        while(i < n && j >=0) {
+        while(i < n/2 && j >= n/2) {
             max_Sum = max(max_Sum,nums[i]+nums[j]);
             i++;
             j--;
