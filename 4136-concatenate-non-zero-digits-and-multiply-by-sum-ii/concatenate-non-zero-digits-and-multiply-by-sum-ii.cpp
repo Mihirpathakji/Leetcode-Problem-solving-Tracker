@@ -13,7 +13,7 @@ public:
 
         power10[0] = 1;//pow(10,0) = 1.
         for(int i = 1;i <n;i++) {
-            power10[i] = (power10[i-1]*10)%MOD;
+            power10[i] = (power10[i-1]*10) % MOD;
         }
         
         vector<long long>prefix_sum(n,0);
@@ -32,7 +32,7 @@ public:
                 prefix_integer[i] = prefix_integer[i-1];
             }
             else {
-                prefix_integer[i] = ( (prefix_integer[i-1]*10) % MOD + (s[i]-'0')) % MOD;
+                prefix_integer[i] = ( (prefix_integer[i-1] * 10) % MOD + (s[i]-'0')) % MOD;
             }
         }
 
@@ -80,8 +80,8 @@ public:
                 product =( ( ( prefix_integer[l-1]* power10[k] ) % 
                 MOD ) % MOD ) %MOD;
 
-                long long x = (prefix_integer[r] - product + MOD)%MOD;
-                long long sum = (prefix_sum[r]-prefix_sum[l-1] + MOD)%MOD;
+                long long x = (prefix_integer[r] - product + MOD)%MOD;//Since can May become negative so i added MOD thereby done % MOD.
+                long long sum = (prefix_sum[r]-prefix_sum[l-1] + MOD)%MOD;//Since can may become negative so i ADDED MOD thereby taken % MOD.
 
                 answer[i] = (x*sum) % MOD;
             }
