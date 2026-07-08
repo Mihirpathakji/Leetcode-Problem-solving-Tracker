@@ -4,19 +4,23 @@ public:
     int minPairSum(vector<int>& nums) {
 
         int n = nums.size();
-        sort(nums.begin(),nums.end());//[2 3 3 5]
-
-        vector<int>nums2(nums.begin(),nums.end());//[2 3 3 5]
-
-        sort(nums2.rbegin(),nums2.rend());//[5 3 3 2]
+        sort(nums.begin(),nums.end());
         
-        int min_Sum = INT_MIN;
+        int max_Sum = INT_MIN;
 
-        for(int i = 0;i < nums.size();i++) {
-            min_Sum = max( (nums[i] + nums2[i]) ,min_Sum );
-          }
+        int i = 0;
+        int j = n-1;
 
-        return min_Sum;
+        while(i < n && j >=0) {
+            max_Sum = max(max_Sum,nums[i]+nums[j]);
+            i++;
+            j--;
+        }
+
+        return max_Sum;
+
+        //TC : O(nlogn)
+        //SC : O(1)
 
     }
 };
