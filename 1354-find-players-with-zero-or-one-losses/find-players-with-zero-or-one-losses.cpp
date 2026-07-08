@@ -25,24 +25,18 @@ public:
 
         vector<vector<int>>ans(2);
 
-        vector<int>ans1;
-        vector<int>ans2;
-
         for(int i = 0;i < lose.size();i++) {
             if(lose[i] == 0 && played[i] == true) {
-                ans1.push_back(i);
+                ans[0].push_back(i);
             }
             else if(lose[i] == 1 && played[i] == true) {
-                ans2.push_back(i);
+                ans[1].push_back(i);
             }
         }
 
-        sort(ans1.begin(),ans1.end());
-        sort(ans2.begin(),ans2.end());
-
-
-        ans[0] = ans1;
-        ans[1] = ans2;
+        for(int i = 0;i < ans.size();i++) {
+            sort(ans[i].begin(),ans[i].end());
+        }
 
         return ans; 
 
