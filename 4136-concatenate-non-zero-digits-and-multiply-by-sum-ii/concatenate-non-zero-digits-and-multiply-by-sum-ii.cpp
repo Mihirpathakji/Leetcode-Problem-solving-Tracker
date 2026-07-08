@@ -75,10 +75,9 @@ public:
 
             else {
 
-                k = Non_Zero_Digits_Upto[r] - Non_Zero_Digits_Upto[l-1];
+                k = Non_Zero_Digits_Upto[r] - Non_Zero_Digits_Upto[l-1];//0
     
-                product =( ( ( prefix_integer[l-1]* power10[k] ) % 
-                MOD ) % MOD ) %MOD;
+                product =  ( prefix_integer[l-1]* power10[k] ) %MOD;
 
                 long long x = (prefix_integer[r] - product + MOD)%MOD;//Since can May become negative so i added MOD thereby done % MOD.
                 long long sum = (prefix_sum[r]-prefix_sum[l-1] + MOD)%MOD;//Since can may become negative so i ADDED MOD thereby taken % MOD.
