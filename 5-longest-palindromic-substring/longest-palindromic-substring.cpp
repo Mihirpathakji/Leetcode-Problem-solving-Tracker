@@ -15,10 +15,17 @@ public:
         if(dp[i][j] !=-1) {
             return true;
         }
-
+        
         if(s[i] == s[j]) {
+            //Check if same at every points inside the substring.
 
-            return isPalindrome(dp,s,i+1,j-1);        
+            if(isPalindrome(dp,s,i+1,j-1)) {
+                dp[i][j] = 1;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
 
         return false;
@@ -29,8 +36,8 @@ public:
 
         int n = s.length();
         int sp = 0;
-        int max_len = INT_MIN;  
-        vector<vector<int>>dp(n,vector<int>(n,-1));
+        int max_len = INT_MIN;//to give longest one.
+        vector<vector<int>>dp(n,vector<int>(n,-1));//stores that [i,j] substring is a palidnrome or not.
 
         for(int i = 0;i < n;i++) {
             for(int j = i;j < n;j++) {
@@ -40,10 +47,11 @@ public:
                 if(isPalindrome(dp,s,i,j) == true) {
                     
                     //Take only the Max lengthed substring.
+                   
                     if(max_len < j-i+1) {
 
-                        max_len = j-i+1;
-                        sp = i;
+                        max_len = j-i+1;//1 "b" 3 //1
+                        sp = i;//0 0
                     }
                 }
             }
