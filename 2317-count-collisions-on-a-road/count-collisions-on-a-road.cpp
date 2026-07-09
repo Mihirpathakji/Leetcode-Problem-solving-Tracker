@@ -28,7 +28,6 @@ public:
         //TC : O(n)
         //SC : O(1)
 
-        //Error at an unknown line i.e it must be Runtime Error.
 
     }
 };
