@@ -17,18 +17,17 @@ public:
             visited[i][j] = true;
         }
 
-        int total_levels = 0;
         int max_optimal_moves = 0;
 
         while(!q.empty()) {
 
-            int n1 = q.size();//4 
+            int n1 = q.size();
 
             while(n1--) {
-                //n = 2
 
-                int row = q.front().first;//0 1 2
-                int col = q.front().second;//0 0 0 
+                int row = q.front().first;
+                int col = q.front().second;
+                
                 max_optimal_moves = max(max_optimal_moves,col);
                 q.pop();//
 
