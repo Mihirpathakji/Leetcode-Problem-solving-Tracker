@@ -1,19 +1,19 @@
 class Solution {
 public:
+
     string reverseWords(string s) {
 
         string temp;
         int n = s.length();
 
-        //Trimmed out Middle spaces.
+        //1.Trimmed out Middle Multiple spaces.
 
-        if(s[0] == ' ' && s[1] != ' ') {
+        if(s[0] == ' ') {
             temp.push_back(s[0]);
         }
         else if(s[0]!=' ') {
             temp.push_back(s[0]);
         }
-
         for(int i = 1; i < n;i++) {
             if(s[i] == ' ' && s[i-1] == ' ') {
                 continue;
@@ -26,7 +26,7 @@ public:
         int n1 = temp.length();
         int i = 0;
 
-        //Trimmed out leading spaces or trailing spaces.
+        //2.Trimmed out leading spaces or trailing spaces.
 
         while(temp[i] == ' ') {
             i++;
