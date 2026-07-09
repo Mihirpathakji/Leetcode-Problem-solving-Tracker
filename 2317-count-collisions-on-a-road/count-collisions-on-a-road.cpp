@@ -27,7 +27,7 @@ public:
         
         //TC : O(n)
         //SC : O(1)
-
+        //Error at an unknow line no. which does not exists  i.e -> 1.May be Invalid indices got accessed.
 
     }
 };
