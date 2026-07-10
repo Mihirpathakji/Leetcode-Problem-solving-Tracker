@@ -2,10 +2,7 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         
-        //Brute force:
-
         sort(nums.begin(),nums.end());
-        //Remove Duplicates since they dosent impact.
 
         int n = nums.size();
         int i = 0;
@@ -20,19 +17,22 @@ public:
 
         while(j < n) {
 
-
-            if(!(nums[j] == nums[j-1] + 1 || nums[j] == nums[j-1])) {
+            if(nums[j] == nums[j-1]) {
+                j++;
+                continue;
+            }
+            if(!(nums[j] == nums[j-1] + 1)) {
                 i = j;
                 curr_len = 1;
             }
             
             else if( nums[j] == nums[j-1] + 1) {
 
-                curr_len++;
+                curr_len++;//1
                 max_len = max(max_len,curr_len);
             }
 
-            j++;//2 
+            j++;//2
     
         }
 
