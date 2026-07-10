@@ -2,6 +2,8 @@ class Solution {
 public:
    
     int longestContinuousSubstring(string s) {
+
+        //bethu sliding window chapo:
         
         int n = s.length();
         int j = 0;
@@ -22,7 +24,7 @@ public:
         }
 
         max_len = max(max_len,current_counter);
-        
+
         return max_len;
 
     }
