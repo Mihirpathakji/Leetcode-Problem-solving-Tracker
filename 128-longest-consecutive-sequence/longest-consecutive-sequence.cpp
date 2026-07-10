@@ -21,7 +21,7 @@ public:
                 j++;
                 continue;
             }
-            if(!(nums[j] == nums[j-1] + 1)) {
+            else if(!(nums[j] == nums[j-1] + 1)) {
                 i = j;
                 curr_len = 1;
             }
