@@ -31,7 +31,7 @@ public:
                     i++;//st.top() has larger magnitude than the -ve asteroids[i].i.e asteroids[i] would get destroyed.
                 }
 
-                else if(abs(asteroids[i]) > st.top()){
+                else if(abs(asteroids[i]) > abs(st.top())){
                     //st.top() has smaller magnitude than the negative asteroids[i].
                     st.pop();//Do not push the asteroids[i].Let it keep popping the elements until it can. 
                 }
