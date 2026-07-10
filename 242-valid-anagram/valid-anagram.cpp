@@ -20,7 +20,7 @@ public:
         }
 
         for(int i = 0;i < t.length();i++) {
-            if(mp1[s[i]]!=mp2[s[i]]) {
+            if(mp1[t[i]]!=mp2[t[i]]) {
                 return false;
             }   
         }
