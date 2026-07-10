@@ -17,7 +17,6 @@ public:
                 counter++;//2
             }
             else {
-                i = j;
                 max_len = max(max_len,counter);//2
                 counter = 1; 
             }
