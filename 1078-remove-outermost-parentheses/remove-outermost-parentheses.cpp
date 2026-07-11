@@ -2,9 +2,6 @@ class Solution {
 public:
     string removeOuterParentheses(string s) {
 
-        //Most Optimal solution : O(1) Auxilliary space.
-        //Aim : Remove the Outermost Parnetheses for every valid primtive string.
-
         string ans;
 
         int counter = 0;
@@ -14,28 +11,20 @@ public:
 
             if(s[j] == '(') {
 
-                //Only add if it is not outer Parentheses.
-               
-                if(counter == 0) {
-                    //Not already Nested.So now nested it.
-                    counter++;    
-                }    
-                else {
-                    ans.push_back(s[j]);
-                    counter++;
-                }
-
-            }
-            else if(s[j] == ')' ) {
-
-                //Add Only if it is already nested by '('
                 if(counter > 0) {
                     ans.push_back(s[j]);
-                    counter--;//1.//0
                 }
-                if(counter == 0) {
-                    ans.pop_back();
+                
+                counter++;
+            }
+
+            else if(s[j] == ')' ) {
+
+                counter--;
+                if(counter > 0) {
+                    ans.push_back(s[j]);
                 }
+        
             }
         }
 
@@ -43,7 +32,6 @@ public:
         
         //TC : O(n)
         //SC : O(1)
-
         
     }
 };
