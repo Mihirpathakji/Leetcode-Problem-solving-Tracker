@@ -28,10 +28,7 @@ public:
             b/=2;
         }
 
-        a%=MOD;
-        b%=MOD;
-
-        long long ans = (a*b)%MOD;
+        long long ans = ((a%MOD)*(b%MOD))%MOD;
 
         return (int)ans;
 
