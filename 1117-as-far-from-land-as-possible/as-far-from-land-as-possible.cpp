@@ -47,11 +47,13 @@ public:
     }
      
         if(max_dist == 0) {
-            return -1;
+            return -1;//it is not possible that a water cell is at distance of 0 from a land cell.
         }
 
         return max_dist;
 
-        
+        //TC : O(m*n*4)
+        //SC : O(m*n)
+
     }
 };
