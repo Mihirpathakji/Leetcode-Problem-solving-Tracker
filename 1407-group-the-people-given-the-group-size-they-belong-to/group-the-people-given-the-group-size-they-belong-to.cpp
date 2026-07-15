@@ -12,7 +12,7 @@ public:
 
         int size = 0;
         for(auto it : mp) {
-            size += ((it.second.size() + it.first - 1)/it.first);
+            size += (ceil((float)it.second.size()/it.first));
         }
 
         vector<vector<int>>groups(size);//4 
