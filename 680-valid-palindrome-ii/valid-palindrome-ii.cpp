@@ -5,8 +5,8 @@ public:
         int n = s.length();
         int l = 0;
         int r = n - 1;
-        char x1 = -1;
-        char x2 = -1;
+        char x1 =  '0';
+        char x2 =  '0';
 
         while(l < r) {
             if(s[l] == s[r]) {
@@ -14,8 +14,8 @@ public:
                 r--;
             }
             else {
-                x1 = s[l];//b
-                x2 = s[r];//c
+                x1 = s[l];
+                x2 = s[r];
                 break;
             }
         }
@@ -52,6 +52,7 @@ public:
                     }
                 }
             }
+
             removes = 0;
             if(ok1) {
                 return true;                                        
@@ -69,7 +70,7 @@ public:
                     else {
                         if( (s[l] == x2)  && ( removes == 0) ) {
                             l++;
-                            removes++;
+                            removes++;//
                         }
                         else if(s[r] == x2 && removes == 0){
                             removes++;//1
