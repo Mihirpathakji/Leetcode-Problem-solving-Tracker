@@ -14,8 +14,8 @@ public:
                 r--;
             }
             else {
-                x1 = s[l];//
-                x2 = s[r];
+                x1 = s[l];//'a'
+                x2 = s[r];//'c'
                 break;
             }
         }
@@ -28,7 +28,7 @@ public:
         }
         else {
 
-            int removes = 0;//0.
+            int removes = 0;//
             while(l < r) 
             {   
                 if(s[l] == s[r]) {
@@ -37,8 +37,8 @@ public:
                 }
                 else {
                     if( (s[l] == x1)  && ( removes == 0) ) {
-                        l++;
-                        removes++;//1 
+                        l++;//1 
+                        removes++;//1
                     }
                     else {
                         ok1 = false;
@@ -47,12 +47,12 @@ public:
                 }
             }
 
-            removes = 0;
+            removes = 0;//we are removing the x2 = s[r].we need the correct count of removals of x2 = s[r].
+
             if(ok1) {
                 return true;                                        
             }
             else {
-                
                 l = 0;
                 r = n-1;
                 while(l < r) 
@@ -63,8 +63,8 @@ public:
                     }
                     else {
                         if(s[r] == x2 && removes == 0){
-                            removes++;//1
-                            r--;
+                            removes++;//1  
+                            r--;//
                         }
                         else {
                             ok2 = false;
