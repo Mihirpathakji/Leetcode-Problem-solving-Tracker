@@ -14,16 +14,16 @@ public:
                 r--;
             }
             else {
-                x1 = s[l];
+                x1 = s[l];//
                 x2 = s[r];
                 break;
             }
         }
 
-        bool ok1 = true;
-        bool ok2 = true;
+        bool ok1 = true;//can be made palindromic if we delete x1 = s[l] once.
+        bool ok2 = true;//can be made palindromic if we deleted x2 = s[r] once.
 
-        if(x1 == -1) {
+        if(x1 == '0') {
             return true;
         }
         else {
