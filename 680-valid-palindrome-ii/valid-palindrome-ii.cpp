@@ -28,9 +28,7 @@ public:
         }
         else {
 
-            int removes = 0;
-            l = 0;
-            r = n-1;
+            int removes = 0;//0.
             while(l < r) 
             {   
                 if(s[l] == s[r]) {
@@ -40,11 +38,7 @@ public:
                 else {
                     if( (s[l] == x1)  && ( removes == 0) ) {
                         l++;
-                        removes++;//1
-                    }
-                    else if(s[r] == x1 && removes == 0){
-                        removes++;
-                        r--;
+                        removes++;//1 
                     }
                     else {
                         ok1 = false;
@@ -68,11 +62,7 @@ public:
                         r--;
                     }
                     else {
-                        if( (s[l] == x2)  && ( removes == 0) ) {
-                            l++;
-                            removes++;//
-                        }
-                        else if(s[r] == x2 && removes == 0){
+                        if(s[r] == x2 && removes == 0){
                             removes++;//1
                             r--;
                         }
