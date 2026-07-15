@@ -11,15 +11,12 @@ public:
         queue<pair<int,int>>q;
         for(int i = 0;i < m;i++) {
             for(int j = 0;j < n;j++) {
-                if(grid[i][j] == 1 && i!=0 && i!=m-1 && j!=0 && j!=n-1) {
-                    visited[i][j] = true;
-                }
-                else if(grid[i][j] == 1 && (i ==0 || i == m-1 || j==0 || j == n-1)) {
+                if(grid[i][j] == 1 && (i ==0 || i == m-1 || j==0 || j == n-1)) {
                     q.push({i,j});
+                    visited[i][j] = true;
                 }
             }
         }
-
 
         while(!q.empty()) {
 
@@ -32,10 +29,10 @@ public:
 
             for(int i = 0;i < 4;i++) {
                 
-                if(row + row_dir[i] >= 0 && row + row_dir[i]  < m && col + col_dir[i] >= 0 && col + col_dir[i] < n && visited[row + row_dir[i]][col + col_dir[i]] == true) {
+                if(row + row_dir[i] >= 0 && row + row_dir[i]  < m && col + col_dir[i] >= 0 && col + col_dir[i] < n && visited[row + row_dir[i]][col + col_dir[i]] == false && grid[row+row_dir[i]][col + col_dir[i]] == 1) {
                     //i.e are not visited and are bottomed->true.
 
-                    visited[row+row_dir[i]][col+col_dir[i]] = false;
+                    visited[row + row_dir[i]][col + col_dir[i]] = true;
                     q.push({row + row_dir[i] ,col + col_dir[i]});
                 }
             }
@@ -45,14 +42,16 @@ public:
 
         for(int i = 0;i < m;i++) {
             for(int j = 0;j < n;j++) {
-                if(visited[i][j] == true) {
-                    ans++;
+                if(grid[i][j] == 1 && visited[i][j] == false) {
+                    ans++;//1 2 3 
                 }
             }
         }
 
         return ans;
 
+        //TC : O(m*n*4)
+        //SC : O(m*n)
         
     }
 };
