@@ -1,5 +1,25 @@
 class Solution {
 public:
+
+    void dfs(int u,int v,vector<vector<bool>>&visited,vector<vector<char>>& board) {
+
+        int m = board.size();
+        int n = board[0].size(); 
+        visited[u][v] = true;//
+
+        //We went to the Adjacency_List of u in standard dfs.But here there is no adjacency_list available in Matrix problems.The only adjacency_list is the all four directions , directly connected elements.
+
+        int row_dir[4] = {0,-1,0,1}; 
+        int col_dir[4] = {-1,0,1,0};
+
+        for(int i = 0;i < 4;i++) {
+            if(row_dir[i] + u >= 0 && row_dir[i] + u < m && v + col_dir[i] >= 0 && v + col_dir[i] < n && visited[u + row_dir[i]][v + col_dir[i]] == false && board[u + row_dir[i]][v + col_dir[i]] == 'O') {
+                dfs(row_dir[i] + u , col_dir[i] + v , visited,board);
+            }
+        }
+
+    }
+
     void solve(vector<vector<char>>& board) {
 
         int m = board.size();
@@ -8,51 +28,26 @@ public:
         //Algo : If a boundary O can touch that O i.e that O cant be converted into a X since that O is not surrounded since it is in a group where atleast one O is at the boundary.
 
         vector<vector<bool>>visited(m,vector<bool>(n,false));
-        queue<pair<int,int>>q;//{i,j}
 
         for(int i = 0;i < m;i++) {
             for(int j = 0;j < n;j++) {
-                if( ( i == 0 || i == m-1 || j == 0 || j == n-1 ) && board[i][j] == 'O' ) {
-                    q.push({i,j});
-                    visited[i][j] = true;    
+                if( ( i == 0 || i == m-1 || j == 0 || j == n-1 ) && board[i][j] == 'O' && visited[i][j] == false ) {
+                    dfs(i,j,visited,board);
                 }
             }
-        }
-
-        while(!q.empty()) {
-
-            int row = q.front().first;
-            int col = q.front().second;
-            q.pop();
-
-            int row_dir[4] = {0,-1,0,1};// 
-            int col_dir[4] = {-1,0,1,0};//
-
-            for(int i = 0; i < 4;i++) {
-                if(row + row_dir[i] >=0 && row + row_dir[i] < m && col + col_dir[i] >= 0 && col + col_dir[i] < n && visited[row + row_dir[i]][col + col_dir[i]] == false && board[row + row_dir[i]][col + col_dir[i]] == 'O') {
-
-                    q.push({row + row_dir[i] , col + col_dir[i]});
-                    visited[row + row_dir[i]][col + col_dir[i]] = true;
-                }
-            }
-        }
-
-        //If still any O's are not visited i.e they do not have any 'O' neighbour on the boundary.i.e are completely surrounded by 'X' Since those set of O's have no O's neighbour on boundary. 
+        }    
 
         for(int i = 0;i < m;i++) {
             for(int j = 0;j < n;j++) {
                 if(board[i][j] == 'O' && visited[i][j] == false) {
-                    //it is in surrounded region.
-
                     board[i][j] = 'X';
                 }
-            }
-        }
-        
-        return;   
+            }   
+        }   
 
-        //TC : O(m*n*4)
+        return;
+
+        //TC : O(m*n)
         //SC : O(m*n)
-        
     }
 };
