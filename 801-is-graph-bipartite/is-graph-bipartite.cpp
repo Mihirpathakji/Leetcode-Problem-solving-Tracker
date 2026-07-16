@@ -1,50 +1,46 @@
-//JAY SHREE RAM.
-
 class Solution {
 public:
 
-    bool bfs(int start,queue<int>q,vector<int>&color,vector<vector<int>>&graph) {
+    void dfs(int start,int parent,vector<int>& color,vector<vector<int>>&graph,bool& bipartite) {
 
-        q.push(start);
-        color[start] = 0;
+        //dfs is a Recursive one.You will need to return boolean value at every step.
 
-        while(!q.empty()) {
+        if( parent == -1 || color[parent] == 1 ) {
+            color[start] = 0;
+        }
+        else {
+            color[start] = 1;
+        }
 
-            int node = q.front();
-            q.pop();
+        for(auto v : graph[start]) {
 
-            for(int v : graph[node] ) {
-
-                if(color[v] == -1) {
-                    if(color[node] == 0) {
-                        color[v] = 1;
-                    }
-                    else {
-                        color[v] = 0;
-                    }
-                    q.push(v);
-                }
-                else {
-                    if(color[node] == color[v]) {
-                        return false;
-                    }
+            if(color[v] == -1) {
+                dfs(v,start,color,graph,bipartite);
+            }
+            else {
+                if(color[v] == color[start]) {
+                    bipartite = false;
+                    return;
                 }
             }
         }
 
-        return true;
-
     }
 
     bool isBipartite(vector<vector<int>>& graph) {
-        
-        int n = graph.size();      
+
+        //through dfs :
+        //No two adjacent nodes should have the same color.
+        int n = graph.size();
+
         vector<int>color(n,-1);
-        queue<int>q;
+        bool bipartite = true;
+        int parent = -1;
 
         for(int i = 0;i < n;i++) {
             if(color[i] == -1) {
-                if(!bfs(i,q,color,graph)) {
+                dfs(i,parent,color,graph,bipartite);
+                if(bipartite == false) {
                     return false;
                 }
             }
@@ -54,6 +50,6 @@ public:
 
         //TC : O(V + 2*E)
         //SC : O(V)
-
+        
     }
 };
