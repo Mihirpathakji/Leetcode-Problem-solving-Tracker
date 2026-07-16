@@ -4,8 +4,6 @@ public:
 
     void dfs(int start,int parent,vector<int>& color,vector<vector<int>>&graph,bool& bipartite) {
 
-        //dfs is a Recursive one.You will need to return boolean value at every step.
-
         if( parent == -1 || color[parent] == 1 ) {
             color[start] = 0;
         }
