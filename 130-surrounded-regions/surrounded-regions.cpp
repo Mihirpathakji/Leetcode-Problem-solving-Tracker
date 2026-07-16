@@ -5,11 +5,11 @@ public:
 
         int m = board.size();
         int n = board[0].size(); 
-        visited[u][v] = true;//
+        visited[u][v] = true;//T  
 
         //We went to the Adjacency_List of u in standard dfs.But here there is no adjacency_list available in Matrix problems.The only adjacency_list is the all four directions , directly connected elements.
 
-        int row_dir[4] = {0,-1,0,1}; 
+        int row_dir[4] = {0,-1,0,1};// 
         int col_dir[4] = {-1,0,1,0};
 
         for(int i = 0;i < 4;i++) {
@@ -47,7 +47,7 @@ public:
 
         return;
 
-        //TC : O(m*n)
+        //TC : O(m*n*4)
         //SC : O(m*n)
     }
 };
