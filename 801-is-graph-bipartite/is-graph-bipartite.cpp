@@ -22,7 +22,7 @@ public:
                     else {
                         color[v] = 0;
                     }
-                    q.push(v);//5 
+                    q.push(v);
                 }
                 else {
                     if(color[node] == color[v]) {
@@ -51,6 +51,9 @@ public:
         }
 
         return true;
+
+        //TC : O(V + 2*E)
+        //SC : O(V)
 
     }
 };
