@@ -1,3 +1,4 @@
+//JAY SHREE RAM
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
@@ -16,7 +17,6 @@ public:
 
         }
 
-        vector<int>visited(V,0);
         vector<int>ans;
 
         queue<int>q;
@@ -36,14 +36,9 @@ public:
 
             for(auto& v  : adj_list[node] ) {
 
+                indegree[v]--;
                 if(indegree[v] == 0) {
                     q.push(v);
-                }
-                else {
-                    indegree[v]--;
-                    if(indegree[v] == 0) {
-                        q.push(v);
-                    }
                 }
             }
 
@@ -55,5 +50,7 @@ public:
         
         return ans;
         
+        //TC : O(V + E)
+        //SC : O(V)
     }
 };
