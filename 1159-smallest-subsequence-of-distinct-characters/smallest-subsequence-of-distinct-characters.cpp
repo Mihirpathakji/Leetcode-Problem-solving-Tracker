@@ -12,6 +12,7 @@ public:
         }
 
         vector<int>is_in_ans(26,-1);
+        stack<char>ans1;
         string ans;
 
         for(int i = 0; i < n; i++) {
@@ -20,16 +21,23 @@ public:
                 continue;//No need to put it in the ans again since it is already inserterd once.
             }
 
-            while(!ans.empty() && ans.back() > s[i] && last_index[ans.back()-'a'] > i ) {
+            while(!ans1.empty() && ans1.top() > s[i] && last_index[ans1.top() - 'a'] > i ) {
 
-                is_in_ans[ans.back() - 'a'] = -1;    
-                ans.pop_back();
+                is_in_ans[ans1.top() - 'a'] = -1;    
+                ans1.pop();
             }
 
-            ans.push_back(s[i]);
+            ans1.push(s[i]);
             is_in_ans[s[i] - 'a'] = i;
 
         }
+
+        while(!ans1.empty()) {
+            ans.push_back(ans1.top());
+            ans1.pop();
+        }
+
+        reverse(ans.begin(),ans.end());
 
         return ans;
 
