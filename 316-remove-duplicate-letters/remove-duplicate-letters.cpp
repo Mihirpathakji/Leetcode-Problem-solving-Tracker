@@ -17,29 +17,30 @@ public:
         for(int i = 0;i < n;i++) {
 
             if(ans.empty()) { 
-                ans.push_back(s[i]);// c 
-                my_ans[s[i] -'a'] = i;// 3        
+                ans.push_back(s[i]);//  
+                my_ans[s[i] -'a'] = i;//
             }
 
-            else if(ans.back()  <= s[i] && my_ans[s[i]-'a']==-1) {
-                ans.push_back(s[i]);//ac acd 
-                my_ans[s[i]-'a'] = i;
+            else if( ans.back() < s[i] && my_ans[s[i]-'a'] == -1) {
+                ans.push_back(s[i]);// //
+                my_ans[s[i]-'a'] = i;//1 
             }
             else {
-                while(!ans.empty() && ans.back() > s[i] && my_ans[s[i] -'a']==-1 ) { 
+                while(!ans.empty() && ans.back() > s[i] && my_ans[s[i] -'a']== -1 ) { 
 
-                    if(last_indices[ans.back()-'a'] > i) {
-                        my_ans[ans.back()-'a'] = -1;//-1    
+                    if( last_indices[ans.back()-'a'] > i ) {
+
+                        my_ans[ans.back()-'a'] = -1;// 
                         ans.pop_back();//
                     }
                     else {
-                        break;
+                        break;//
                     }
                 }
 
                 if(my_ans[s[i] -'a'] == -1) {
-                    ans.push_back(s[i]);//b // acdb.
-                    my_ans[s[i]-'a'] = i;//1 // 2 
+                    ans.push_back(s[i]);//b //  // a
+                    my_ans[s[i]-'a'] = i;//1 // 
                 }
 
             }
