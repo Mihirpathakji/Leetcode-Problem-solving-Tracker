@@ -5,8 +5,8 @@ public:
 
         int n = s.length();
 
-        vector<int>last_indices(26,-1);//
-        vector<int>my_ans(26,-1);//
+        vector<int>last_indices(26,-1);
+        vector<int>my_ans(26,-1);
      
         for(int i = 0;i < n;i++) {
             last_indices[s[i]-'a'] = i;
@@ -16,34 +16,20 @@ public:
 
         for(int i = 0;i < n;i++) {
 
-            if(ans.empty()) { 
-                ans.push_back(s[i]);//  
-                my_ans[s[i] -'a'] = i;//
+            if(my_ans[s[i]-'a'] !=-1) {
+                continue;
             }
 
-            else if( ans.back() < s[i] && my_ans[s[i]-'a'] == -1) {
-                ans.push_back(s[i]);// //
-                my_ans[s[i]-'a'] = i;//1 
+            int ch = s[i];
+            int index = ch-'a';
+
+            while(!ans.empty() && ans.back() > ch && last_indices[ans.back()-'a'] > i) {
+                my_ans[ans.back()-'a'] = -1;
+                ans.pop_back();
             }
-            else {
-                while(!ans.empty() && ans.back() > s[i] && my_ans[s[i] -'a']== -1 ) { 
 
-                    if( last_indices[ans.back()-'a'] > i ) {
-
-                        my_ans[ans.back()-'a'] = -1;// 
-                        ans.pop_back();//
-                    }
-                    else {
-                        break;//
-                    }
-                }
-
-                if(my_ans[s[i] -'a'] == -1) {
-                    ans.push_back(s[i]);//b //  // a
-                    my_ans[s[i]-'a'] = i;//1 // 
-                }
-
-            }
+            ans.push_back(ch);
+            my_ans[index] = i;
         
         }
         
