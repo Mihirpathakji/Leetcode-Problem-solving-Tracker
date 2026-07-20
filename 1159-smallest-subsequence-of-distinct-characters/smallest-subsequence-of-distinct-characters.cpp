@@ -12,7 +12,7 @@ public:
         }
 
         vector<int>is_in_ans(26,-1);
-        stack<char>ans1;
+        stack<char>ans1;//Will contains only distinct characters -> 26 
         string ans;
 
         for(int i = 0; i < n; i++) {
