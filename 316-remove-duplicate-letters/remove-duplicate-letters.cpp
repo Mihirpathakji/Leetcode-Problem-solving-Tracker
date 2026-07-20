@@ -5,8 +5,8 @@ public:
 
         int n = s.length();
 
-        vector<int>last_indices(26,-1);
-        vector<int>my_ans(26,-1);
+        vector<int>last_indices(26,-1);//
+        vector<int>my_ans(26,-1);//
      
         for(int i = 0;i < n;i++) {
             last_indices[s[i]-'a'] = i;
@@ -33,8 +33,7 @@ public:
                         ans.pop_back();//
                     }
                     else {
-                        ans.push_back(s[i]);
-                        my_ans[s[i]-'a'] = i; 
+                        break;
                     }
                 }
 
