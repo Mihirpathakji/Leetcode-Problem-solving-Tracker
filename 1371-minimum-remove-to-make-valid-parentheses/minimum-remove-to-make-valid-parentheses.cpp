@@ -1,51 +1,50 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
+       
+        //Space Optimized : 
 
         int n = s.length();
-
-        vector<int>left_bracket_index(n,0);
-        vector<int>right_bracket_index(n,0);
+        stack<int>left_index_to_be_removed;
 
         for(int i = 0;i < n;i++) {
             if(s[i] == '(') {
-                left_bracket_index[i] = 1;
+                left_index_to_be_removed.push(i);
             }
-            else if(s[i] == ')') {
-                right_bracket_index[i] = 1;
-            }
-        }
+            else if (s[i] == ')') {
+                if(!left_index_to_be_removed.empty()) {
 
-        stack<int>st;
-        //Insert only the "left opening" bracket's index.
+                    //for this right there does exists a valid left to get this right balanced.
 
-        for(int i = 0;i < n;i++) {
-            if(s[i] == '(') {
-                st.push(i);
-            }
-            else if(s[i] == ')'){
-                if(!st.empty()) {
-                    left_bracket_index[st.top()] = 0;
-                    right_bracket_index[i] = 0;
-                    st.pop();
+                    left_index_to_be_removed.pop();
+                }
+                else {
+                    s[i] = 'I';
                 }
             }
+        } 
+
+        while(!left_index_to_be_removed.empty()) {
+            //for this left brackets there does not exists any right inorder to balanced out them.
+
+            //they will remain unbalanced.
+            s[left_index_to_be_removed.top()] = 'I';
+            left_index_to_be_removed.pop();
         }
 
         string ans;
-        for(int i = 0;i < n;i++) {
-            if(!(s[i] == '(' || s[i] == ')')) {
-                ans.push_back(s[i]);
-            }   
-            else if(s[i] == '(' && left_bracket_index[i] == 0) {
-                ans.push_back(s[i]);
-            }
-            else if(s[i] ==')' && right_bracket_index[i] == 0) {
-                ans.push_back(s[i]);
+
+        for(auto& character : s) {
+            if(character!='I') {
+                ans.push_back(character);
             }
         }
 
         return ans;
+        
+        //TC : O(n)
+        //SC : O(1)
+
         
     }
 };
