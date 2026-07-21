@@ -22,11 +22,7 @@ public:
 
         int m = st.size();
 
-        if(m%2 == 0) {
-            return m/2;
-        }
-        
-        return (m+1)/2;
+        return ceil(float(m)/2);
 
         //TC : O(n)
         //SC : O(n)
