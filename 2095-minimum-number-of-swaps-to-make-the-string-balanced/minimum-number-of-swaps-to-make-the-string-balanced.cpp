@@ -11,7 +11,7 @@ public:
             //Insert only the Opening brackets.
            
             if(s[i] == '[') {
-                st.push(s[i]);//
+                st.push(s[i]);
             }
             else {
                 if(!st.empty()) {
@@ -27,6 +27,9 @@ public:
         }
         
         return (m+1)/2;
+
+        //TC : O(n)
+        //SC : O(n)
 
     }
 };
