@@ -11,7 +11,7 @@ public:
 
         for(auto& v : adj_list[node]) {
 
-            if(visited[v] == -1) {
+            if(visited[v] == 0) {
                 if(dfs(v,destination,adj_list,visited) == true) {
                     return true;
                 }  
@@ -38,7 +38,8 @@ public:
 
         //dfs from source.If the source can reach the destination than we are good to go.
 
-        vector<int>visited(n,-1);
+        vector<int>visited(n,0);
+        
         return dfs(source,destination,adj_list,visited);
 
     }
