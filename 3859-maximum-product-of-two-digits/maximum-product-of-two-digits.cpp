@@ -9,12 +9,12 @@ public:
 
         while(n) {
 
-            int r = n % 10; //9 5
-            n/= 10;//95 9 
+            int r = n % 10; //9 5 9 .
+            n/= 10;//95 9 9 0
 
-            if(r >= maxi1) {
-                maxi2 = maxi1;//0 6
-                maxi1 = r;//6 9
+            if(r > maxi1) {
+                maxi2 = maxi1;//0 6 
+                maxi1 = r;//6 9 
             }
             else if(r > maxi2) {
                 maxi2 = r;
