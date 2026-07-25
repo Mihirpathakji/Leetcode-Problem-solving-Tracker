@@ -2,6 +2,8 @@ class Solution {
 public:
     int maxProduct(int n) {
 
+        //Our goal is to get that problem Accepted anyhow you can use as many spaces as you wanted.Like if you used Maximum space complexity USE IT NOW.Our goal is only to get that problem Accepted.
+
         vector<int>temp;
         while(n) {
 
