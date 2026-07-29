@@ -12,14 +12,14 @@ public:
         }
 
         string ans = "";
-        set<char>st(s.begin(),s.end());
+        set<char>st(s.begin(),s.end());//Sorted order we needed.And no duplicates.
 
         for(auto it : st) {
 
             int temp_count = counts[it-'a']/2;
 
             while(temp_count--) {
-                ans.push_back(it);
+                ans.push_back(it);//ab
             }
 
             if(counts[it-'a'] % 2 == 1) {
@@ -36,11 +36,14 @@ public:
             }
         }
 
-        reverse(temp.begin(),temp.end());
+        reverse(temp.begin(),temp.end());//ba
 
         ans += temp;
 
         return ans;
+        
+        //TC : O(n*logn)
+        //SC : O(n)
 
     }
 };
