@@ -11,17 +11,16 @@ public:
             limit += nums[i];
         }
 
-        long long max_sum = nums[0];
+        long long max_sum = nums[0];//3..3.
 
-        int j = 1;
+        int j = 1;//1.
        
         while(j < n && nums[j] ==  nums[j-1] + 1) { 
-            max_sum += nums[j];
-            j++;
+            max_sum += nums[j];//7 12 // 38.
+            j++;//2 3 
         }
 
-
-        for(int i = 1;i <= limit+1 ;i++) {
+        for(int i = 1;i <= limit+1;i++) {
             if(mp.find(i) == mp.end() && i >= max_sum) {
                 return i;
             }
