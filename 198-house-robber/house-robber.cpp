@@ -11,10 +11,10 @@ public:
             return nums[0];
         }
 
-        int first = nums[0];
-        int second = max(nums[0],nums[1]);
+        int first = nums[0];//1
+        int second = max(nums[0],nums[1]);//
 
-        int third = second;
+        int third = second;//2
 
         for(int i = 2;i < n;i++) {
             third = max(nums[i] + first , second);
