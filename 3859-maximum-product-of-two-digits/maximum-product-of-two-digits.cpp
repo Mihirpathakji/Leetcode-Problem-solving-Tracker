@@ -2,19 +2,17 @@ class Solution {
 public:
     int maxProduct(int n) {
 
-        //Our goal is to get that problem Accepted anyhow you can use as many spaces as you wanted.Like if you used Maximum space complexity USE IT NOW.Our goal is only to get that problem Accepted.
-
-        int maxi1 = 0;
+        int maxi1 = 0; 
         int maxi2 = 0;
 
         while(n) {
 
-            int r = n % 10; //9 5 9 .
-            n/= 10;//95 9 9 0
+            int r = n % 10;
+            n/= 10;
 
             if(r > maxi1) {
-                maxi2 = maxi1;//0 6 
-                maxi1 = r;//6 9 
+                maxi2 = maxi1;
+                maxi1 = r;
             }
             else if(r > maxi2) {
                 maxi2 = r;
@@ -23,6 +21,9 @@ public:
         }
 
         return maxi1*maxi2;
+
+        //TC : O(logn)
+        //SC : O(1)
 
     }
 };
