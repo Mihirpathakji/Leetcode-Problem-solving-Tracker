@@ -11,7 +11,7 @@ public:
             //Insert only the Opening brackets.
            
             if(s[i] == '[') {
-                st.push(s[i]);
+                st.push(s[i]);//
             }
             else {
                 if(!st.empty()) {
@@ -22,7 +22,8 @@ public:
 
         int m = st.size();
 
-        return ceil(float(m)/2);
+        return (m + 2 - 1)/2;
+
 
         //TC : O(n)
         //SC : O(n)
