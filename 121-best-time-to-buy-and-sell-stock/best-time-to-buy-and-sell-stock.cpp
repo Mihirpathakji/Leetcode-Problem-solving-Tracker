@@ -7,7 +7,8 @@ public:
         int i = 0;
         int j = n-1;
 
-        //Finding the Next Greater using stack for each element.
+        //Finding the Next Greater using stack for each element will not gave the answer.Find the 
+        //Greatest element for every single element on it's right Using stack is the answer. 
 
         stack<int>st;
         st.push(prices[n-1]);
@@ -42,6 +43,8 @@ public:
 
         return max_profit;
 
+        //TC : O(n)
+        //SC : O(n)
         
     }
 };
