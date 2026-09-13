@@ -7,44 +7,21 @@ public:
         int i = 0;
         int j = n-1;
 
-        //Finding the Next Greater using stack for each element will not gave the answer.Find the 
-        //Greatest element for every single element on it's right Using stack is the answer. 
-
-        stack<int>st;
-        st.push(prices[n-1]);
-
-        int max_profit = 0;//0.
+        int max_profit = 0;
+        
+        int right_max = prices[n-1];
 
         for(int i = n-2;i>=0;i-- ) {
 
-            while(!st.empty() && st.top()<=prices[i]) {
-                st.pop();
-            }
+            max_profit = max(max_profit,right_max-prices[i]);
 
-            if(!st.empty())
-            max_profit = max(max_profit,st.top()-prices[i]);
-            
-            if(st.empty())
-            st.push(prices[i]);
-
-            else { 
-            
-                if(st.top() >= prices[i]) {
-                    continue;
-                }
-                else {  
-                    st.pop();
-                    st.push(prices[i]);
-                }
-            }
-
-
+            right_max = max(right_max,prices[i]);
         }
 
         return max_profit;
 
         //TC : O(n)
-        //SC : O(n)
+        //SC : O(1)
         
     }
 };
