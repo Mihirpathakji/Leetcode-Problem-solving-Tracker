@@ -42,8 +42,8 @@ public:
 
         return solve(m,n,i,j,dp);
 
-        //TC : 
-        //SC : 
+        //TC : O(m*n)
+        //SC : O(m*n)
 
     }
 };
