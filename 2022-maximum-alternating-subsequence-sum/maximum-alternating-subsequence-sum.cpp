@@ -1,42 +1,37 @@
 class Solution {
 public:
-    
-    long long solve(vector<vector<long long>>&dp,long long index,bool curr_sign ,vector<int>&nums, long long n) {
-
-        if(index >= n) {
-            return 0;
-        }
-
-        if(dp[index][curr_sign]!=-1) {
-            return dp[index][curr_sign];
-        }
-
-        long long val = nums[index];
-
-        if(!curr_sign) {
-            val*=-1;
-        }
-
-        long long take = val + solve(dp,index+1,!curr_sign,nums,n);
-
-        long long not_take = solve(dp,index+1,curr_sign,nums,n);
-
-        return dp[index][curr_sign] = max(take,not_take);
-
-    }
-
+   
     long long maxAlternatingSum(vector<int>& nums) {
 
+        //Bottom Up : 
+
         int n = nums.size();
-        bool flag = true;//Even.for i = 0.
+
+        //start at index = n-1.and start forming subsequence and see what max sum that can be achived.
 
         vector<vector<long long>>dp(n,vector<long long>(2,-1));
-        long long index = 0;
 
-        return solve(dp,index,flag,nums,n);
+        dp[n-1][1] = nums[n-1]; 
+        dp[n-1][0] = 0;
 
-        //TC : O(n*2)
-        //SC : O(n*2)
+        for(int i = n-2;i>=0;i--) {
+            //all array indices.thi subsequence start karine joyu.
+            for(int curr_sign = 0;curr_sign < 2;curr_sign++) {
+
+                int val = nums[i];
+
+                if(!curr_sign) {
+                    val*=-1;
+                }
+
+                long long take = val + dp[i+1][!curr_sign];
+
+                long long not_take = dp[i+1][curr_sign];
+
+                dp[i][curr_sign] = max(take,not_take);
+            }
+        }
         
+        return dp[0][1];
     }
 };
