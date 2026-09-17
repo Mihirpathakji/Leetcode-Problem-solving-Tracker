@@ -12,7 +12,7 @@ public:
 
         for(int i = m-1;i>=0;i--) {
             if(text1[n-1] == text2[i]) {
-                index1 = i;
+                index1 = i;//6.
                 break;
             }
         }    
@@ -26,7 +26,7 @@ public:
         int index2 = -1;
         for(int j = n-1;j>=0;j--) {
             if(text1[j] == text2[m-1]) {
-                index2 = j;
+                index2 = j;//4.
                 break;
             }
         }    
@@ -41,14 +41,14 @@ public:
             for(int j = m-2;j>=0;j--) {
 
                 int match = -1;
-                
+
                 int not_match = -1;
 
                 if(text1[i] == text2[j]) {
-                    match  = 1 + dp[i+1][j+1];
+                    match  = 1 + dp[i+1][j+1];//1 + 1 //2.
                 }
                 else {
-                    not_match = max(dp[i+1][j],dp[i][j+1]);//
+                    not_match = max(dp[i+1][j],dp[i][j+1]);//2.
                 }
                 
                 dp[i][j] = max(match,not_match);
@@ -58,6 +58,8 @@ public:
 
         return dp[0][0];
 
+        //TC : O(n*m)
+        //SC : O(n*m)
 
     }
 };
