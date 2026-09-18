@@ -37,6 +37,12 @@ public:
             }   
         }
 
+        //1.copied the based case.
+
+        //2.Write the Recurrence relation in going to opposite fashion -> i.e using the smallest subproblems to evaluate bigger subproblems.
+
+        //use smaller subproblems -> dp[n-1][m-1] => Use it to compute the larger ones.
+
         for(int i = n-2;i>=0;i--) {
             for(int j = m-2;j>=0;j--) {
 
