@@ -13,13 +13,19 @@ public:
 
         while(j < n) {
 
-            mp[s[j]]++;//1.1.2.3.
+           int max_freq = 0;//0.
+
+
+            mp[s[j]]++;
+
+            //might possible that we had remove certain elements from the map.
+            //Their by the maximum frequent element in the current window may had reduced it's maximum frequency.
+
+            //We have to update the maximum frequency every time.
 
             for(auto it : mp) {
                 max_freq = max(max_freq,it.second);
             }
-
-            //Over all n iterations => O(n)
  
             while( ((j-i+1) - max_freq ) >  k) {
 
@@ -29,14 +35,14 @@ public:
                     mp.erase(s[i]);
                 }
 
-                i++;//1. 
+                i++;
             }
             
 
 
-            maxi = max(maxi,j-i+1);//1.//2.3.
+            maxi = max(maxi,j-i+1);
 
-            j++;//1.2..3.4.
+            j++;
 
         }
 
