@@ -13,12 +13,11 @@ public:
 
         while(j < n) {
 
-
             mp[s[j]]++;
 
             max_freq = max(max_freq,mp[s[j]]);
 
-            while( ((j-i+1) - max_freq ) >  k) {
+            if( ((j-i+1) - max_freq ) >  k) {
 
                 mp[s[i]]--;
 
