@@ -16,13 +16,10 @@ public:
 
             mp[s[j]]++;
 
-
-            //THIS LOOP takes O(n) for the entire traversal j = 0 to n.Not for the single j.
-
             for(auto it : mp) {
                 max_freq = max(max_freq,it.second);
             }
- 
+
             while( ((j-i+1) - max_freq ) >  k) {
 
                 mp[s[i]]--;
@@ -33,7 +30,7 @@ public:
 
                 i++;
             }
-
+            
             maxi = max(maxi,j-i+1);
 
             j++;
@@ -42,7 +39,7 @@ public:
 
         return maxi;
     
-        //TC : O(3*n)
+        //TC : O(n + 26*n + n) = O(n)
         //SC : O(n)
          
     }
