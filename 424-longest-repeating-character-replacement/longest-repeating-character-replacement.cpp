@@ -9,16 +9,14 @@ public:
 
         unordered_map<char,int>mp;
         int maxi = 0;
+        int max_freq = 0;
 
         while(j < n) {
 
-           int max_freq = 0;
 
             mp[s[j]]++;
 
-            for(auto it : mp) {
-                max_freq = max(max_freq,it.second);
-            }
+            max_freq = max(max_freq,mp[s[j]]);
 
             while( ((j-i+1) - max_freq ) >  k) {
 
@@ -39,7 +37,7 @@ public:
 
         return maxi;
     
-        //TC : O(n + 26*n + n) = O(n)
+        //TC : O(n + n) = O(n)
         //SC : O(n)
          
     }
