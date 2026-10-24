@@ -13,9 +13,13 @@ public:
 
         while(j < n) {
 
-            mp[s[j]]++;//1.
+            mp[s[j]]++;//1.1.2.3.
 
-            max_freq = max(max_freq,mp[s[j]]);//1.//1.
+            for(auto it : mp) {
+                max_freq = max(max_freq,it.second);
+            }
+
+            //Over all n iterations => O(n)
  
             while( ((j-i+1) - max_freq ) >  k) {
 
@@ -25,16 +29,21 @@ public:
                     mp.erase(s[i]);
                 }
 
-                i++;
+                i++;//1. 
             }
+            
 
-            maxi = max(maxi,j-i+1);///1.
 
-            j++;//1.
+            maxi = max(maxi,j-i+1);//1.//2.3.
+
+            j++;//1.2..3.4.
 
         }
 
         return maxi;
+    
+        //TC : O(2*n)
+        //SC : O(n)
          
     }
 };
