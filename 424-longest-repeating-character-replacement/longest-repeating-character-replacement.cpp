@@ -8,20 +8,13 @@ public:
         int j = 0;
 
         unordered_map<char,int>mp;
-        int max_freq = 0;//0.
-        int maxi = 0;//0.
+        int maxi = 0;
 
         while(j < n) {
 
-           int max_freq = 0;//0.
-
+           int max_freq = 0;
 
             mp[s[j]]++;
-
-            //might possible that we had remove certain elements from the map.
-            //Their by the maximum frequent element in the current window may had reduced it's maximum frequency.
-
-            //We have to update the maximum frequency every time.
 
             for(auto it : mp) {
                 max_freq = max(max_freq,it.second);
@@ -37,8 +30,6 @@ public:
 
                 i++;
             }
-            
-
 
             maxi = max(maxi,j-i+1);
 
