@@ -6,7 +6,7 @@ public:
         int n = text1.length();
         int m = text2.length();
 
-        vector<vector<int>>dp(n,vector<int>(m,0));//
+        vector<vector<int>>dp(n,vector<int>(m,0));
 
         int index1 = -1;    
 
@@ -26,22 +26,16 @@ public:
         int index2 = -1;
         for(int j = n-1;j>=0;j--) {
             if(text1[j] == text2[m-1]) {
-                index2 = j;//4.
+                index2 = j;
                 break;
             }
         }    
 
         if(index2>=0) {
             for(int i = index2;i>=0;i--) {
-                dp[i][m-1] = 1;//.
+                dp[i][m-1] = 1;
             }   
         }
-
-        //1.copied the based case.
-
-        //2.Write the Recurrence relation in going to opposite fashion -> i.e using the smallest subproblems to evaluate bigger subproblems.
-
-        //use smaller subproblems -> dp[n-1][m-1] => Use it to compute the larger ones.
 
         for(int i = n-2;i>=0;i--) {
             for(int j = m-2;j>=0;j--) {
@@ -51,10 +45,10 @@ public:
                 int not_match = -1;
 
                 if(text1[i] == text2[j]) {
-                    match  = 1 + dp[i+1][j+1];//1 + 1 //2.
+                    match  = 1 + dp[i+1][j+1];
                 }
                 else {
-                    not_match = max(dp[i+1][j],dp[i][j+1]);//2.
+                    not_match = max(dp[i+1][j],dp[i][j+1]);
                 }
                 
                 dp[i][j] = max(match,not_match);
