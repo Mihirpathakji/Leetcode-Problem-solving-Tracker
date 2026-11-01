@@ -10,11 +10,7 @@ public:
 
         int i = 0;//blue.
         int j = 0;//red.
-        int k = n-1;//yellow . Since yellow is at the last in final answer.
-
-
-        //Dutch National Flag Algorithm.In this nums[j] to nums[k] section is unvisited.// So visit every unvisited element in that section.
-
+        int k = n-1;//yellow.
 
         while(j <= k) {
 
