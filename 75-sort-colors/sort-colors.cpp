@@ -1,13 +1,14 @@
 class Solution {
 public:
+
     void sortColors(vector<int>& nums) {
 
         int n = nums.size();
 
         int i = 0;//0
-        int j = 0;//1
+        int j = 0;//1.
         int k = n-1;//2.Bcz 2 is at the last position.
-
+    
         while(j <= k) {
 
             if(nums[j] == 2) {
